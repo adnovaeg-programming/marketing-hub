@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "start": "Start Now",
+    "features": "Features",
+    "pricing": "Pricing",
+    "marketplace": "Marketplace",
+    "howItWorks": "How it works",
+    "login": "Login",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "The first integrated marketing platform in the Arab world",
+    "title": "All your marketing in",
+    "titleHighlight": "one place",
+    "description": "A unified platform to manage content, team, clients, and ad campaigns — without switching between tools.",
+    "ctaPrimary": "Start for free",
+    "ctaSecondary": "Watch demo",
+    "trustNote": "No credit card • Cancel anytime",
+    "dashboardPreview": "Dashboard — coming soon"
+  },
+  "features": {
+    "title": "Everything you need for",
+    "titleHighlight": "better marketing",
+    "description": "Tools designed to work together — instead of juggling 5 different platforms.",
+    "items": {
+      "calendar": {
+        "title": "Unified Calendar",
+        "description": "Plan, schedule, and publish content across all platforms from one place — no tool switching."
+      },
+      "collaboration": {
+        "title": "Team Collaboration",
+        "description": "Invite your team and clients, assign tasks, and track every comment and approval in real-time."
+      },
+      "reports": {
+        "title": "Smart Reports",
+        "description": "Automatic weekly and monthly reports showing your campaign performance — no Excel, no exports."
+      },
+      "wallet": {
+        "title": "Secure Wallet & Payments",
+        "description": "An escrow system that protects both parties, plus an e-wallet for quick withdrawals."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Start in",
+    "titleHighlight": "3 steps",
+    "description": "From signup to your first successful campaign — no complexity, no long setup.",
+    "steps": {
+      "workspace": {
+        "title": "Create your workspace",
+        "description": "Sign up for free and choose whether you're an agency, freelancer, or company — in under a minute."
+      },
+      "invite": {
+        "title": "Invite your team & clients",
+        "description": "Add members, assign roles, and start collaborating on content and tasks right away."
+      },
+      "launch": {
+        "title": "Launch & grow",
+        "description": "Plan, publish, analyze, and collect your earnings — all from one dashboard."
+      }
+    }
+  }
+}

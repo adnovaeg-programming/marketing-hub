@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Menu, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,54 +14,52 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const NAV_LINKS = [
-  { href: "#features", label: "المميزات" },
-  { href: "#pricing", label: "الأسعار" },
-  { href: "#marketplace", label: "Marketplace" },
-  { href: "#how-it-works", label: "كيف يعمل؟" },
-];
+  { hash: "features", key: "features" },
+  { hash: "pricing", key: "pricing" },
+  { hash: "marketplace", key: "marketplace" },
+  { hash: "how-it-works", key: "howItWorks" },
+] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("nav");
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
-        {/* الشعار — على اليمين في RTL */}
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
           <Sparkles className="size-6 text-primary" />
           <span className="text-foreground">Marketing Hub</span>
         </Link>
 
-        {/* الروابط — تظهر من md وأعلى */}
         <div className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
+            <a
+              key={link.hash}
+              href={`#${link.hash}`}
               className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
             >
-              {link.label}
-            </Link>
+              {t(link.key)}
+            </a>
           ))}
         </div>
 
-        {/* الإجراءات — على اليسار */}
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeToggle />
 
-          {/* أزرار سطح المكتب */}
           <div className="hidden md:flex items-center gap-2">
             <Button variant="ghost" size="sm">
-              تسجيل الدخول
+              {t("login")}
             </Button>
             <Button size="sm" className="rounded-full px-5">
-              ابدأ الآن
+              {t("getStarted")}
             </Button>
           </div>
 
-          {/* زر Hamburger — يظهر في الموبايل فقط */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -77,20 +76,22 @@ export function Navbar() {
               </SheetHeader>
               <div className="mt-6 flex flex-col gap-2">
                 {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
+                  <a
+                    key={link.hash}
+                    href={`#${link.hash}`}
                     onClick={() => setOpen(false)}
                     className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
                   >
-                    {link.label}
-                  </Link>
+                    {t(link.key)}
+                  </a>
                 ))}
                 <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
                   <Button variant="outline" onClick={() => setOpen(false)}>
-                    تسجيل الدخول
+                    {t("login")}
                   </Button>
-                  <Button onClick={() => setOpen(false)}>ابدأ الآن</Button>
+                  <Button onClick={() => setOpen(false)}>
+                    {t("getStarted")}
+                  </Button>
                 </div>
               </div>
             </SheetContent>

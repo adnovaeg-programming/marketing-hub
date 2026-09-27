@@ -2,19 +2,24 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 
+const emptySubscribe = () => () => {};
+
+function useIsMounted() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+}
+
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted && resolvedTheme === "dark";
+  const isMounted = useIsMounted();
+  const isDark = isMounted && resolvedTheme === "dark";
 
   return (
     <Button
@@ -24,15 +29,12 @@ export function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="تبديل الوضع"
     >
-      {/* الشمس — بتلف وتختفي في الوضع الغامق */}
       <Sun
         className={`
           absolute size-5 transition-all duration-500 ease-in-out
           ${isDark ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}
         `}
       />
-
-      {/* القمر — بيظهر في الوضع الغامق */}
       <Moon
         className={`
           absolute size-5 transition-all duration-500 ease-in-out
