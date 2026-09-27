@@ -159,3 +159,20 @@
     @apply font-sans;
   }
 }
+@layer utilities {
+  /* تدرج ناعم للخلفية العامة */
+  .auth-bg {
+    background:
+      radial-gradient(ellipse at top, color-mix(in oklch, var(--primary) 8%, transparent), transparent 50%),
+      radial-gradient(ellipse at bottom, color-mix(in oklch, var(--accent) 6%, transparent), transparent 50%),
+      var(--background);
+  }
+
+  /* شبكة خفيفة */
+  .subtle-grid {
+    background-image:
+      linear-gradient(var(--foreground) 1px, transparent 1px),
+      linear-gradient(90deg, var(--foreground) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}

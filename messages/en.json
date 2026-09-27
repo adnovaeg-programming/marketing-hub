@@ -1,6 +1,5 @@
 {
   "nav": {
-    "start": "Start Now",
     "features": "Features",
     "pricing": "Pricing",
     "marketplace": "Marketplace",
@@ -58,6 +57,142 @@
         "title": "Launch & grow",
         "description": "Plan, publish, analyze, and collect your earnings — all from one dashboard."
       }
+    }
+  },
+  "pricing": {
+    "badge": "Pricing for everyone",
+    "title": "Simple plans, no",
+    "titleHighlight": "surprises",
+    "description": "Start for free, upgrade when you need — cancel anytime.",
+    "billingMonthly": "Monthly",
+    "billingYearly": "Yearly",
+    "savePercent": "Save 20%",
+    "popular": "Most popular",
+    "perMonth": "/mo",
+    "perYear": "/yr",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "description": "For freelancers just starting out.",
+        "cta": "Start for free",
+        "features": [
+          "1 workspace",
+          "2 clients",
+          "Basic content calendar",
+          "Monthly reports"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For small agencies and professional freelancers.",
+        "cta": "Try 14 days free",
+        "features": [
+          "5 workspaces",
+          "20 clients",
+          "Auto-publishing to all platforms",
+          "E-wallet",
+          "Weekly reports",
+          "Priority support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "description": "For large agencies and companies.",
+        "cta": "Contact us",
+        "features": [
+          "Unlimited workspaces",
+          "Unlimited clients",
+          "Custom white-label integration",
+          "Dedicated account manager",
+          "Guaranteed SLA",
+          "Full team training"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to start?",
+    "description": "Join hundreds of agencies and freelancers using Marketing Hub every day.",
+    "primary": "Start for free",
+    "secondary": "Talk to our team"
+  },
+  "footer": {
+    "tagline": "A unified marketing platform — everything in one place.",
+    "product": "Product",
+    "company": "Company",
+    "resources": "Resources",
+    "legal": "Legal",
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "marketplace": "Marketplace",
+      "about": "About",
+      "contact": "Contact",
+      "careers": "Careers",
+      "blog": "Blog",
+      "help": "Help Center",
+      "docs": "Docs",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "commission": "Commission Policy"
+    },
+    "rights": "All rights reserved.",
+    "madeIn": "Made in Egypt 🇪🇬"
+  },
+  "auth": {
+    "layout": {
+      "visualTitle": "All your marketing in",
+      "visualHighlight": "one place",
+      "visualDescription": "A unified platform for content, team, clients, and ad campaigns."
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to access your account",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Start your marketing journey in under a minute",
+      "name": "Full name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "accountType": "Account type",
+      "types": {
+        "client": "Company / Client",
+        "clientDesc": "Looking for marketing services",
+        "agency": "Agency",
+        "agencyDesc": "I manage a marketing team",
+        "freelancer": "Freelancer",
+        "freelancerDesc": "I offer marketing services"
+      },
+      "terms": "I agree to the",
+      "termsLink": "Terms of Service",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "forgot": {
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you a reset link",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "submit": "Send reset link",
+      "backToLogin": "Back to login",
+      "successTitle": "Check your email",
+      "successMessage": "If this email is registered, you'll receive a message with a password reset link."
     }
   }
 }
