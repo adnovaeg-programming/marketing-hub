@@ -139,6 +139,35 @@
     "rights": "All rights reserved.",
     "madeIn": "Made in Egypt 🇪🇬"
   },
+  "styleGuide": {
+    "title": "Style Guide",
+    "subtitle": "A complete reference for all colors and components in Marketing Hub",
+    "sections": {
+      "colors": "Colors",
+      "typography": "Typography",
+      "buttons": "Buttons",
+      "glass": "Glass",
+      "inputs": "Inputs",
+      "animations": "Animations",
+      "radius": "Border Radius"
+    },
+    "labels": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "muted": "Muted",
+      "accent": "Accent",
+      "destructive": "Destructive",
+      "background": "Background",
+      "foreground": "Foreground"
+    },
+    "buttonVariants": {
+      "default": "Default",
+      "outline": "Outline",
+      "ghost": "Ghost",
+      "secondary": "Secondary",
+      "destructive": "Destructive"
+    }
+  },
   "auth": {
     "layout": {
       "visualTitle": "All your marketing in",

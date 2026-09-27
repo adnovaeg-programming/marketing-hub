@@ -18,10 +18,7 @@ export function Features() {
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-l from-primary via-accent to-primary bg-clip-text text-transparent">
-              {t("titleHighlight")}
-            </span>
+            {t("title")} <span className="text-gradient">{t("titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">{t("description")}</p>
         </div>
@@ -32,12 +29,10 @@ export function Features() {
             return (
               <div
                 key={key}
-                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/50 p-6 backdrop-blur transition hover:border-primary/40 hover:bg-card"
+                className="glass glass-hover glass-shimmer group relative overflow-hidden rounded-2xl p-6"
               >
-                <div className="absolute -right-8 -top-8 size-24 rounded-full bg-primary/0 blur-2xl transition-all duration-500 group-hover:bg-primary/30" />
-
-                <div className="relative mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
-                  <Icon className="size-6" />
+                <div className="relative mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20">
+                  <Icon className="size-6 text-primary" />
                 </div>
 
                 <h3 className="relative mb-2 text-lg font-semibold">

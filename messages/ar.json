@@ -140,6 +140,35 @@
     "rights": "جميع الحقوق محفوظة.",
     "madeIn": "صنع في مصر 🇪🇬"
   },
+  "styleGuide": {
+    "title": "دليل التصميم",
+    "subtitle": "مرجع شامل لكل الألوان والمكونات في Marketing Hub",
+    "sections": {
+      "colors": "الألوان",
+      "typography": "الخطوط",
+      "buttons": "الأزرار",
+      "glass": "الزجاج (Glass)",
+      "inputs": "حقول الإدخال",
+      "animations": "الأنيميشن",
+      "radius": "الحواف الدائرية"
+    },
+    "labels": {
+      "primary": "أساسي",
+      "secondary": "ثانوي",
+      "muted": "باهت",
+      "accent": "تمييز",
+      "destructive": "خطر",
+      "background": "الخلفية",
+      "foreground": "النص"
+    },
+    "buttonVariants": {
+      "default": "افتراضي",
+      "outline": "بحدود",
+      "ghost": "شفاف",
+      "secondary": "ثانوي",
+      "destructive": "خطر"
+    }
+  },
   "auth": {
     "layout": {
       "visualTitle": "كل تسويقك في",
