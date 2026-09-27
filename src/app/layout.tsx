@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Geist_Mono, Geist } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +33,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", cairo.variable, geistMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <body className="min-h-full flex flex-col bg-background text-foreground">
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="dark"
+    enableSystem
+    disableTransitionOnChange
+  >
+    <Navbar />
+    {children}
+  </ThemeProvider>
+</body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
