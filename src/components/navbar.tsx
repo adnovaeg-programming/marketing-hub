@@ -28,8 +28,8 @@ export function Navbar() {
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
+<header className="glass sticky top-0 z-50 w-full border-b border-glass-border">
+        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
           <Sparkles className="size-6 text-primary" />
           <span className="text-foreground">Marketing Hub</span>
@@ -52,11 +52,11 @@ export function Navbar() {
           <ThemeToggle />
 
           <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="sm">
-              {t("login")}
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/login">{t("login")}</Link>
             </Button>
-            <Button size="sm" className="rounded-full px-5">
-              {t("getStarted")}
+            <Button size="sm" className="rounded-full px-5" asChild>
+              <Link href="/register">{t("getStarted")}</Link>
             </Button>
           </div>
 
@@ -86,11 +86,11 @@ export function Navbar() {
                   </a>
                 ))}
                 <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
-                  <Button variant="outline" onClick={() => setOpen(false)}>
-                    {t("login")}
+                  <Button variant="outline" asChild onClick={() => setOpen(false)}>
+                    <Link href="/login">{t("login")}</Link>
                   </Button>
-                  <Button onClick={() => setOpen(false)}>
-                    {t("getStarted")}
+                  <Button asChild onClick={() => setOpen(false)}>
+                    <Link href="/register">{t("getStarted")}</Link>
                   </Button>
                 </div>
               </div>
