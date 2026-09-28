@@ -9,6 +9,7 @@
     "getStarted": "ابدأ الآن",
     "dashboard": "لوحة التحكم",
     "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
     "logout": "تسجيل الخروج"
   },
   "hero": {
@@ -275,6 +276,7 @@
       "analytics": "التحليلات",
       "settings": "الإعدادات",
       "notifications": "الإشعارات",
+      "profile": "الملف الشخصي",
       "logout": "تسجيل الخروج",
       "openMenu": "افتح القائمة"
     },
@@ -622,6 +624,42 @@
         }
       }
     },
+    "profile": {
+      "title": "الملف الشخصي",
+      "subtitle": "أدر بياناتك الشخصية"
+    },
+    "error": {
+      "title": "حصلت مشكلة",
+      "description": "حصل خطأ غير متوقع. جرّب تاني.",
+      "retry": "حاول تاني",
+      "home": "الصفحة الرئيسية"
+    },
+    "portal": {
+      "portal": "بوابة العميل",
+      "welcome": "مرحبًا",
+      "subtitle": "دي بوابة العميل — تشوف فيها مشاريعك والمحتوى المطلوب موافقتك",
+      "logout": "تسجيل الخروج",
+      "pendingApproval": "بانتظار موافقتك",
+      "approve": "موافقة",
+      "requestChanges": "طلب تعديلات",
+      "addNote": "ملاحظات (اختياري)",
+      "notePlaceholder": "اكتب ملاحظاتك هنا...",
+      "viewAll": "عرض الكل",
+      "allClear": "كل حاجة تحت السيطرة! مفيش محتوى بانتظار موافقتك.",
+      "backToApprovals": "رجوع للموافقات",
+      "approvalsCount": "{count} عنصر بانتظار موافقتك",
+      "projectsCount": "{count} مشروع",
+      "noProjects": "مفيش مشاريع لسه",
+      "stats": {
+        "pending": "بانتظار موافقتك",
+        "approved": "معتمد",
+        "projects": "المشاريع"
+      },
+      "sections": {
+        "pendingApprovals": "بانتظار موافقتك",
+        "myProjects": "مشاريعي"
+      }
+    },
     "invite": {
       "invalidTitle": "الدعوة مش موجودة",
       "invalidDescription": "الرابط ده مش صحيح أو انتهت صلاحيته.",
@@ -698,6 +736,12 @@
         "empty": "مفيش نشاط لسه"
       }
     }
+  },
+  "errors": {
+    "title": "حصلت مشكلة",
+    "description": "حصل خطأ غير متوقع. جرّب تاني.",
+    "retry": "حاول تاني",
+    "home": "الصفحة الرئيسية"
   },
   "onboarding": {
     "welcome": {

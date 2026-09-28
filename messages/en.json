@@ -9,6 +9,7 @@
     "getStarted": "Get Started",
     "dashboard": "Dashboard",
     "settings": "Settings",
+    "profile": "Profile",
     "logout": "Sign Out"
   },
   "hero": {
@@ -275,6 +276,7 @@
       "analytics": "Analytics",
       "settings": "Settings",
       "notifications": "Notifications",
+      "profile": "Profile",
       "logout": "Sign out",
       "openMenu": "Open menu"
     },
@@ -622,6 +624,42 @@
         }
       }
     },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Manage your personal information"
+    },
+    "error": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred. Try again.",
+      "retry": "Try again",
+      "home": "Home"
+    },
+    "portal": {
+      "portal": "Client Portal",
+      "welcome": "Welcome",
+      "subtitle": "This is your client portal — view your projects and content awaiting approval",
+      "logout": "Sign out",
+      "pendingApproval": "Awaiting approval",
+      "approve": "Approve",
+      "requestChanges": "Request changes",
+      "addNote": "Notes (optional)",
+      "notePlaceholder": "Write your notes here...",
+      "viewAll": "View all",
+      "allClear": "All clear! Nothing awaiting your approval.",
+      "backToApprovals": "Back to approvals",
+      "approvalsCount": "{count} items awaiting your approval",
+      "projectsCount": "{count} projects",
+      "noProjects": "No projects yet",
+      "stats": {
+        "pending": "Awaiting approval",
+        "approved": "Approved",
+        "projects": "Projects"
+      },
+      "sections": {
+        "pendingApprovals": "Awaiting your approval",
+        "myProjects": "My projects"
+      }
+    },
     "invite": {
       "invalidTitle": "Invitation not found",
       "invalidDescription": "This link is invalid or has expired.",
@@ -698,6 +736,12 @@
         "empty": "No activity yet"
       }
     }
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Try again.",
+    "retry": "Try again",
+    "home": "Home"
   },
   "onboarding": {
     "welcome": {

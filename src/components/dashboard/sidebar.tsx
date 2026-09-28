@@ -6,13 +6,14 @@ import {
   Users,
   FolderKanban,
   FileText,
-  CheckSquare,   // ← جديد
+  CheckSquare,
   BarChart3,
   Settings,
   Bell,
   Menu,
   Sparkles,
   LogOut,
+  UserCircle,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -25,20 +26,32 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
 import { signOutAction } from "@/app/[locale]/login/actions";
 
 const NAV_ITEMS = [
   { href: "/dashboard", icon: LayoutDashboard, key: "overview" },
   { href: "/dashboard/clients", icon: Users, key: "clients" },
   { href: "/dashboard/projects", icon: FolderKanban, key: "projects" },
-  { href: "/dashboard/tasks", icon: CheckSquare, key: "tasks" }, // ← جديد
+  { href: "/dashboard/tasks", icon: CheckSquare, key: "tasks" },
   { href: "/dashboard/content", icon: FileText, key: "content" },
   { href: "/dashboard/notifications", icon: Bell, key: "notifications" },
   { href: "/dashboard/analytics", icon: BarChart3, key: "analytics" },
+  { href: "/dashboard/profile", icon: UserCircle, key: "profile" },
   { href: "/dashboard/settings", icon: Settings, key: "settings" },
 ] as const;
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+type Workspace = { id: string; name: string; slug: string; role: string };
+
+function SidebarContent({
+  onNavigate,
+  activeWorkspaceId,
+  workspaces,
+}: {
+  onNavigate?: () => void;
+  activeWorkspaceId: string | null;
+  workspaces: Workspace[];
+}) {
   const t = useTranslations("dashboard.nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -53,11 +66,18 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center gap-2 px-6 py-5">
+      <div className="flex items-center gap-2 px-6 pt-5">
         <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
           <Sparkles className="size-5 text-white" />
         </div>
         <span className="font-bold">Marketing Hub</span>
+      </div>
+
+      <div className="mt-3 px-3">
+        <WorkspaceSwitcher
+          currentId={activeWorkspaceId}
+          workspaces={workspaces}
+        />
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
@@ -104,7 +124,13 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function MobileSidebar() {
+function MobileSidebar({
+  activeWorkspaceId,
+  workspaces,
+}: {
+  activeWorkspaceId: string | null;
+  workspaces: Workspace[];
+}) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("dashboard.nav");
 
@@ -128,20 +154,36 @@ function MobileSidebar() {
           <SheetHeader className="sr-only">
             <SheetTitle>Navigation</SheetTitle>
           </SheetHeader>
-          <SidebarContent onNavigate={() => setOpen(false)} />
+          <SidebarContent
+            onNavigate={() => setOpen(false)}
+            activeWorkspaceId={activeWorkspaceId}
+            workspaces={workspaces}
+          />
         </SheetContent>
       </Sheet>
     </div>
   );
 }
 
-export function DashboardSidebar() {
+export function DashboardSidebar({
+  activeWorkspaceId,
+  workspaces,
+}: {
+  activeWorkspaceId: string | null;
+  workspaces: Workspace[];
+}) {
   return (
     <>
       <aside className="glass sticky top-0 hidden h-screen w-64 shrink-0 border-e border-glass-border md:block">
-        <SidebarContent />
+        <SidebarContent
+          activeWorkspaceId={activeWorkspaceId}
+          workspaces={workspaces}
+        />
       </aside>
-      <MobileSidebar />
+      <MobileSidebar
+        activeWorkspaceId={activeWorkspaceId}
+        workspaces={workspaces}
+      />
     </>
   );
 }
