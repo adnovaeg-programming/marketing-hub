@@ -303,6 +303,24 @@
         "cancel": "Cancel",
         "submit": "Add client"
       }
+    },
+    "clientDetails": {
+      "back": "Back to clients",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "website": "Website",
+      "notes": "Notes",
+      "comingSoon": "Projects and content details coming soon",
+      "stats": {
+        "projects": "Projects",
+        "content": "Content"
+      },
+      "statuses": {
+        "active": "Active",
+        "lead": "Lead",
+        "archived": "Archived"
+      }
     }
   },
   "onboarding": {

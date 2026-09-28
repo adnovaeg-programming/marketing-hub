@@ -303,6 +303,24 @@
         "cancel": "إلغاء",
         "submit": "إضافة العميل"
       }
+    },
+    "clientDetails": {
+      "back": "رجوع للعملاء",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "company": "الشركة",
+      "website": "الموقع الإلكتروني",
+      "notes": "ملاحظات",
+      "comingSoon": "تفاصيل المشاريع والمحتوى جاية قريبًا",
+      "stats": {
+        "projects": "المشاريع",
+        "content": "المحتوى"
+      },
+      "statuses": {
+        "active": "نشط",
+        "lead": "محتمل",
+        "archived": "مؤرشف"
+      }
     }
   },
   "onboarding": {
