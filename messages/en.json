@@ -265,6 +265,44 @@
       "settings": "Settings",
       "logout": "Sign out",
       "openMenu": "Open menu"
+    },
+    "clients": {
+      "title": "Clients",
+      "subtitle": "You have {count} clients in this workspace",
+      "delete": "Delete client",
+      "confirmDelete": "Are you sure you want to delete this client?",
+      "noContact": "No contact info",
+      "emptyTitle": "No clients yet",
+      "emptyDescription": "Start by adding your first client to manage their projects and content from one place.",
+      "statuses": {
+        "active": "Active",
+        "lead": "Lead",
+        "archived": "Archived"
+      },
+      "form": {
+        "trigger": "Add client",
+        "title": "New client",
+        "description": "Add the new client's details — you can edit later",
+        "name": "Client name",
+        "namePlaceholder": "e.g., John Doe",
+        "email": "Email",
+        "emailPlaceholder": "client@example.com",
+        "phone": "Phone",
+        "phonePlaceholder": "+20 100 000 0000",
+        "company": "Company",
+        "companyPlaceholder": "e.g., Al-Noor Co.",
+        "industry": "Industry",
+        "industryPlaceholder": "e.g., E-commerce",
+        "website": "Website",
+        "websitePlaceholder": "https://example.com",
+        "status": "Status",
+        "statusActive": "Active",
+        "statusLead": "Lead",
+        "notes": "Notes",
+        "notesPlaceholder": "Any additional details...",
+        "cancel": "Cancel",
+        "submit": "Add client"
+      }
     }
   },
   "onboarding": {

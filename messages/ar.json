@@ -265,6 +265,44 @@
       "settings": "الإعدادات",
       "logout": "تسجيل الخروج",
       "openMenu": "افتح القائمة"
+    },
+    "clients": {
+      "title": "العملاء",
+      "subtitle": "عندك {count} عميل في مساحة العمل دي",
+      "delete": "حذف العميل",
+      "confirmDelete": "متأكد إنك عايز تحذف العميل ده؟",
+      "noContact": "مفيش بيانات تواصل",
+      "emptyTitle": "مفيش عملاء لسه",
+      "emptyDescription": "ابدأ بإضافة أول عميل عشان تدير مشاريعه ومحتواه من مكان واحد.",
+      "statuses": {
+        "active": "نشط",
+        "lead": "محتمل",
+        "archived": "مؤرشف"
+      },
+      "form": {
+        "trigger": "إضافة عميل",
+        "title": "عميل جديد",
+        "description": "أضف بيانات العميل الجديد — تقدر تعدلها بعدين",
+        "name": "اسم العميل",
+        "namePlaceholder": "مثال: أحمد محمد",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "client@example.com",
+        "phone": "رقم الهاتف",
+        "phonePlaceholder": "+20 100 000 0000",
+        "company": "اسم الشركة",
+        "companyPlaceholder": "مثال: شركة النور",
+        "industry": "المجال",
+        "industryPlaceholder": "مثال: تجارة إلكترونية",
+        "website": "الموقع الإلكتروني",
+        "websitePlaceholder": "https://example.com",
+        "status": "الحالة",
+        "statusActive": "نشط",
+        "statusLead": "محتمل",
+        "notes": "ملاحظات",
+        "notesPlaceholder": "أي تفاصيل إضافية...",
+        "cancel": "إلغاء",
+        "submit": "إضافة العميل"
+      }
     }
   },
   "onboarding": {
