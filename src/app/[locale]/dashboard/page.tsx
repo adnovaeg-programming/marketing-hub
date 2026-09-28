@@ -13,13 +13,19 @@ import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect("/login");
+  if (!user) redirect(`/${locale}/login`);
 
   // نتحقق من العضوية
   const { data: member } = await supabase
@@ -30,7 +36,7 @@ export default async function DashboardPage() {
     .limit(1)
     .maybeSingle();
 
-  if (!member) redirect("/onboarding");
+  if (!member) redirect(`/${locale}/onboarding`);
 
   const workspaceId = member.workspace_id;
 
@@ -83,7 +89,13 @@ export default async function DashboardPage() {
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId);
 
-  // 5. أحدث العملاء
+  // 5. عدد المحتوى ✅ جديد
+  const { count: contentCount } = await supabase
+    .from("content_items")
+    .select("*", { count: "exact", head: true })
+    .eq("workspace_id", workspaceId);
+
+  // 6. أحدث العملاء
   const { data: recentClients } = await supabase
     .from("clients")
     .select("id, name, company, status, created_at")
@@ -91,7 +103,7 @@ export default async function DashboardPage() {
     .order("created_at", { ascending: false })
     .limit(3);
 
-  // 6. أحدث المشاريع
+  // 7. أحدث المشاريع
   const { data: recentProjects } = await supabase
     .from("projects")
     .select(
@@ -118,7 +130,7 @@ export default async function DashboardPage() {
       icon: Users,
       label: t("stats.clients"),
       value: String(clientsCount ?? 0),
-      href: "/dashboard/clients",
+      href: `/${locale}/dashboard/clients`,
       color: "text-primary",
       bg: "from-primary/20 to-accent/20",
     },
@@ -126,7 +138,7 @@ export default async function DashboardPage() {
       icon: FolderKanban,
       label: t("stats.activeProjects"),
       value: String(activeProjectsCount ?? 0),
-      href: "/dashboard/projects",
+      href: `/${locale}/dashboard/projects`,
       color: "text-accent",
       bg: "from-accent/20 to-primary/20",
       subtext: t("stats.totalProjects", { count: totalProjectsCount ?? 0 }),
@@ -134,17 +146,16 @@ export default async function DashboardPage() {
     {
       icon: FileText,
       label: t("stats.content"),
-      value: "0",
-      href: "/dashboard/content",
+      value: String(contentCount ?? 0), // ✅ بقى حقيقي
+      href: `/${locale}/dashboard/content`,
       color: "text-primary",
       bg: "from-primary/20 to-accent/20",
-      subtext: t("stats.comingSoon"),
     },
     {
       icon: TrendingUp,
       label: t("stats.team"),
       value: String(membersCount ?? 1),
-      href: "/dashboard/settings",
+      href: `/${locale}/dashboard/settings`,
       color: "text-accent",
       bg: "from-accent/20 to-primary/20",
     },
@@ -213,9 +224,11 @@ export default async function DashboardPage() {
         {/* Recent Clients */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">{t("sections.recentClients")}</h2>
+            <h2 className="text-lg font-semibold">
+              {t("sections.recentClients")}
+            </h2>
             <Link
-              href="/dashboard/clients"
+              href={`/${locale}/dashboard/clients`}
               className="inline-flex items-center gap-1 text-xs font-medium text-primary transition hover:opacity-80"
             >
               {t("sections.viewAll")}
@@ -228,7 +241,7 @@ export default async function DashboardPage() {
               {recentClients.map((client) => (
                 <Link
                   key={client.id}
-                  href={`/dashboard/clients/${client.id}`}
+                  href={`/${locale}/dashboard/clients/${client.id}`}
                   className="glass glass-hover flex items-center gap-3 rounded-xl p-3 transition-transform hover:-translate-y-0.5"
                 >
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-xs font-bold text-white">
@@ -255,7 +268,7 @@ export default async function DashboardPage() {
                 {t("sections.noClients")}
               </p>
               <Link
-                href="/dashboard/clients"
+                href={`/${locale}/dashboard/clients`}
                 className="mt-3 text-xs font-medium text-primary transition hover:opacity-80"
               >
                 {t("sections.addFirst")}
@@ -271,7 +284,7 @@ export default async function DashboardPage() {
               {t("sections.recentProjects")}
             </h2>
             <Link
-              href="/dashboard/projects"
+              href={`/${locale}/dashboard/projects`}
               className="inline-flex items-center gap-1 text-xs font-medium text-primary transition hover:opacity-80"
             >
               {t("sections.viewAll")}
@@ -288,7 +301,7 @@ export default async function DashboardPage() {
                 return (
                   <Link
                     key={project.id}
-                    href={`/dashboard/projects/${project.id}`}
+                    href={`/${locale}/dashboard/projects/${project.id}`}
                     className="glass glass-hover flex items-center gap-3 rounded-xl p-3 transition-transform hover:-translate-y-0.5"
                   >
                     <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-primary text-white">
@@ -318,7 +331,7 @@ export default async function DashboardPage() {
                 {t("sections.noProjects")}
               </p>
               <Link
-                href="/dashboard/projects"
+                href={`/${locale}/dashboard/projects`}
                 className="mt-3 text-xs font-medium text-primary transition hover:opacity-80"
               >
                 {t("sections.addFirstProject")}

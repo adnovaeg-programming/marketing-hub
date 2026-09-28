@@ -384,6 +384,137 @@
         "completed": "مكتمل",
         "cancelled": "ملغي"
       }
+    },
+    "content": {
+      "title": "المحتوى",
+      "subtitle": "عندك {count} قطعة محتوى",
+      "emptyTitle": "مفيش محتوى لسه",
+      "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
+      "types": {
+        "post": "منشور",
+        "story": "ستوري",
+        "reel": "ريل",
+        "video": "فيديو",
+        "image": "صورة",
+        "article": "مقال",
+        "carousel": "كاروسيل"
+      },
+      "platforms": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "tiktok": "TikTok",
+        "x": "X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube"
+      },
+      "statuses": {
+        "draft": "مسودة",
+        "internal_review": "مراجعة داخلية",
+        "client_review": "مراجعة العميل",
+        "approved": "معتمد",
+        "rejected": "مرفوض",
+        "scheduled": "مجدول",
+        "published": "منشور",
+        "archived": "مؤرشف"
+      },
+      "priorities": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "form": {
+        "trigger": "محتوى جديد",
+        "title": "إنشاء محتوى",
+        "description": "أضف بيانات المحتوى الجديد",
+        "titleLabel": "العنوان",
+        "titlePlaceholder": "مثال: منشور إطلاق المنتج",
+        "descriptionLabel": "الوصف",
+        "descriptionPlaceholder": "تفاصيل المحتوى أو الكابشن...",
+        "client": "العميل",
+        "noClient": "بدون عميل",
+        "project": "المشروع",
+        "noProject": "بدون مشروع",
+        "type": "نوع المحتوى",
+        "platform": "المنصة",
+        "noPlatform": "بدون منصة",
+        "priority": "الأولوية",
+        "cancel": "إلغاء",
+        "submit": "إنشاء المحتوى"
+      },
+      "actions": {
+        "sendToReview": "إرسال للمراجعة",
+        "sendToClient": "إرسال للعميل",
+        "approve": "موافقة",
+        "reject": "رفض",
+        "publish": "نشر",
+        "backToDraft": "إرجاع كمسودة",
+        "delete": "حذف",
+        "confirmDelete": "متأكد إنك عايز تحذف المحتوى ده؟"
+      },
+      "details": {
+        "back": "رجوع للمحتوى",
+        "client": "العميل",
+        "project": "المشروع",
+        "scheduledAt": "موعد النشر",
+        "comingSoon": "التعليقات والنسخ والملفات جاية قريبًا"
+      }
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "subtitle": "أدر حسابك ومساحة العمل",
+      "profile": {
+        "title": "الملف الشخصي",
+        "description": "حدّث بياناتك الشخصية",
+        "firstName": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "phone": "رقم الهاتف",
+        "jobTitle": "المسمى الوظيفي",
+        "jobTitlePlaceholder": "مثال: مدير تسويق",
+        "bio": "نبذة عنك",
+        "bioPlaceholder": "اكتب نبذة قصيرة...",
+        "country": "الدولة",
+        "countryPlaceholder": "مصر",
+        "city": "المدينة",
+        "cityPlaceholder": "القاهرة",
+        "timezone": "المنطقة الزمنية",
+        "language": "اللغة المفضلة",
+        "submit": "حفظ التعديلات",
+        "success": "تم حفظ التعديلات بنجاح"
+      },
+      "workspace": {
+        "title": "مساحة العمل",
+        "description": "بيانات مساحة العمل الحالية",
+        "name": "اسم مساحة العمل",
+        "slug": "المعرّف (Slug)",
+        "slugNote": "لا يمكن تعديله",
+        "descriptionLabel": "الوصف",
+        "descriptionPlaceholder": "وصف مختصر لمساحة العمل...",
+        "submit": "حفظ التعديلات",
+        "success": "تم حفظ التعديلات بنجاح",
+        "readOnly": "مش عندك صلاحية التعديل — لازم تكون owner أو admin"
+      },
+      "organization": {
+        "title": "المؤسسة",
+        "description": "بيانات المؤسسة التجارية",
+        "name": "اسم المؤسسة",
+        "website": "الموقع الإلكتروني",
+        "descriptionLabel": "الوصف",
+        "descriptionPlaceholder": "وصف المؤسسة...",
+        "submit": "حفظ التعديلات",
+        "success": "تم حفظ التعديلات بنجاح"
+      },
+      "members": {
+        "title": "أعضاء الفريق",
+        "subtitle": "{count} عضو في مساحة العمل",
+        "roles": {
+          "owner": "مالك",
+          "admin": "أدمن",
+          "member": "عضو",
+          "client": "عميل",
+          "viewer": "مشاهد"
+        }
+      }
     }
   },
   "onboarding": {

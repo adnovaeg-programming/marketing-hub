@@ -384,6 +384,137 @@
         "completed": "Completed",
         "cancelled": "Cancelled"
       }
+    },
+    "content": {
+      "title": "Content",
+      "subtitle": "You have {count} content items",
+      "emptyTitle": "No content yet",
+      "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
+      "types": {
+        "post": "Post",
+        "story": "Story",
+        "reel": "Reel",
+        "video": "Video",
+        "image": "Image",
+        "article": "Article",
+        "carousel": "Carousel"
+      },
+      "platforms": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "tiktok": "TikTok",
+        "x": "X",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "internal_review": "Internal review",
+        "client_review": "Client review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "scheduled": "Scheduled",
+        "published": "Published",
+        "archived": "Archived"
+      },
+      "priorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "form": {
+        "trigger": "New content",
+        "title": "Create content",
+        "description": "Add the new content details",
+        "titleLabel": "Title",
+        "titlePlaceholder": "e.g., Product launch post",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Content details or caption...",
+        "client": "Client",
+        "noClient": "No client",
+        "project": "Project",
+        "noProject": "No project",
+        "type": "Content type",
+        "platform": "Platform",
+        "noPlatform": "No platform",
+        "priority": "Priority",
+        "cancel": "Cancel",
+        "submit": "Create content"
+      },
+      "actions": {
+        "sendToReview": "Send to review",
+        "sendToClient": "Send to client",
+        "approve": "Approve",
+        "reject": "Reject",
+        "publish": "Publish",
+        "backToDraft": "Back to draft",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this content?"
+      },
+      "details": {
+        "back": "Back to content",
+        "client": "Client",
+        "project": "Project",
+        "scheduledAt": "Scheduled at",
+        "comingSoon": "Comments, versions and files coming soon"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your account and workspace",
+      "profile": {
+        "title": "Profile",
+        "description": "Update your personal information",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "phone": "Phone",
+        "jobTitle": "Job title",
+        "jobTitlePlaceholder": "e.g., Marketing Manager",
+        "bio": "Bio",
+        "bioPlaceholder": "Write a short bio...",
+        "country": "Country",
+        "countryPlaceholder": "Egypt",
+        "city": "City",
+        "cityPlaceholder": "Cairo",
+        "timezone": "Timezone",
+        "language": "Preferred language",
+        "submit": "Save changes",
+        "success": "Changes saved successfully"
+      },
+      "workspace": {
+        "title": "Workspace",
+        "description": "Your current workspace details",
+        "name": "Workspace name",
+        "slug": "Slug",
+        "slugNote": "Cannot be changed",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Brief workspace description...",
+        "submit": "Save changes",
+        "success": "Changes saved successfully",
+        "readOnly": "You don't have permission — must be owner or admin"
+      },
+      "organization": {
+        "title": "Organization",
+        "description": "Your business organization details",
+        "name": "Organization name",
+        "website": "Website",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Organization description...",
+        "submit": "Save changes",
+        "success": "Changes saved successfully"
+      },
+      "members": {
+        "title": "Team members",
+        "subtitle": "{count} members in this workspace",
+        "roles": {
+          "owner": "Owner",
+          "admin": "Admin",
+          "member": "Member",
+          "client": "Client",
+          "viewer": "Viewer"
+        }
+      }
     }
   },
   "onboarding": {
