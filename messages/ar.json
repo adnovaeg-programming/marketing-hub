@@ -651,6 +651,52 @@
       "markAllRead": "تعليم الكل كمقروء",
       "unread": "{count} غير مقروء",
       "viewAll": "عرض كل الإشعارات"
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "subtitle": "نظرة شاملة على أداء مساحة العمل",
+      "kpis": {
+        "clients": "إجمالي العملاء",
+        "projects": "إجمالي المشاريع",
+        "content": "إجمالي المحتوى",
+        "tasks": "إجمالي المهام",
+        "pending": "{count} مهمة معلقة",
+        "allDone": "كل المهام مكتملة"
+      },
+      "sections": {
+        "contentBreakdown": "توزيع المحتوى",
+        "contentCenter": "قطعة",
+        "projectsByStatus": "المشاريع حسب الحالة",
+        "tasksByPriority": "المهام حسب الأولوية",
+        "recentActivity": "آخر الأنشطة",
+        "empty": "مفيش بيانات لسه"
+      },
+      "contentStatuses": {
+        "draft": "مسودة",
+        "internal_review": "مراجعة داخلية",
+        "client_review": "مراجعة العميل",
+        "approved": "معتمد",
+        "rejected": "مرفوض",
+        "scheduled": "مجدول",
+        "published": "منشور",
+        "archived": "مؤرشف"
+      },
+      "projectStatuses": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "on_hold": "معلّق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي"
+      },
+      "taskPriorities": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "activity": {
+        "empty": "مفيش نشاط لسه"
+      }
     }
   },
   "onboarding": {

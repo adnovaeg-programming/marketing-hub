@@ -651,6 +651,52 @@
       "markAllRead": "Mark all as read",
       "unread": "{count} unread",
       "viewAll": "View all notifications"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Overview of your workspace performance",
+      "kpis": {
+        "clients": "Total clients",
+        "projects": "Total projects",
+        "content": "Total content",
+        "tasks": "Total tasks",
+        "pending": "{count} pending tasks",
+        "allDone": "All tasks done"
+      },
+      "sections": {
+        "contentBreakdown": "Content breakdown",
+        "contentCenter": "items",
+        "projectsByStatus": "Projects by status",
+        "tasksByPriority": "Tasks by priority",
+        "recentActivity": "Recent activity",
+        "empty": "No data yet"
+      },
+      "contentStatuses": {
+        "draft": "Draft",
+        "internal_review": "Internal review",
+        "client_review": "Client review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "scheduled": "Scheduled",
+        "published": "Published",
+        "archived": "Archived"
+      },
+      "projectStatuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "on_hold": "On hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "taskPriorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "activity": {
+        "empty": "No activity yet"
+      }
     }
   },
   "onboarding": {
