@@ -6,8 +6,9 @@ import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/navbar";
+import { ConditionalNavbar } from "@/components/conditional-navbar";
 import { BackgroundLayer } from "@/components/background-layer";
+import { createClient } from "@/lib/supabase/server";
 
 import "../globals.css";
 
@@ -48,6 +49,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const dir = locale === "ar" ? "rtl" : "ltr";
 
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang={locale}
@@ -64,7 +70,7 @@ export default async function LocaleLayout({
             disableTransitionOnChange
           >
             <BackgroundLayer />
-            <Navbar />
+            <ConditionalNavbar user={user ? { email: user.email ?? "" } : null} />
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>

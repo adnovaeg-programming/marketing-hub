@@ -6,7 +6,10 @@
     "marketplace": "Marketplace",
     "howItWorks": "كيف يعمل؟",
     "login": "تسجيل الدخول",
-    "getStarted": "ابدأ الآن"
+    "getStarted": "ابدأ الآن",
+    "dashboard": "لوحة التحكم",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج"
   },
   "hero": {
     "badge": "منصة التسويق المتكاملة الأولى عربيًا",
@@ -186,7 +189,12 @@
       "forgotPassword": "نسيت كلمة المرور؟",
       "submit": "تسجيل الدخول",
       "noAccount": "ليس لديك حساب؟",
-      "signUp": "أنشئ حسابك"
+      "signUp": "أنشئ حسابك",
+      "errors": {
+        "missing_fields": "من فضلك أدخل الإيميل وكلمة المرور",
+        "invalid_credentials": "الإيميل أو كلمة المرور غلط",
+        "email_not_confirmed": "من فضلك أكّد إيميلك الأول"
+      }
     },
     "register": {
       "title": "أنشئ حسابك",
@@ -212,7 +220,14 @@
       "privacyLink": "سياسة الخصوصية",
       "submit": "إنشاء الحساب",
       "haveAccount": "لديك حساب بالفعل؟",
-      "signIn": "سجّل دخولك"
+      "signIn": "سجّل دخولك",
+      "successTitle": "تحقق من إيميلك",
+      "successMessage": "بعتنا لك رسالة فيها رابط لتأكيد حسابك. افتح إيميلك واضغط على الرابط.",
+      "goToLogin": "الذهاب لتسجيل الدخول",
+      "errors": {
+        "missing_fields": "من فضلك املأ كل الحقول المطلوبة",
+        "password_too_short": "كلمة المرور لازم تكون 8 أحرف على الأقل"
+      }
     },
     "forgot": {
       "title": "نسيت كلمة المرور؟",
@@ -223,6 +238,72 @@
       "backToLogin": "العودة لتسجيل الدخول",
       "successTitle": "تحقق من إيميلك",
       "successMessage": "لو الإيميل ده مسجّل عندنا، هتوصلك رسالة فيها رابط إعادة تعيين كلمة المرور."
+    }
+  },
+  "dashboard": {
+    "welcome": "أهلاً بيك",
+    "subtitle": "دي لوحة التحكم",
+    "placeholder": "المحتوى الكامل جاي قريبًا",
+    "stats": {
+      "members": "أعضاء الفريق",
+      "projects": "المشاريع",
+      "content": "المحتوى",
+      "engagement": "التفاعل"
+    },
+    "sections": {
+      "recent": "النشاط الأخير",
+      "recentEmpty": "مفيش نشاط لسه — ابدأ بإضافة عميل أو مشروع",
+      "quickActions": "إجراءات سريعة",
+      "actionsSoon": "قريبًا: إضافة عميل، إنشاء مشروع، دعوة فريق..."
+    },
+    "nav": {
+      "overview": "نظرة عامة",
+      "clients": "العملاء",
+      "projects": "المشاريع",
+      "content": "المحتوى",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج",
+      "openMenu": "افتح القائمة"
+    }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "أهلاً بيك في Marketing Hub",
+      "description": "خلينا نجهّز حسابك في خطوتين سريعتين ونبدأ رحلتك التسويقية.",
+      "cta": "يلا نبدأ"
+    },
+    "organization": {
+      "title": "معلومات المؤسسة",
+      "description": "دي هتكون {type} بتاعتك على المنصة.",
+      "fieldLabel": "اسم المؤسسة",
+      "placeholder": "مثال: وكالة النور"
+    },
+    "workspace": {
+      "title": "مساحة العمل الأولى",
+      "description": "مساحة العمل دي هي المكان اللي هتدير فيه العملاء والمشاريع.",
+      "fieldLabel": "اسم مساحة العمل",
+      "placeholder": "مثال: الفريق الرئيسي"
+    },
+    "done": {
+      "title": "كل حاجة جاهزة! 🎉",
+      "description": "مساحة عملك اتعملت بنجاح. يلا ندخل لوحة التحكم ونبدأ.",
+      "cta": "ادخل لوحة التحكم"
+    },
+    "back": "رجوع",
+    "next": "التالي",
+    "creating": "بيتم الإنشاء...",
+    "finish": "إنشاء الحساب",
+    "types": {
+      "client": "شركة",
+      "agency": "وكالة",
+      "freelancer": "مستقل"
+    },
+    "errors": {
+      "not_authenticated": "لازم تسجّل دخول الأول",
+      "missing_fields": "من فضلك املأ كل الحقول",
+      "org_failed": "فشل إنشاء المؤسسة",
+      "workspace_failed": "فشل إنشاء مساحة العمل"
     }
   }
 }
