@@ -245,16 +245,26 @@
     "subtitle": "دي لوحة التحكم",
     "placeholder": "المحتوى الكامل جاي قريبًا",
     "stats": {
-      "members": "أعضاء الفريق",
-      "projects": "المشاريع",
+      "clients": "العملاء",
+      "activeProjects": "مشاريع نشطة",
+      "totalProjects": "{count} إجمالي",
       "content": "المحتوى",
-      "engagement": "التفاعل"
+      "team": "أعضاء الفريق",
+      "engagement": "التفاعل",
+      "comingSoon": "قريبًا"
     },
     "sections": {
       "recent": "النشاط الأخير",
+      "recentClients": "أحدث العملاء",
+      "recentProjects": "أحدث المشاريع",
       "recentEmpty": "مفيش نشاط لسه — ابدأ بإضافة عميل أو مشروع",
       "quickActions": "إجراءات سريعة",
-      "actionsSoon": "قريبًا: إضافة عميل، إنشاء مشروع، دعوة فريق..."
+      "actionsSoon": "قريبًا: إضافة عميل، إنشاء مشروع، دعوة فريق...",
+      "viewAll": "عرض الكل",
+      "noClients": "مفيش عملاء لسه",
+      "noProjects": "مفيش مشاريع لسه",
+      "addFirst": "أضف أول عميل ←",
+      "addFirstProject": "أنشئ أول مشروع ←"
     },
     "nav": {
       "overview": "نظرة عامة",
@@ -320,6 +330,59 @@
         "active": "نشط",
         "lead": "محتمل",
         "archived": "مؤرشف"
+      }
+    },
+    "projects": {
+      "title": "المشاريع",
+      "subtitle": "عندك {count} مشروع",
+      "emptyTitle": "مفيش مشاريع لسه",
+      "emptyDescription": "ابدأ بإنشاء أول مشروع واربطه بعميل.",
+      "statuses": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "on_hold": "معلّق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي"
+      },
+      "priorities": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "form": {
+        "trigger": "مشروع جديد",
+        "title": "إنشاء مشروع",
+        "description": "املأ بيانات المشروع — تقدر تعدلها بعدين",
+        "name": "اسم المشروع",
+        "namePlaceholder": "مثال: حملة رمضان 2026",
+        "client": "العميل",
+        "noClient": "بدون عميل",
+        "status": "الحالة",
+        "priority": "الأولوية",
+        "startDate": "تاريخ البداية",
+        "endDate": "تاريخ النهاية",
+        "budget": "الميزانية",
+        "currency": "العملة",
+        "descriptionLabel": "الوصف",
+        "descriptionPlaceholder": "تفاصيل المشروع...",
+        "cancel": "إلغاء",
+        "submit": "إنشاء المشروع"
+      }
+    },
+    "projectDetails": {
+      "back": "رجوع للمشاريع",
+      "client": "العميل",
+      "budget": "الميزانية",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "comingSoon": "المهام والملفات جاية قريبًا",
+      "statuses": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "on_hold": "معلّق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي"
       }
     }
   },

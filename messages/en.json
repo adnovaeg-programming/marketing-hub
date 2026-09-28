@@ -245,16 +245,26 @@
     "subtitle": "This is your dashboard",
     "placeholder": "Full content coming soon",
     "stats": {
-      "members": "Team members",
-      "projects": "Projects",
+      "clients": "Clients",
+      "activeProjects": "Active projects",
+      "totalProjects": "{count} total",
       "content": "Content",
-      "engagement": "Engagement"
+      "team": "Team members",
+      "engagement": "Engagement",
+      "comingSoon": "Coming soon"
     },
     "sections": {
       "recent": "Recent activity",
+      "recentClients": "Recent clients",
+      "recentProjects": "Recent projects",
       "recentEmpty": "No activity yet — start by adding a client or project",
       "quickActions": "Quick actions",
-      "actionsSoon": "Coming soon: Add client, create project, invite team..."
+      "actionsSoon": "Coming soon: Add client, create project, invite team...",
+      "viewAll": "View all",
+      "noClients": "No clients yet",
+      "noProjects": "No projects yet",
+      "addFirst": "Add your first client →",
+      "addFirstProject": "Create your first project →"
     },
     "nav": {
       "overview": "Overview",
@@ -320,6 +330,59 @@
         "active": "Active",
         "lead": "Lead",
         "archived": "Archived"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "You have {count} projects",
+      "emptyTitle": "No projects yet",
+      "emptyDescription": "Start by creating your first project and linking it to a client.",
+      "statuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "on_hold": "On hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "priorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "form": {
+        "trigger": "New project",
+        "title": "Create project",
+        "description": "Fill in the project details — you can edit later",
+        "name": "Project name",
+        "namePlaceholder": "e.g., Ramadan campaign 2026",
+        "client": "Client",
+        "noClient": "No client",
+        "status": "Status",
+        "priority": "Priority",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "budget": "Budget",
+        "currency": "Currency",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Project details...",
+        "cancel": "Cancel",
+        "submit": "Create project"
+      }
+    },
+    "projectDetails": {
+      "back": "Back to projects",
+      "client": "Client",
+      "budget": "Budget",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "comingSoon": "Tasks and files coming soon",
+      "statuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "on_hold": "On hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
       }
     }
   },
