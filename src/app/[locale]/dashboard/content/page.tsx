@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
-import { FileText } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { FileText, Calendar } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
 import { NewContentDialog } from "@/components/content/new-content-dialog";
 import { ContentCard } from "@/components/content/content-card";
+import { Button } from "@/components/ui/button";
 
 export default async function ContentPage() {
   const supabase = await createClient();
@@ -45,9 +47,7 @@ export default async function ContentPage() {
 
   const normalizedItems = (items ?? []).map((item) => ({
     ...item,
-    client: Array.isArray(item.client)
-      ? item.client[0] ?? null
-      : item.client,
+    client: Array.isArray(item.client) ? item.client[0] ?? null : item.client,
   }));
 
   return (
@@ -62,7 +62,19 @@ export default async function ContentPage() {
           </p>
         </div>
 
-        <NewContentDialog />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="rounded-full"
+            asChild
+          >
+            <Link href="/dashboard/content/calendar">
+              <Calendar className="size-4" />
+              {t("viewCalendar")}
+            </Link>
+          </Button>
+          <NewContentDialog />
+        </div>
       </div>
 
       {normalizedItems.length === 0 ? (

@@ -273,6 +273,7 @@
       "content": "Content",
       "analytics": "Analytics",
       "settings": "Settings",
+      "notifications": "Notifications",
       "logout": "Sign out",
       "openMenu": "Open menu"
     },
@@ -388,6 +389,7 @@
     "content": {
       "title": "Content",
       "subtitle": "You have {count} content items",
+      "viewCalendar": "Calendar",
       "emptyTitle": "No content yet",
       "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
       "types": {
@@ -423,6 +425,22 @@
         "high": "High",
         "urgent": "Urgent"
       },
+      "calendar": {
+        "title": "Content Calendar",
+        "subtitle": "Monthly view of all scheduled content",
+        "today": "Today",
+        "prev": "Previous month",
+        "next": "Next month",
+        "more": "more",
+        "monthSummary": "{count} scheduled items this month",
+        "statuses": {
+          "draft": "Draft",
+          "internal_review": "Internal review",
+          "client_review": "Client review",
+          "approved": "Approved",
+          "scheduled": "Scheduled"
+        }
+      },
       "form": {
         "trigger": "New content",
         "title": "Create content",
@@ -439,6 +457,7 @@
         "platform": "Platform",
         "noPlatform": "No platform",
         "priority": "Priority",
+        "scheduledAt": "Publish date (optional)",
         "cancel": "Cancel",
         "submit": "Create content"
       },
@@ -513,8 +532,64 @@
           "member": "Member",
           "client": "Client",
           "viewer": "Viewer"
+        },
+        "invite": {
+          "trigger": "Invite member",
+          "title": "Invite new member",
+          "description": "Invite a new member to this workspace",
+          "email": "Email",
+          "role": "Role",
+          "submit": "Create invitation",
+          "cancel": "Cancel",
+          "successTitle": "Invitation ready!",
+          "successDescription": "Copy this link and send it to the member to join.",
+          "linkNote": "Link valid for 7 days",
+          "done": "Done",
+          "errors": {
+            "not_authenticated": "You need to sign in",
+            "no_workspace": "No workspace",
+            "not_allowed": "You don't have permission",
+            "invalid_email": "Invalid email",
+            "already_member": "This member already exists"
+          }
+        },
+        "pending": {
+          "title": "Pending invitations",
+          "expiresIn": "{days} days left",
+          "cancel": "Cancel invitation",
+          "confirmCancel": "Are you sure you want to cancel this invitation?"
         }
       }
+    },
+    "invite": {
+      "invalidTitle": "Invitation not found",
+      "invalidDescription": "This link is invalid or has expired.",
+      "expiredTitle": "Invitation expired",
+      "expiredDescription": "This link has expired. Ask the admin to send a new invitation.",
+      "alreadyAcceptedTitle": "Invitation used",
+      "alreadyAcceptedDescription": "You are already a member of this workspace.",
+      "goToDashboard": "Go to dashboard",
+      "backHome": "Back to home",
+      "invitedTitle": "You're invited!",
+      "invitedDescription": "You've been invited to join {workspace} as {role}.",
+      "invitationEmail": "Invited email",
+      "createAccount": "Create account",
+      "signIn": "Sign in",
+      "note": "You must use the same invited email",
+      "accepting": "Accepting invitation...",
+      "acceptErrorTitle": "Failed to accept invitation",
+      "errors": {
+        "not_authenticated": "You need to sign in",
+        "invalid_or_expired": "Invitation is invalid or expired"
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "{count} notifications",
+      "empty": "No notifications yet",
+      "markAllRead": "Mark all as read",
+      "unread": "{count} unread",
+      "viewAll": "View all notifications"
     }
   },
   "onboarding": {

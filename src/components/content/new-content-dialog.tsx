@@ -88,6 +88,8 @@ export function NewContentDialog() {
     setPending(true);
 
     const form = new FormData(e.currentTarget);
+    const scheduledAt = String(form.get("scheduledAt") ?? "");
+
     const result = await createContentAction({
       title: String(form.get("title") ?? ""),
       description: String(form.get("description") ?? ""),
@@ -96,7 +98,10 @@ export function NewContentDialog() {
       contentType: contentType as never,
       platform: platform === "none" ? null : (platform as never),
       priority: priority as never,
-      status: "draft",
+      status: scheduledAt ? "scheduled" : "draft",
+      scheduledAt: scheduledAt
+        ? new Date(scheduledAt).toISOString()
+        : undefined,
     });
 
     if (!result.success) {
@@ -123,7 +128,7 @@ export function NewContentDialog() {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-h-[90vh] max-w-lg overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>{t("description")}</DialogDescription>
@@ -222,20 +227,33 @@ export function NewContentDialog() {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label>{t("priority")}</Label>
-            <Select value={priority} onValueChange={setPriority}>
-              <SelectTrigger className="h-11">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {PRIORITIES.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {tRoot(`priorities.${p}`)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label>{t("priority")}</Label>
+              <Select value={priority} onValueChange={setPriority}>
+                <SelectTrigger className="h-11">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {PRIORITIES.map((p) => (
+                    <SelectItem key={p} value={p}>
+                      {tRoot(`priorities.${p}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="scheduledAt">{t("scheduledAt")}</Label>
+              <Input
+                id="scheduledAt"
+                name="scheduledAt"
+                type="datetime-local"
+                className="h-11"
+                dir="ltr"
+              />
+            </div>
           </div>
 
           {error && (

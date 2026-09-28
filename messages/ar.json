@@ -273,6 +273,7 @@
       "content": "المحتوى",
       "analytics": "التحليلات",
       "settings": "الإعدادات",
+      "notifications": "الإشعارات",
       "logout": "تسجيل الخروج",
       "openMenu": "افتح القائمة"
     },
@@ -388,6 +389,7 @@
     "content": {
       "title": "المحتوى",
       "subtitle": "عندك {count} قطعة محتوى",
+      "viewCalendar": "الروزنامة",
       "emptyTitle": "مفيش محتوى لسه",
       "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
       "types": {
@@ -423,6 +425,22 @@
         "high": "عالية",
         "urgent": "عاجلة"
       },
+      "calendar": {
+        "title": "روزنامة المحتوى",
+        "subtitle": "عرض شهري لكل المحتوى المجدول",
+        "today": "اليوم",
+        "prev": "الشهر السابق",
+        "next": "الشهر التالي",
+        "more": "أكثر",
+        "monthSummary": "{count} قطعة محتوى مجدولة في الشهر",
+        "statuses": {
+          "draft": "مسودة",
+          "internal_review": "مراجعة داخلية",
+          "client_review": "مراجعة العميل",
+          "approved": "معتمد",
+          "scheduled": "مجدول"
+        }
+      },
       "form": {
         "trigger": "محتوى جديد",
         "title": "إنشاء محتوى",
@@ -439,6 +457,7 @@
         "platform": "المنصة",
         "noPlatform": "بدون منصة",
         "priority": "الأولوية",
+        "scheduledAt": "موعد النشر (اختياري)",
         "cancel": "إلغاء",
         "submit": "إنشاء المحتوى"
       },
@@ -513,8 +532,64 @@
           "member": "عضو",
           "client": "عميل",
           "viewer": "مشاهد"
+        },
+        "invite": {
+          "trigger": "دعوة عضو",
+          "title": "دعوة عضو جديد",
+          "description": "ادعُ عضو جديد لمساحة العمل دي",
+          "email": "البريد الإلكتروني",
+          "role": "الدور",
+          "submit": "إنشاء الدعوة",
+          "cancel": "إلغاء",
+          "successTitle": "الدعوة جاهزة!",
+          "successDescription": "انسخ الرابط ده وابعته للعضو عشان ينضم.",
+          "linkNote": "الرابط صالح لمدة 7 أيام",
+          "done": "تمام",
+          "errors": {
+            "not_authenticated": "لازم تسجّل دخول",
+            "no_workspace": "مفيش مساحة عمل",
+            "not_allowed": "مش عندك صلاحية",
+            "invalid_email": "الإيميل مش صحيح",
+            "already_member": "العضو ده موجود بالفعل"
+          }
+        },
+        "pending": {
+          "title": "دعوات معلقة",
+          "expiresIn": "باقي {days} يوم",
+          "cancel": "إلغاء الدعوة",
+          "confirmCancel": "متأكد إنك عايز تلغي الدعوة دي؟"
         }
       }
+    },
+    "invite": {
+      "invalidTitle": "الدعوة مش موجودة",
+      "invalidDescription": "الرابط ده مش صحيح أو انتهت صلاحيته.",
+      "expiredTitle": "الدعوة انتهت",
+      "expiredDescription": "الرابط ده انتهت صلاحيته. اطلب من الأدمن يبعتلك دعوة جديدة.",
+      "alreadyAcceptedTitle": "الدعوة مستخدمة",
+      "alreadyAcceptedDescription": "انت بالفعل عضو في مساحة العمل دي.",
+      "goToDashboard": "ادخل لوحة التحكم",
+      "backHome": "العودة للرئيسية",
+      "invitedTitle": "أنت مدعو!",
+      "invitedDescription": "تمت دعوتك للانضمام إلى {workspace} بدور {role}.",
+      "invitationEmail": "الإيميل المدعو",
+      "createAccount": "إنشاء حساب",
+      "signIn": "تسجيل الدخول",
+      "note": "لازم تستخدم نفس الإيميل المدعو",
+      "accepting": "جاري قبول الدعوة...",
+      "acceptErrorTitle": "فشل قبول الدعوة",
+      "errors": {
+        "not_authenticated": "لازم تسجّل دخول",
+        "invalid_or_expired": "الدعوة مش صحيحة أو انتهت"
+      }
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "subtitle": "{count} إشعار",
+      "empty": "مفيش إشعارات لسه",
+      "markAllRead": "تعليم الكل كمقروء",
+      "unread": "{count} غير مقروء",
+      "viewAll": "عرض كل الإشعارات"
     }
   },
   "onboarding": {

@@ -8,6 +8,7 @@ import {
   FileText,
   BarChart3,
   Settings,
+  Bell,
   Menu,
   Sparkles,
   LogOut,
@@ -30,15 +31,12 @@ const NAV_ITEMS = [
   { href: "/dashboard/clients", icon: Users, key: "clients" },
   { href: "/dashboard/projects", icon: FolderKanban, key: "projects" },
   { href: "/dashboard/content", icon: FileText, key: "content" },
+  { href: "/dashboard/notifications", icon: Bell, key: "notifications" },
   { href: "/dashboard/analytics", icon: BarChart3, key: "analytics" },
   { href: "/dashboard/settings", icon: Settings, key: "settings" },
 ] as const;
 
-function SidebarContent({
-  onNavigate,
-}: {
-  onNavigate?: () => void;
-}) {
+function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   const t = useTranslations("dashboard.nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -53,7 +51,6 @@ function SidebarContent({
 
   return (
     <div className="flex h-full flex-col">
-      {/* Logo */}
       <div className="flex items-center gap-2 px-6 py-5">
         <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
           <Sparkles className="size-5 text-white" />
@@ -61,7 +58,6 @@ function SidebarContent({
         <span className="font-bold">Marketing Hub</span>
       </div>
 
-      {/* Nav Links */}
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
@@ -91,7 +87,6 @@ function SidebarContent({
         })}
       </nav>
 
-      {/* Logout */}
       <div className="border-t border-glass-border p-3">
         <Button
           variant="ghost"
@@ -107,41 +102,44 @@ function SidebarContent({
   );
 }
 
-export function DashboardSidebar() {
+function MobileSidebar() {
   const [open, setOpen] = useState(false);
   const t = useTranslations("dashboard.nav");
 
   return (
+    <div className="glass sticky top-0 z-40 flex h-16 items-center justify-between border-b border-glass-border px-4 md:hidden">
+      <Link href="/dashboard" className="flex items-center gap-2 font-bold">
+        <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+          <Sparkles className="size-4 text-white" />
+        </div>
+        Marketing Hub
+      </Link>
+
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="size-5" />
+            <span className="sr-only">{t("openMenu")}</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right" className="w-72 p-0">
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation</SheetTitle>
+          </SheetHeader>
+          <SidebarContent onNavigate={() => setOpen(false)} />
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}
+
+export function DashboardSidebar() {
+  return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="glass sticky top-0 hidden h-screen w-64 shrink-0 border-e border-glass-border md:block">
         <SidebarContent />
       </aside>
-
-      {/* Mobile: Top Bar + Sheet */}
-      <div className="glass sticky top-0 z-40 flex h-16 items-center justify-between border-b border-glass-border px-4 md:hidden">
-        <Link href="/dashboard" className="flex items-center gap-2 font-bold">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
-            <Sparkles className="size-4 text-white" />
-          </div>
-          Marketing Hub
-        </Link>
-
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Menu className="size-5" />
-              <span className="sr-only">{t("openMenu")}</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-72 p-0">
-            <SheetHeader className="sr-only">
-              <SheetTitle>Navigation</SheetTitle>
-            </SheetHeader>
-            <SidebarContent onNavigate={() => setOpen(false)} />
-          </SheetContent>
-        </Sheet>
-      </div>
+      <MobileSidebar />
     </>
   );
 }

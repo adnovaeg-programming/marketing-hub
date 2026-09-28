@@ -6,6 +6,8 @@ import { createClient } from "@/lib/supabase/server";
 import { ProfileForm } from "@/components/settings/profile-form";
 import { WorkspaceForm } from "@/components/settings/workspace-form";
 import { OrganizationForm } from "@/components/settings/organization-form";
+import { InviteMemberDialog } from "@/components/settings/invite-member-dialog";
+import { PendingInvitations } from "@/components/settings/pending-invitations";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -45,7 +47,7 @@ export default async function SettingsPage() {
     .eq("id", workspace?.organization_id ?? "")
     .maybeSingle();
 
-  // نجيب الأعضاء
+  // الأعضاء
   const { data: members } = await supabase
     .from("workspace_members")
     .select(
@@ -59,6 +61,14 @@ export default async function SettingsPage() {
     )
     .eq("workspace_id", member.workspace_id)
     .eq("status", "active");
+
+  // الدعوات المعلقة
+  const { data: pendingInvitations } = await supabase
+    .from("workspace_invitations")
+    .select("id, email, role, expires_at, created_at")
+    .eq("workspace_id", member.workspace_id)
+    .eq("status", "pending")
+    .order("created_at", { ascending: false });
 
   const t = await getTranslations("dashboard.settings");
   const canEditWorkspace = member.role === "owner" || member.role === "admin";
@@ -88,27 +98,29 @@ export default async function SettingsPage() {
       </div>
 
       <div className="mt-8 space-y-6">
-        {/* Profile */}
         <ProfileForm profile={profile} />
 
-        {/* Workspace */}
         <WorkspaceForm workspace={workspace} canEdit={canEditWorkspace} />
 
-        {/* Organization */}
         {organization?.owner_id === user.id && (
           <OrganizationForm organization={organization} />
         )}
 
-        {/* Members */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
-          <div className="mb-6 flex items-center gap-2">
-            <Users className="size-5 text-primary" />
-            <div>
-              <h2 className="text-xl font-semibold">{t("members.title")}</h2>
-              <p className="mt-0.5 text-sm text-muted-foreground">
-                {t("members.subtitle", { count: normalizedMembers.length })}
-              </p>
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Users className="size-5 text-primary" />
+              <div>
+                <h2 className="text-xl font-semibold">
+                  {t("members.title")}
+                </h2>
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  {t("members.subtitle", { count: normalizedMembers.length })}
+                </p>
+              </div>
             </div>
+
+            {canEditWorkspace && <InviteMemberDialog />}
           </div>
 
           <div className="space-y-2">
@@ -153,6 +165,10 @@ export default async function SettingsPage() {
               );
             })}
           </div>
+
+          {pendingInvitations && pendingInvitations.length > 0 && (
+            <PendingInvitations invitations={pendingInvitations} />
+          )}
         </div>
       </div>
     </div>
