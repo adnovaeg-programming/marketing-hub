@@ -6,6 +6,7 @@ import {
   Users,
   FolderKanban,
   FileText,
+  CheckSquare,   // ← جديد
   BarChart3,
   Settings,
   Bell,
@@ -30,6 +31,7 @@ const NAV_ITEMS = [
   { href: "/dashboard", icon: LayoutDashboard, key: "overview" },
   { href: "/dashboard/clients", icon: Users, key: "clients" },
   { href: "/dashboard/projects", icon: FolderKanban, key: "projects" },
+  { href: "/dashboard/tasks", icon: CheckSquare, key: "tasks" }, // ← جديد
   { href: "/dashboard/content", icon: FileText, key: "content" },
   { href: "/dashboard/notifications", icon: Bell, key: "notifications" },
   { href: "/dashboard/analytics", icon: BarChart3, key: "analytics" },

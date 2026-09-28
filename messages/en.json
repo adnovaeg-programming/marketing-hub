@@ -270,6 +270,7 @@
       "overview": "Overview",
       "clients": "Clients",
       "projects": "Projects",
+      "tasks": "Tasks",
       "content": "Content",
       "analytics": "Analytics",
       "settings": "Settings",
@@ -378,12 +379,72 @@
       "startDate": "Start date",
       "endDate": "End date",
       "comingSoon": "Tasks and files coming soon",
+      "tasks": "Tasks",
+      "noTasks": "No tasks yet — start by adding a task",
       "statuses": {
         "draft": "Draft",
         "active": "Active",
         "on_hold": "On hold",
         "completed": "Completed",
         "cancelled": "Cancelled"
+      }
+    },
+    "tasks": {
+      "title": "Tasks",
+      "subtitle": "You have {count} tasks",
+      "emptyTitle": "No tasks yet",
+      "emptyDescription": "Start by creating your first task and linking it to a project.",
+      "statuses": {
+        "todo": "To do",
+        "in_progress": "In progress",
+        "review": "Review",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "priorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "form": {
+        "trigger": "New task",
+        "title": "Create task",
+        "description": "Add the task details",
+        "titleLabel": "Task title",
+        "titlePlaceholder": "e.g., Design Ramadan campaign banner",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Task details...",
+        "project": "Project",
+        "noProject": "No project",
+        "client": "Client",
+        "noClient": "No client",
+        "status": "Status",
+        "priority": "Priority",
+        "dueDate": "Due date",
+        "cancel": "Cancel",
+        "submit": "Create task"
+      },
+      "actions": {
+        "start": "Start",
+        "sendToReview": "Send to review",
+        "complete": "Complete",
+        "reopen": "Reopen",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this task?"
+      },
+      "details": {
+        "back": "Back to tasks",
+        "project": "Project",
+        "client": "Client",
+        "assignedTo": "Assigned to",
+        "dueDate": "Due date"
+      },
+      "comments": {
+        "title": "Comments",
+        "empty": "No comments yet — start the conversation",
+        "placeholder": "Write a comment...",
+        "submit": "Add"
       }
     },
     "content": {

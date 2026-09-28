@@ -270,6 +270,7 @@
       "overview": "نظرة عامة",
       "clients": "العملاء",
       "projects": "المشاريع",
+      "tasks": "المهام",
       "content": "المحتوى",
       "analytics": "التحليلات",
       "settings": "الإعدادات",
@@ -378,12 +379,72 @@
       "startDate": "تاريخ البداية",
       "endDate": "تاريخ النهاية",
       "comingSoon": "المهام والملفات جاية قريبًا",
+      "tasks": "المهام",
+      "noTasks": "مفيش مهام لسه — ابدأ بإضافة مهمة",
       "statuses": {
         "draft": "مسودة",
         "active": "نشط",
         "on_hold": "معلّق",
         "completed": "مكتمل",
         "cancelled": "ملغي"
+      }
+    },
+    "tasks": {
+      "title": "المهام",
+      "subtitle": "عندك {count} مهمة",
+      "emptyTitle": "مفيش مهام لسه",
+      "emptyDescription": "ابدأ بإنشاء أول مهمة واربطها بمشروع.",
+      "statuses": {
+        "todo": "قائمة الانتظار",
+        "in_progress": "جاري التنفيذ",
+        "review": "مراجعة",
+        "completed": "مكتملة",
+        "cancelled": "ملغاة"
+      },
+      "priorities": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "form": {
+        "trigger": "مهمة جديدة",
+        "title": "إنشاء مهمة",
+        "description": "أضف تفاصيل المهمة",
+        "titleLabel": "عنوان المهمة",
+        "titlePlaceholder": "مثال: تصميم بانر حملة رمضان",
+        "descriptionLabel": "الوصف",
+        "descriptionPlaceholder": "تفاصيل المهمة...",
+        "project": "المشروع",
+        "noProject": "بدون مشروع",
+        "client": "العميل",
+        "noClient": "بدون عميل",
+        "status": "الحالة",
+        "priority": "الأولوية",
+        "dueDate": "تاريخ التسليم",
+        "cancel": "إلغاء",
+        "submit": "إنشاء المهمة"
+      },
+      "actions": {
+        "start": "ابدأ التنفيذ",
+        "sendToReview": "إرسال للمراجعة",
+        "complete": "إكمال",
+        "reopen": "إعادة الفتح",
+        "delete": "حذف",
+        "confirmDelete": "متأكد إنك عايز تحذف المهمة دي؟"
+      },
+      "details": {
+        "back": "رجوع للمهام",
+        "project": "المشروع",
+        "client": "العميل",
+        "assignedTo": "المسؤول",
+        "dueDate": "تاريخ التسليم"
+      },
+      "comments": {
+        "title": "التعليقات",
+        "empty": "مفيش تعليقات لسه — ابدأ المحادثة",
+        "placeholder": "اكتب تعليق...",
+        "submit": "إضافة"
       }
     },
     "content": {
