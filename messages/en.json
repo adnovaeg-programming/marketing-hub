@@ -173,6 +173,27 @@
       "destructive": "Destructive"
     }
   },
+  "files": {
+    "upload": {
+      "title": "Drag & drop files here",
+      "subtitle": "Or click to select • Max {max}",
+      "uploading": "Uploading...",
+      "tooLarge": "{name} is larger than the limit ({max})"
+    },
+    "avatar": {
+      "title": "Profile picture",
+      "subtitle": "JPG, PNG, or WebP • Max 5MB",
+      "change": "Change picture",
+      "invalidType": "Must be an image",
+      "tooLarge": "Image is larger than 5MB"
+    },
+    "attachments": {
+      "title": "Attachments",
+      "addFile": "Add file",
+      "empty": "No attachments yet",
+      "confirmDelete": "Are you sure you want to delete this attachment?"
+    }
+  },
   "auth": {
     "layout": {
       "visualTitle": "All Your Marketing in",
@@ -246,6 +267,11 @@
     "subtitle": "This is your dashboard",
     "liveSynced": "Synced",
     "placeholder": "Full content coming soon",
+    "noWorkspace": {
+      "title": "You need a workspace",
+      "description": "Let's set up your workspace in a quick step.",
+      "cta": "Start setup"
+    },
     "stats": {
       "clients": "Clients",
       "activeProjects": "Active projects",
@@ -586,6 +612,12 @@
     "settings": {
       "title": "Settings",
       "subtitle": "Manage your account and workspace",
+      "tabs": {
+        "profile": "Profile",
+        "workspace": "Workspace",
+        "organization": "Organization",
+        "members": "Members"
+      },
       "profile": {
         "title": "Profile",
         "description": "Update your personal information",
@@ -629,7 +661,8 @@
       },
       "members": {
         "title": "Team members",
-        "subtitle": "{count} members in this workspace",
+        "subtitle": "{count} members",
+        "you": "You",
         "roles": {
           "owner": "Owner",
           "admin": "Admin",

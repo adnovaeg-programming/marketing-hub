@@ -16,16 +16,48 @@ import { getActiveWorkspaceId } from "@/lib/workspace/active";
 import { CountUp } from "@/components/fx/count-up";
 import { TiltCard } from "@/components/fx/tilt-card";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect("/login");
+  if (!user) redirect(`/${locale}/login`);
 
   const activeWorkspaceId = await getActiveWorkspaceId();
-  if (!activeWorkspaceId) redirect("/onboarding");
+
+  // ✅ بدل redirect، نعرض رسالة أنيقة مع زر
+  if (!activeWorkspaceId) {
+    const t2 = await getTranslations("dashboard.noWorkspace");
+
+    return (
+      <div className="flex flex-1 items-center justify-center p-6 md:p-10">
+        <div className="glass-strong mx-auto max-w-md rounded-3xl p-8 text-center">
+          <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+            <Sparkles className="size-8 text-white" />
+          </div>
+          <h2 className="mt-6 text-2xl font-bold">{t2("title")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t2("description")}
+          </p>
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <Link
+              href="/onboarding"
+              className="rounded-full bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-xl"
+            >
+              {t2("cta")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const { data: member } = await supabase
     .from("workspace_members")
@@ -35,7 +67,7 @@ export default async function DashboardPage() {
     .eq("status", "active")
     .maybeSingle();
 
-  if (!member) redirect("/onboarding");
+  if (!member) redirect(`/${locale}/onboarding`);
 
   const workspaceId = activeWorkspaceId;
 
@@ -93,15 +125,7 @@ export default async function DashboardPage() {
 
   const { data: recentProjects } = await supabase
     .from("projects")
-    .select(
-      `
-      id,
-      name,
-      status,
-      created_at,
-      client:clients (name)
-    `
-    )
+    .select(`id, name, status, created_at, client:clients (name)`)
     .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false })
     .limit(3);
@@ -150,7 +174,6 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-6 md:p-10">
-      {/* Header */}
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary">
@@ -166,7 +189,6 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Stats — Tilt Cards + Count-up */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
@@ -201,11 +223,12 @@ export default async function DashboardPage() {
         })}
       </div>
 
-      {/* Recent */}
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">{t("sections.recentClients")}</h2>
+            <h2 className="text-lg font-semibold">
+              {t("sections.recentClients")}
+            </h2>
             <Link
               href="/dashboard/clients"
               className="inline-flex items-center gap-1 text-xs font-medium text-primary transition hover:opacity-80"
@@ -227,7 +250,9 @@ export default async function DashboardPage() {
                     {client.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">{client.name}</p>
+                    <p className="truncate text-sm font-medium">
+                      {client.name}
+                    </p>
                     {client.company && (
                       <p className="truncate text-xs text-muted-foreground">
                         {client.company}

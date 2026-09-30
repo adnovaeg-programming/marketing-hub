@@ -173,6 +173,27 @@
       "destructive": "خطر"
     }
   },
+  "files": {
+    "upload": {
+      "title": "اسحب وأفلت الملفات هنا",
+      "subtitle": "أو اضغط للاختيار • الحد الأقصى {max}",
+      "uploading": "جاري الرفع...",
+      "tooLarge": "الملف {name} أكبر من الحد ({max})"
+    },
+    "avatar": {
+      "title": "الصورة الشخصية",
+      "subtitle": "JPG أو PNG أو WebP • حد أقصى 5MB",
+      "change": "تغيير الصورة",
+      "invalidType": "لازم تكون صورة",
+      "tooLarge": "الصورة أكبر من 5MB"
+    },
+    "attachments": {
+      "title": "المرفقات",
+      "addFile": "إضافة ملف",
+      "empty": "مفيش مرفقات لسه",
+      "confirmDelete": "متأكد إنك عايز تحذف المرفق ده؟"
+    }
+  },
   "auth": {
     "layout": {
       "visualTitle": "كل تسويقك في",
@@ -246,6 +267,11 @@
     "subtitle": "دي لوحة التحكم",
     "liveSynced": "متزامن منذ",
     "placeholder": "المحتوى الكامل جاي قريبًا",
+    "noWorkspace": {
+      "title": "لسه محتاج تنشئ مساحة عمل",
+      "description": "خلينا نجهّز مساحة العمل بتاعتك في خطوة سريعة.",
+      "cta": "ابدأ الإعداد"
+    },
     "stats": {
       "clients": "العملاء",
       "activeProjects": "مشاريع نشطة",
@@ -586,6 +612,12 @@
     "settings": {
       "title": "الإعدادات",
       "subtitle": "أدر حسابك ومساحة العمل",
+      "tabs": {
+        "profile": "الملف الشخصي",
+        "workspace": "مساحة العمل",
+        "organization": "المؤسسة",
+        "members": "الأعضاء"
+      },
       "profile": {
         "title": "الملف الشخصي",
         "description": "حدّث بياناتك الشخصية",
@@ -629,7 +661,8 @@
       },
       "members": {
         "title": "أعضاء الفريق",
-        "subtitle": "{count} عضو في مساحة العمل",
+        "subtitle": "{count} عضو",
+        "you": "أنت",
         "roles": {
           "owner": "مالك",
           "admin": "أدمن",
