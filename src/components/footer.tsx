@@ -10,33 +10,33 @@ export function Footer() {
     {
       title: t("product"),
       links: [
-        { key: "features", href: "#features" },
-        { key: "pricing", href: "#pricing" },
-        { key: "marketplace", href: "#marketplace" },
+        { key: "features", href: "/#features" },
+        { key: "pricing", href: "/#pricing" },
+        { key: "marketplace", href: "/#marketplace" },
       ],
     },
     {
       title: t("company"),
       links: [
-        { key: "about", href: "#" },
-        { key: "contact", href: "#" },
-        { key: "careers", href: "#" },
+        { key: "about", href: "/#about" },
+        { key: "contact", href: "/contact" },
+        { key: "careers", href: "/#careers" },
       ],
     },
     {
       title: t("resources"),
       links: [
-        { key: "blog", href: "#" },
-        { key: "help", href: "#" },
-        { key: "docs", href: "#" },
+        { key: "blog", href: "/blog" },
+        { key: "help", href: "/contact" },
+        { key: "docs", href: "/#docs" },
       ],
     },
     {
       title: t("legal"),
       links: [
-        { key: "terms", href: "#" },
-        { key: "privacy", href: "#" },
-        { key: "commission", href: "#" },
+        { key: "terms", href: "/legal/terms" },
+        { key: "privacy", href: "/legal/privacy" },
+        { key: "commission", href: "/legal/cookies" },
       ],
     },
   ] as const;
@@ -48,7 +48,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5 font-bold text-lg">
               <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
-                <Sparkles className="size-4.5  text-white" />
+                <Sparkles className="size-4.5 text-white" />
               </div>
               <span>Marketing Hub</span>
             </Link>

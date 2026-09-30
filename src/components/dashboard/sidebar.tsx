@@ -1,33 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 import {
-  LayoutDashboard,
-  Users,
-  FolderKanban,
-  CheckSquare,
-  FileText,
-  BarChart3,
-  Settings,
-  Bell,
-  Menu,
-  Sparkles,
-  LogOut,
-  UserCircle,
+  LayoutDashboard, Users, FolderKanban, CheckSquare, FileText,
+  BarChart3, Settings, Bell, Menu, Sparkles, LogOut, UserCircle,
+  ShieldAlert,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
+  Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
 } from "@/components/ui/sheet";
 import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
+import { createClient } from "@/lib/supabase/client";
 import { signOutAction } from "@/app/[locale]/login/actions";
 
 const NAV_ITEMS = [
@@ -44,21 +31,36 @@ const NAV_ITEMS = [
 
 type Workspace = { id: string; name: string; slug: string; role: string };
 
-/* ═══════════════ Sidebar Content ═══════════════ */
-
 function SidebarContent({
-  onNavigate,
-  activeWorkspaceId,
-  workspaces,
+  onNavigate, activeWorkspaceId, workspaces,
 }: {
   onNavigate?: () => void;
   activeWorkspaceId: string | null;
   workspaces: Workspace[];
 }) {
   const t = useTranslations("dashboard.nav");
+  const tAdmin = useTranslations("admin.nav");
   const pathname = usePathname();
   const router = useRouter();
   const [pending, setPending] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const check = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("platform_admins")
+        .select("role")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      setIsAdmin(!!data);
+    };
+    check();
+  }, []);
 
   const handleLogout = async () => {
     setPending(true);
@@ -69,7 +71,6 @@ function SidebarContent({
 
   return (
     <div className="flex h-full flex-col">
-      {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 pt-5">
         <div className="relative flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
           <Sparkles className="size-4.5 text-white" />
@@ -78,61 +79,50 @@ function SidebarContent({
         <span className="font-bold">Marketing Hub</span>
       </div>
 
-      {/* ⚡ Workspace Switcher */}
       <div className="mt-3 px-3">
-        <WorkspaceSwitcher
-          currentId={activeWorkspaceId}
-          workspaces={workspaces}
-        />
+        <WorkspaceSwitcher currentId={activeWorkspaceId} workspaces={workspaces} />
       </div>
 
-      {/* Nav */}
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-3">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
-          const isActive =
-            item.href === "/dashboard"
-              ? pathname === "/dashboard"
-              : pathname?.startsWith(item.href);
+          const isActive = item.href === "/dashboard"
+            ? pathname === "/dashboard"
+            : pathname?.startsWith(item.href);
 
           return (
             <Link
               key={item.href}
               href={item.href}
               onClick={onNavigate}
-              className={`
-                group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300
-                ${
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                }
-              `}
+              className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
+                isActive
+                  ? "text-primary"
+                  : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+              }`}
             >
               <span
-                className={`
-                  absolute inset-0 rounded-xl bg-gradient-to-r from-primary/15 to-accent/10 transition-all duration-300
-                  ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-0"}
-                `}
+                className={`absolute inset-0 rounded-xl bg-gradient-to-r from-primary/15 to-accent/10 transition-all duration-300 ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
               />
-              <Icon
-                className={`relative size-4 transition-all duration-300 ${
-                  isActive ? "scale-110" : "group-hover:scale-110"
-                }`}
-              />
+              <Icon className={`relative size-4 transition-all duration-300 ${isActive ? "scale-110" : "group-hover:scale-110"}`} />
               <span className="relative">{t(item.key)}</span>
-              <span
-                className={`
-                  relative ms-auto size-1.5 rounded-full bg-primary shadow-lg shadow-primary/50 transition-all duration-300
-                  ${isActive ? "scale-100 opacity-100" : "scale-0 opacity-0"}
-                `}
-              />
+              <span className={`relative ms-auto size-1.5 rounded-full bg-primary shadow-lg shadow-primary/50 transition-all duration-300 ${isActive ? "scale-100 opacity-100" : "scale-0 opacity-0"}`} />
             </Link>
           );
         })}
+
+        {isAdmin && (
+          <Link
+            href="/admin"
+            onClick={onNavigate}
+            className="group relative mt-2 flex items-center gap-3 rounded-xl bg-destructive/5 px-3 py-2.5 text-sm font-medium text-destructive transition-all hover:bg-destructive/10"
+          >
+            <ShieldAlert className="size-4" />
+            <span>{tAdmin("overview")}</span>
+          </Link>
+        )}
       </nav>
 
-      {/* Logout */}
       <div className="border-t border-glass-border p-3">
         <Button
           variant="ghost"
@@ -148,11 +138,8 @@ function SidebarContent({
   );
 }
 
-/* ═══════════════ Mobile Menu ═══════════════ */
-
 function MobileMenu({
-  activeWorkspaceId,
-  workspaces,
+  activeWorkspaceId, workspaces,
 }: {
   activeWorkspaceId: string | null;
   workspaces: Workspace[];
@@ -191,11 +178,8 @@ function MobileMenu({
   );
 }
 
-/* ═══════════════ Export ═══════════════ */
-
 export function DashboardSidebar({
-  activeWorkspaceId,
-  workspaces,
+  activeWorkspaceId, workspaces,
 }: {
   activeWorkspaceId: string | null;
   workspaces: Workspace[];
@@ -203,15 +187,9 @@ export function DashboardSidebar({
   return (
     <>
       <aside className="glass sticky top-0 hidden h-screen w-64 shrink-0 border-e border-glass-border md:block">
-        <SidebarContent
-          activeWorkspaceId={activeWorkspaceId}
-          workspaces={workspaces}
-        />
+        <SidebarContent activeWorkspaceId={activeWorkspaceId} workspaces={workspaces} />
       </aside>
-      <MobileMenu
-        activeWorkspaceId={activeWorkspaceId}
-        workspaces={workspaces}
-      />
+      <MobileMenu activeWorkspaceId={activeWorkspaceId} workspaces={workspaces} />
     </>
   );
 }

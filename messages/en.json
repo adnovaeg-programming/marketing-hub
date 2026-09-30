@@ -117,7 +117,7 @@
   },
   "cta": {
     "title": "Ready to start?",
-    "description": "Join hundreds of agencies and freelancers using Marketing Hub every day.",
+    "description": "Join hundreds of agencies and freelancers using One Post every day.",
     "primary": "Start for free",
     "secondary": "Talk to our team"
   },
@@ -170,7 +170,9 @@
       "errors": {
         "missing_fields": "Please enter your email and password",
         "invalid_credentials": "Incorrect email or password",
-        "email_not_confirmed": "Please confirm your email first"
+        "email_not_confirmed": "Please confirm your email first",
+        "too_many_attempts": "Too many attempts. Try again in 15 minutes.",
+        "invalid_email": "Invalid email"
       }
     },
     "register": {
@@ -203,7 +205,9 @@
       "goToLogin": "Go to login",
       "errors": {
         "missing_fields": "Please fill in all required fields",
-        "password_too_short": "Password must be at least 8 characters"
+        "password_too_short": "Password must be at least 8 characters",
+        "too_many_attempts": "Too many attempts. Try again in 15 minutes.",
+        "invalid_email": "Invalid email"
       }
     },
     "forgot": {
@@ -215,11 +219,115 @@
       "backToLogin": "Back to login",
       "successTitle": "Check your email",
       "successMessage": "If this email is registered, you'll receive a message with a password reset link."
+    },
+    "reset": {
+      "title": "New password",
+      "subtitle": "Choose a strong password for your account",
+      "password": "New password",
+      "passwordPlaceholder": "At least 8 characters",
+      "confirm": "Confirm password",
+      "confirmPlaceholder": "Re-enter your password",
+      "submit": "Update password",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "invalidTitle": "Invalid link",
+      "invalidDescription": "This link is invalid or has expired. Request a new one.",
+      "successTitle": "Updated! 🎉",
+      "successMessage": "Your password has been updated. Redirecting you to the dashboard..."
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "updatedAt": "Last updated: September 30, 2026",
+      "s1": {
+        "title": "1. Information We Collect",
+        "body": "We collect information you provide directly — such as your name, email, organization name, and payment details. We also automatically collect technical data (device type, IP address, pages visited) to improve our service."
+      },
+      "s2": {
+        "title": "2. How We Use Information",
+        "body": "We use your data to:\n• Provide and improve the service.\n• Send important notifications.\n• Support you legally in disputes.\n• Analyze platform usage.\n\nWe never sell your data to third parties."
+      },
+      "s3": {
+        "title": "3. Information Sharing",
+        "body": "We only share your data:\n• With service providers (Supabase, Resend, Stripe).\n• Upon legal request from authorities.\n• To protect our rights in case of policy violations."
+      },
+      "s4": {
+        "title": "4. Data Security",
+        "body": "We use SSL encryption, Row-Level Security (RLS) on the database, and password hashing. Sensitive data is protected by RLS — meaning even our staff cannot access it without authorization."
+      },
+      "s5": {
+        "title": "5. Cookies",
+        "body": "We use essential session cookies and optional analytics cookies to improve your experience. You can refuse analytics cookies from the banner."
+      },
+      "s6": {
+        "title": "6. Your Rights",
+        "body": "You have the right to:\n• Export your data (GDPR).\n• Delete your account.\n• Modify your data.\n• Object to processing.\n\nContact us at privacy@onepost.io."
+      },
+      "s7": {
+        "title": "7. Updates",
+        "body": "We may update this policy from time to time. If there's a material change, we'll notify you by email."
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "updatedAt": "Last updated: September 30, 2026",
+      "s1": {
+        "title": "1. Acceptance of Terms",
+        "body": "By using the One Post platform, you agree to these terms. If you don't agree, please don't use the platform."
+      },
+      "s2": {
+        "title": "2. Your Account",
+        "body": "You are responsible for:\n• The confidentiality of your password.\n• The accuracy of information provided.\n• All activities that occur from your account.\n\nWe are not responsible for any loss due to unauthorized use."
+      },
+      "s3": {
+        "title": "3. Acceptable Use",
+        "body": "Prohibited:\n• Using the platform for illegal activities.\n• Attempting to hack the system.\n• Publishing offensive or infringing content.\n• Sending spam.\n\nViolations result in immediate account termination."
+      },
+      "s4": {
+        "title": "4. Intellectual Property",
+        "body": "The platform, code, and design belong to us. Content you upload belongs to you, but you grant us a license to display and store it within the scope of providing the service."
+      },
+      "s5": {
+        "title": "5. Payment & Refunds",
+        "body": "Subscriptions renew automatically unless cancelled. Refunds are available within 14 days of payment if you haven't used the service."
+      },
+      "s6": {
+        "title": "6. Disclaimer",
+        "body": "We provide the service \"as is.\" We are not responsible for any indirect losses or data loss resulting from use."
+      }
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "updatedAt": "Last updated: September 30, 2026",
+      "s1": {
+        "title": "1. What Are Cookies?",
+        "body": "Cookies are small files stored on your device when you visit the platform. They help us remember your preferences and improve the experience."
+      },
+      "s2": {
+        "title": "2. Types of Cookies",
+        "body": "• Essential: For session and security (required).\n• Analytics: To analyze usage (optional).\n• Preferences: For language and theme (Dark/Light)."
+      },
+      "s3": {
+        "title": "3. Controlling Cookies",
+        "body": "You can control cookies from your browser settings. However, some features may not work without essential cookies."
+      },
+      "s4": {
+        "title": "4. Third-Party Cookies",
+        "body": "We use Supabase (for Auth), Sentry (for error tracking), Resend (for emails). Each has its own independent privacy policy."
+      }
+    },
+    "cookieBanner": {
+      "title": "We use cookies",
+      "description": "We use cookies to improve your experience. By accepting, you agree to our cookie policy.",
+      "learnMore": "Learn more",
+      "accept": "Accept",
+      "reject": "Reject"
     }
   },
   "onboarding": {
     "welcome": {
-      "title": "Welcome to Marketing Hub",
+      "title": "Welcome to One Post",
       "description": "Let's set up your account in two quick steps and start your marketing journey.",
       "cta": "Let's start"
     },
@@ -765,6 +873,25 @@
           "client": "Client",
           "viewer": "Viewer"
         },
+              "dangerZone": {
+        "title": "Danger Zone",
+        "description": "Final actions that cannot be undone",
+        "export": {
+          "title": "Export your data",
+          "description": "Download a full copy of your data (GDPR)",
+          "button": "Export JSON"
+        },
+        "delete": {
+          "title": "Delete account",
+          "description": "Permanently delete all your data — no going back",
+          "button": "Delete account",
+          "confirmTitle": "Are you sure you want to delete your account?",
+          "confirmDescription": "All your data will be permanently deleted. This action cannot be undone.",
+          "typeToConfirm": "Type DELETE to confirm",
+          "cancel": "Cancel",
+          "confirmButton": "Delete permanently"
+        }
+      },
         "invite": {
           "trigger": "Invite member",
           "title": "Invite new member",
@@ -857,6 +984,69 @@
         "newTask": "Add new task",
         "newContent": "Create new content",
         "toggleTheme": "Toggle theme (Dark/Light)"
+      }
+    }
+  },
+    "admin": {
+    "nav": {
+      "overview": "Admin Dashboard",
+      "users": "Users",
+      "workspaces": "Workspaces",
+      "audit": "Audit Log",
+      "settings": "Settings"
+    },
+    "overview": {
+      "title": "Admin Dashboard",
+      "subtitle": "Full platform overview",
+      "kpis": {
+        "users": "Total users",
+        "organizations": "Organizations",
+        "workspaces": "Workspaces",
+        "audit_logs": "Audit logs",
+        "critical": "Critical actions"
+      },
+      "recentActivity": "Recent activity",
+      "noActivity": "No activity yet"
+    },
+    "audit": {
+      "title": "Audit Log",
+      "subtitle": "Every sensitive action on the platform",
+      "searchPlaceholder": "Search by action, user, entity...",
+      "noResults": "No results",
+      "count": "{count} entries",
+      "filters": {
+        "all": "All"
+      },
+      "severities": {
+        "info": "Info",
+        "warning": "Warning",
+        "critical": "Critical"
+      },
+      "cols": {
+        "severity": "Severity",
+        "action": "Action",
+        "entity": "Entity",
+        "actor": "Actor",
+        "time": "Time"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "subtitle": "All platform users",
+      "searchPlaceholder": "Search by name or email...",
+      "confirmSuspend": "Are you sure you want to suspend this account?",
+      "suspend": "Suspend",
+      "restore": "Restore",
+      "cols": {
+        "name": "Name",
+        "email": "Email",
+        "type": "Type",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "suspended": "Suspended"
       }
     }
   },

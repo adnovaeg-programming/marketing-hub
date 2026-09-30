@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { sendInvitationEmail } from "@/lib/email/send";
 
 type InviteRole = "admin" | "member" | "client" | "viewer";
 
@@ -12,7 +13,7 @@ type InviteInput = {
 };
 
 type Result =
-  | { success: true; token: string; invitationId: string }
+  | { success: true; token: string; invitationId: string; emailSent: boolean }
   | { success: false; error: string };
 
 export async function createInvitationAction(
@@ -27,7 +28,10 @@ export async function createInvitationAction(
 
   const { data: member } = await supabase
     .from("workspace_members")
-    .select("workspace_id, role")
+    .select(
+      `workspace_id, role,
+       workspace:workspaces (id, name)`
+    )
     .eq("user_id", user.id)
     .eq("status", "active")
     .limit(1)
@@ -59,7 +63,7 @@ export async function createInvitationAction(
     return { success: false, error: "already_member" };
   }
 
-  // نلغي أي دعوة pending قديمة لنفس الإيميل
+  // نلغي أي دعوة pending قديمة
   await supabase
     .from("workspace_invitations")
     .update({ status: "cancelled" })
@@ -80,11 +84,40 @@ export async function createInvitationAction(
 
   if (error) return { success: false, error: error.message };
 
+  // نجيب اسم الداعي
+  const { data: inviterProfile } = await supabase
+    .from("profiles")
+    .select("first_name, last_name, email")
+    .eq("id", user.id)
+    .single();
+
+  const inviterName =
+    [inviterProfile?.first_name, inviterProfile?.last_name]
+      .filter(Boolean)
+      .join(" ") || inviterProfile?.email || "Someone";
+
+  const workspace = Array.isArray(member.workspace)
+    ? member.workspace[0]
+    : member.workspace;
+
+  // نبعت الإيميل
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+  const emailResult = await sendInvitationEmail({
+    to: email,
+    workspaceName: workspace?.name ?? "مساحة العمل",
+    inviterName,
+    role: input.role,
+    inviteUrl: `${siteUrl}/ar/invite/${data.token}`,
+  });
+
   revalidatePath("/dashboard/settings");
   return {
     success: true,
     token: data.token,
     invitationId: data.id,
+    emailSent: emailResult.success,
   };
 }
 
@@ -92,7 +125,6 @@ export async function cancelInvitationAction(
   invitationId: string
 ): Promise<{ success: boolean; error?: string }> {
   const supabase = await createClient();
-
   const { error } = await supabase
     .from("workspace_invitations")
     .update({ status: "cancelled" })
@@ -106,7 +138,9 @@ export async function cancelInvitationAction(
 
 export async function acceptInvitationAction(
   token: string
-): Promise<{ success: true; workspaceId: string } | { success: false; error: string }> {
+): Promise<
+  { success: true; workspaceId: string } | { success: false; error: string }
+> {
   const supabase = await createClient();
   const {
     data: { user },

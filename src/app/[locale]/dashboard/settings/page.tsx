@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveWorkspaceId } from "@/lib/workspace/active";
 import { SettingsTabs } from "@/components/settings/settings-tabs";
+import { DangerZone } from "@/components/settings/danger-zone";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -28,7 +29,9 @@ export default async function SettingsPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("first_name, last_name, phone, job_title, bio, country, city, timezone, language")
+    .select(
+      "id, first_name, last_name, phone, job_title, bio, country, city, timezone, language, avatar_url"
+    )
     .eq("id", user.id)
     .single();
 
@@ -65,6 +68,7 @@ export default async function SettingsPage() {
   const t = await getTranslations("dashboard.settings");
 
   const canEditWorkspace = member.role === "owner" || member.role === "admin";
+  const isOwner = member.role === "owner";
 
   const normalizedMembers = (members ?? []).map((m) => ({
     id: m.id,
@@ -83,7 +87,7 @@ export default async function SettingsPage() {
       </div>
 
       <SettingsTabs
-        profile={profile}
+        profile={{ ...profile, workspace_id: workspaceId }}
         workspace={workspace}
         organization={organization}
         members={normalizedMembers}
@@ -91,6 +95,13 @@ export default async function SettingsPage() {
         canEditWorkspace={canEditWorkspace}
         currentUserId={user.id}
       />
+
+      {/* Danger Zone — للمالك فقط */}
+      {isOwner && (
+        <div className="mt-8">
+          <DangerZone />
+        </div>
+      )}
     </div>
   );
 }

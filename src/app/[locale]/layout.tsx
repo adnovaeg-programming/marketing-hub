@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ConditionalNavbar } from "@/components/conditional-navbar";
 import { BackgroundLayer } from "@/components/background-layer";
 import { CursorSpotlight } from "@/components/fx/cursor-spotlight";
+import { CookieBanner } from "@/components/legal/cookie-banner";
 import { Toaster } from "@/components/ui/sonner";
 import { createClient } from "@/lib/supabase/server";
 
@@ -48,8 +49,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // ✅ مهم جدًا: setRequestLocale قبل getMessages
   setRequestLocale(locale);
 
+  // ✅ getMessages بدون args
   const messages = await getMessages();
   const dir = locale === "ar" ? "rtl" : "ltr";
 
@@ -76,8 +79,11 @@ export default async function LocaleLayout({
             disableTransitionOnChange
           >
             <BackgroundLayer />
-            <ConditionalNavbar user={user ? { email: user.email ?? "" } : null} />
+            <ConditionalNavbar
+              user={user ? { email: user.email ?? "" } : null}
+            />
             {children}
+            <CookieBanner />
             <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>

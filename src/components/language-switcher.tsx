@@ -2,24 +2,25 @@
 
 import { Globe } from "lucide-react";
 import { useLocale } from "next-intl";
-import { useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
+import { usePathname } from "@/i18n/navigation";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
+  const pathname = usePathname(); // ملاحظة: next-intl بيرجع المسار بدون locale prefix
 
   const nextLocale = locale === "ar" ? "en" : "ar";
 
   const toggle = () => {
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
+    // نبني المسار الجديد بـ prefix اللغة الجديدة
+    const newPath =
+      pathname === "/" || pathname === ""
+        ? `/${nextLocale}`
+        : `/${nextLocale}${pathname}`;
+
+    // ⚡ Hard navigation — مضمون 100% وبيضمن RSC payload جديد
+    window.location.href = newPath;
   };
 
   return (
@@ -28,7 +29,6 @@ export function LanguageSwitcher() {
       size="icon"
       className="relative size-10 rounded-full"
       onClick={toggle}
-      disabled={pending}
       aria-label={`Switch to ${nextLocale === "ar" ? "العربية" : "English"}`}
     >
       <Globe className="size-5" />
