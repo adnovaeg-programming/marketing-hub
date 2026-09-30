@@ -1,128 +1,128 @@
 {
   "nav": {
-    "start": "Get Started",
     "features": "Features",
     "pricing": "Pricing",
     "marketplace": "Marketplace",
-    "howItWorks": "How It Works",
-    "login": "Sign In",
+    "howItWorks": "How it works",
+    "login": "Login",
     "getStarted": "Get Started",
     "dashboard": "Dashboard",
-    "settings": "Settings",
     "profile": "Profile",
-    "logout": "Sign Out"
+    "settings": "Settings",
+    "logout": "Sign out",
+    "notifications": "Notifications"
   },
   "hero": {
-    "badge": "The Premier All-in-One Marketing Platform in Arabic",
-    "title": "All Your Marketing in",
-    "titleHighlight": "One Place",
+    "badge": "The first integrated marketing platform in the Arab world",
+    "title": "All your marketing in",
+    "titleHighlight": "one place",
     "description": "A unified platform to manage content, team, clients, and ad campaigns — without switching between tools.",
-    "ctaPrimary": "Get Started Free",
-    "ctaSecondary": "Watch Demo",
-    "trustNote": "No credit card required • Cancel anytime",
-    "dashboardPreview": "Dashboard Preview — Coming Soon"
+    "ctaPrimary": "Start for free",
+    "ctaSecondary": "Watch demo",
+    "trustNote": "No credit card • Cancel anytime",
+    "dashboardPreview": "Dashboard — coming soon"
   },
   "features": {
-    "title": "Everything You Need for",
-    "titleHighlight": "Smarter Marketing",
-    "description": "Tools designed to work seamlessly together — instead of juggling 5 different platforms.",
+    "title": "Everything you need for",
+    "titleHighlight": "better marketing",
+    "description": "Tools designed to work together — instead of juggling 5 different platforms.",
     "items": {
       "calendar": {
         "title": "Unified Calendar",
-        "description": "Plan, schedule, and publish content across all platforms from one central hub."
+        "description": "Plan, schedule, and publish content across all platforms from one place — no tool switching."
       },
       "collaboration": {
         "title": "Team Collaboration",
-        "description": "Invite team members and clients, assign tasks, and track comments and approvals in real-time."
+        "description": "Invite your team and clients, assign tasks, and track every comment and approval in real-time."
       },
       "reports": {
-        "title": "Smart Analytics",
-        "description": "Automated weekly and monthly reports showing performance — no Excel sheets required."
+        "title": "Smart Reports",
+        "description": "Automatic weekly and monthly reports showing your campaign performance — no Excel, no exports."
       },
       "wallet": {
         "title": "Secure Wallet & Payments",
-        "description": "Escrow payment system protecting both parties, with an e-wallet for fast payouts."
+        "description": "An escrow system that protects both parties, plus an e-wallet for quick withdrawals."
       }
     }
   },
   "howItWorks": {
-    "title": "Get Started in",
-    "titleHighlight": "3 Simple Steps",
-    "description": "From signup to your first successful campaign — zero setup friction.",
+    "title": "Start in",
+    "titleHighlight": "3 steps",
+    "description": "From signup to your first successful campaign — no complexity, no long setup.",
     "steps": {
       "workspace": {
-        "title": "Create Your Workspace",
-        "description": "Sign up for free and choose whether you're an agency, freelancer, or client."
+        "title": "Create your workspace",
+        "description": "Sign up for free and choose whether you're an agency, freelancer, or company — in under a minute."
       },
       "invite": {
-        "title": "Invite Your Team & Clients",
-        "description": "Add members, assign roles, and collaborate on content and tasks right away."
+        "title": "Invite your team & clients",
+        "description": "Add members, assign roles, and start collaborating on content and tasks right away."
       },
       "launch": {
-        "title": "Launch & Grow",
-        "description": "Plan, publish, analyze, and collect payouts — all from a single dashboard."
+        "title": "Launch & grow",
+        "description": "Plan, publish, analyze, and collect your earnings — all from one dashboard."
       }
     }
   },
   "pricing": {
-    "badge": "Flexible Pricing for Everyone",
-    "title": "Simple Plans, No",
-    "titleHighlight": "Surprises",
-    "description": "Start for free and upgrade as you grow — cancel anytime.",
+    "badge": "Pricing for everyone",
+    "title": "Simple plans, no",
+    "titleHighlight": "surprises",
+    "description": "Start for free, upgrade when you need — cancel anytime.",
     "billingMonthly": "Monthly",
     "billingYearly": "Yearly",
     "savePercent": "Save 20%",
-    "popular": "Most Popular",
-    "perMonth": "/month",
-    "perYear": "/year",
+    "popular": "Most popular",
+    "perMonth": "/mo",
+    "perYear": "/yr",
     "plans": {
       "starter": {
         "name": "Starter",
-        "description": "For freelancers starting their journey.",
-        "cta": "Get Started Free",
+        "description": "For freelancers just starting out.",
+        "cta": "Start for free",
         "features": [
-          "1 Workspace",
-          "2 Clients",
-          "Basic Content Calendar",
-          "Monthly Reports"
+          "1 workspace",
+          "2 clients",
+          "Basic content calendar",
+          "Monthly reports"
         ]
       },
       "pro": {
         "name": "Pro",
-        "description": "For small agencies and growing freelancers.",
-        "cta": "Start 14-Day Free Trial",
+        "description": "For small agencies and professional freelancers.",
+        "cta": "Try 14 days free",
         "features": [
-          "5 Workspaces",
-          "20 Clients",
-          "Automated Publishing",
-          "E-Wallet Access",
-          "Weekly Reports",
-          "Priority Support"
+          "5 workspaces",
+          "20 clients",
+          "Auto-publishing to all platforms",
+          "E-wallet",
+          "Weekly reports",
+          "Priority support"
         ]
       },
       "business": {
         "name": "Business",
-        "description": "For large agencies and enterprises.",
-        "cta": "Contact Us",
+        "description": "For large agencies and companies.",
+        "cta": "Contact us",
         "features": [
-          "Unlimited Workspaces",
-          "Unlimited Clients",
-          "White-label Customization",
-          "Dedicated Account Manager",
+          "Unlimited workspaces",
+          "Unlimited clients",
+          "Custom white-label integration",
+          "Dedicated account manager",
           "Guaranteed SLA",
-          "Full Team Onboarding"
+          "Full team training"
         ]
       }
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join hundreds of agencies and freelancers using Marketing Hub daily.",
-    "primary": "Get Started Free",
-    "secondary": "Talk to Sales"
+    "title": "Ready to start?",
+    "description": "Join hundreds of agencies and freelancers using Marketing Hub every day.",
+    "primary": "Start for free",
+    "secondary": "Talk to our team"
   },
   "footer": {
-    "tagline": "Unified marketing management — everything in one place.",
+    "tagline": "A unified marketing platform — everything in one place.",
     "product": "Product",
     "company": "Company",
     "resources": "Resources",
@@ -131,147 +131,136 @@
       "features": "Features",
       "pricing": "Pricing",
       "marketplace": "Marketplace",
-      "about": "About Us",
+      "about": "About",
       "contact": "Contact",
       "careers": "Careers",
       "blog": "Blog",
       "help": "Help Center",
-      "docs": "Documentation",
-      "terms": "Terms of Service",
-      "privacy": "Privacy Policy",
+      "docs": "Docs",
+      "terms": "Terms",
+      "privacy": "Privacy",
       "commission": "Commission Policy"
     },
     "rights": "All rights reserved.",
     "madeIn": "Made in Egypt 🇪🇬"
   },
-  "styleGuide": {
-    "title": "Style Guide",
-    "subtitle": "Complete design reference for colors and components in Marketing Hub",
-    "sections": {
-      "colors": "Colors",
-      "typography": "Typography",
-      "buttons": "Buttons",
-      "glass": "Glassmorphism",
-      "inputs": "Form Inputs",
-      "animations": "Animations",
-      "radius": "Border Radius"
-    },
-    "labels": {
-      "primary": "Primary",
-      "secondary": "Secondary",
-      "muted": "Muted",
-      "accent": "Accent",
-      "destructive": "Destructive",
-      "background": "Background",
-      "foreground": "Foreground"
-    },
-    "buttonVariants": {
-      "default": "Default",
-      "outline": "Outline",
-      "ghost": "Ghost",
-      "secondary": "Secondary",
-      "destructive": "Destructive"
-    }
-  },
-  "files": {
-    "upload": {
-      "title": "Drag & drop files here",
-      "subtitle": "Or click to select • Max {max}",
-      "uploading": "Uploading...",
-      "tooLarge": "{name} is larger than the limit ({max})"
-    },
-    "avatar": {
-      "title": "Profile picture",
-      "subtitle": "JPG, PNG, or WebP • Max 5MB",
-      "change": "Change picture",
-      "invalidType": "Must be an image",
-      "tooLarge": "Image is larger than 5MB"
-    },
-    "attachments": {
-      "title": "Attachments",
-      "addFile": "Add file",
-      "empty": "No attachments yet",
-      "confirmDelete": "Are you sure you want to delete this attachment?"
-    }
-  },
   "auth": {
     "layout": {
-      "visualTitle": "All Your Marketing in",
-      "visualHighlight": "One Place",
-      "visualDescription": "A unified platform to manage content, team, clients, and ad campaigns."
+      "visualTitle": "All your marketing in",
+      "visualHighlight": "one place",
+      "visualDescription": "A unified platform for content, team, clients, and ad campaigns.",
+      "features": {
+        "fast": "Setup in under a minute",
+        "secure": "Encrypted and secure data",
+        "team": "Real-time team collaboration"
+      }
     },
     "login": {
-      "title": "Welcome Back",
+      "title": "Welcome back",
       "subtitle": "Sign in to access your account",
-      "email": "Email Address",
+      "email": "Email",
       "emailPlaceholder": "you@example.com",
       "password": "Password",
       "passwordPlaceholder": "Enter your password",
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot password?",
-      "submit": "Sign In",
+      "submit": "Sign in",
       "noAccount": "Don't have an account?",
-      "signUp": "Create Account",
+      "signUp": "Sign up",
       "errors": {
         "missing_fields": "Please enter your email and password",
-        "invalid_credentials": "Invalid email or password",
-        "email_not_confirmed": "Please confirm your email address first"
+        "invalid_credentials": "Incorrect email or password",
+        "email_not_confirmed": "Please confirm your email first"
       }
     },
     "register": {
-      "title": "Create Your Account",
+      "title": "Create your account",
       "subtitle": "Start your marketing journey in under a minute",
-      "name": "Full Name",
+      "name": "Full name",
       "namePlaceholder": "John Doe",
-      "email": "Email Address",
+      "email": "Email",
       "emailPlaceholder": "you@example.com",
       "password": "Password",
       "passwordPlaceholder": "At least 8 characters",
-      "accountType": "Account Type",
+      "accountType": "Account type",
       "types": {
         "client": "Company / Client",
         "clientDesc": "Looking for marketing services",
         "agency": "Agency",
-        "agencyDesc": "Managing a marketing team",
+        "agencyDesc": "I manage a marketing team",
         "freelancer": "Freelancer",
-        "freelancerDesc": "Providing marketing services"
+        "freelancerDesc": "I offer marketing services"
       },
       "terms": "I agree to the",
-      "termsLink": "Terms & Conditions",
+      "termsLink": "Terms of Service",
       "and": "and",
       "privacyLink": "Privacy Policy",
-      "submit": "Create Account",
+      "submit": "Create account",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign In",
-      "successTitle": "Check Your Email",
-      "successMessage": "We've sent a verification link to your email. Please open it to activate your account.",
-      "goToLogin": "Go to Sign In",
+      "signIn": "Sign in",
+      "successTitle": "Check your email",
+      "successMessage": "We sent you a message with a link to confirm your account. Open your email and click the link.",
+      "goToLogin": "Go to login",
       "errors": {
         "missing_fields": "Please fill in all required fields",
-        "password_too_short": "Password must be at least 8 characters long"
+        "password_too_short": "Password must be at least 8 characters"
       }
     },
     "forgot": {
-      "title": "Forgot Password?",
-      "subtitle": "Enter your email and we'll send a reset link",
-      "email": "Email Address",
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you a reset link",
+      "email": "Email",
       "emailPlaceholder": "you@example.com",
-      "submit": "Send Reset Link",
-      "backToLogin": "Back to Sign In",
-      "successTitle": "Check Your Email",
-      "successMessage": "If an account exists for this email, you'll receive instructions to reset your password shortly."
+      "submit": "Send reset link",
+      "backToLogin": "Back to login",
+      "successTitle": "Check your email",
+      "successMessage": "If this email is registered, you'll receive a message with a password reset link."
+    }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome to Marketing Hub",
+      "description": "Let's set up your account in two quick steps and start your marketing journey.",
+      "cta": "Let's start"
+    },
+    "organization": {
+      "title": "Organization Info",
+      "description": "This will be your {type} on the platform.",
+      "fieldLabel": "Organization name",
+      "placeholder": "e.g., Al-Noor Agency"
+    },
+    "workspace": {
+      "title": "Your first workspace",
+      "description": "This workspace is where you'll manage clients and projects.",
+      "fieldLabel": "Workspace name",
+      "placeholder": "e.g., Main Team"
+    },
+    "done": {
+      "title": "All set! 🎉",
+      "description": "Your workspace has been created successfully. Let's jump into your dashboard.",
+      "cta": "Go to dashboard"
+    },
+    "back": "Back",
+    "next": "Next",
+    "creating": "Creating...",
+    "finish": "Create account",
+    "types": {
+      "client": "company",
+      "agency": "agency",
+      "freelancer": "freelancer"
+    },
+    "errors": {
+      "not_authenticated": "You need to sign in first",
+      "missing_fields": "Please fill in all fields",
+      "org_failed": "Failed to create organization",
+      "workspace_failed": "Failed to create workspace"
     }
   },
   "dashboard": {
     "welcome": "Welcome",
     "subtitle": "This is your dashboard",
-    "liveSynced": "Synced",
     "placeholder": "Full content coming soon",
-    "noWorkspace": {
-      "title": "You need a workspace",
-      "description": "Let's set up your workspace in a quick step.",
-      "cta": "Start setup"
-    },
+    "liveSynced": "Synced",
     "stats": {
       "clients": "Clients",
       "activeProjects": "Active projects",
@@ -294,31 +283,44 @@
       "addFirst": "Add your first client →",
       "addFirstProject": "Create your first project →"
     },
+    "noWorkspace": {
+      "title": "You need a workspace",
+      "description": "Let's set up your workspace in a quick step.",
+      "cta": "Start setup"
+    },
+    "bulk": {
+      "select": "Select",
+      "exit": "Exit selection",
+      "selectAll": "Select all",
+      "clearAll": "Clear all",
+      "delete": "Delete selected",
+      "confirmDelete": "Delete {count} items?"
+    },
     "nav": {
       "overview": "Overview",
       "clients": "Clients",
       "projects": "Projects",
       "tasks": "Tasks",
       "content": "Content",
-      "analytics": "Analytics",
-      "settings": "Settings",
       "notifications": "Notifications",
+      "analytics": "Analytics",
       "profile": "Profile",
+      "settings": "Settings",
       "logout": "Sign out",
       "openMenu": "Open menu"
     },
     "clients": {
       "title": "Clients",
       "subtitle": "You have {count} clients in this workspace",
+      "searchPlaceholder": "Search by name, email, company...",
+      "resultsCount": "{count} results",
+      "noResults": "No results match your search",
+      "clearFilters": "Clear filters",
       "delete": "Delete client",
       "confirmDelete": "Are you sure you want to delete this client?",
       "noContact": "No contact info",
       "emptyTitle": "No clients yet",
       "emptyDescription": "Start by adding your first client to manage their projects and content from one place.",
-      "searchPlaceholder": "Search by name, email, company...",
-      "resultsCount": "{count} results",
-      "noResults": "No results match your search",
-      "clearFilters": "Clear filters",
       "filters": {
         "all": "All"
       },
@@ -349,7 +351,12 @@
         "notes": "Notes",
         "notesPlaceholder": "Any additional details...",
         "cancel": "Cancel",
-        "submit": "Add client"
+        "submit": "Add client",
+        "success": "Success",
+        "successDescription": "Client added",
+        "errors": {
+          "generic": "Something went wrong, try again"
+        }
       }
     },
     "clientDetails": {
@@ -373,8 +380,6 @@
     "projects": {
       "title": "Projects",
       "subtitle": "You have {count} projects",
-      "emptyTitle": "No projects yet",
-      "emptyDescription": "Start by creating your first project and linking it to a client.",
       "searchPlaceholder": "Search by name, description, client...",
       "resultsCount": "{count} results",
       "noResults": "No results match your search",
@@ -382,6 +387,8 @@
       "viewGrid": "Grid",
       "viewKanban": "Kanban",
       "kanbanEmpty": "No projects",
+      "emptyTitle": "No projects yet",
+      "emptyDescription": "Start by creating your first project and linking it to a client.",
       "filters": {
         "all": "All"
       },
@@ -415,7 +422,12 @@
         "descriptionLabel": "Description",
         "descriptionPlaceholder": "Project details...",
         "cancel": "Cancel",
-        "submit": "Create project"
+        "submit": "Create project",
+        "success": "Success",
+        "successDescription": "Project created",
+        "errors": {
+          "generic": "Something went wrong, try again"
+        }
       }
     },
     "projectDetails": {
@@ -424,9 +436,9 @@
       "budget": "Budget",
       "startDate": "Start date",
       "endDate": "End date",
-      "comingSoon": "Tasks and files coming soon",
       "tasks": "Tasks",
       "noTasks": "No tasks yet — start by adding a task",
+      "comingSoon": "Tasks and files coming soon",
       "statuses": {
         "draft": "Draft",
         "active": "Active",
@@ -438,8 +450,6 @@
     "tasks": {
       "title": "Tasks",
       "subtitle": "You have {count} tasks",
-      "emptyTitle": "No tasks yet",
-      "emptyDescription": "Start by creating your first task and linking it to a project.",
       "searchPlaceholder": "Search by task, project, client...",
       "resultsCount": "{count} results",
       "noResults": "No results match your search",
@@ -449,9 +459,17 @@
       "kanbanEmpty": "No tasks",
       "overdue": "Overdue",
       "noDetails": "No details",
+      "emptyTitle": "No tasks yet",
+      "emptyDescription": "Start by creating your first task and linking it to a project.",
       "filters": {
         "all": "All",
         "allPriorities": "All priorities"
+      },
+      "bulk": {
+        "select": "Select",
+        "exit": "Exit",
+        "selectAll": "Select all",
+        "clearAll": "Clear"
       },
       "statuses": {
         "todo": "To do",
@@ -482,7 +500,12 @@
         "priority": "Priority",
         "dueDate": "Due date",
         "cancel": "Cancel",
-        "submit": "Create task"
+        "submit": "Create task",
+        "success": "Success",
+        "successDescription": "Task added",
+        "errors": {
+          "generic": "Something went wrong, try again"
+        }
       },
       "actions": {
         "start": "Start",
@@ -510,8 +533,6 @@
       "title": "Content",
       "subtitle": "You have {count} content items",
       "viewCalendar": "Calendar",
-      "emptyTitle": "No content yet",
-      "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
       "searchPlaceholder": "Search by content, client, project...",
       "resultsCount": "{count} results",
       "noResults": "No results match your search",
@@ -519,6 +540,8 @@
       "viewGrid": "Grid",
       "viewKanban": "Kanban",
       "kanbanEmpty": "No content",
+      "emptyTitle": "No content yet",
+      "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
       "filters": {
         "all": "All"
       },
@@ -589,7 +612,12 @@
         "priority": "Priority",
         "scheduledAt": "Publish date (optional)",
         "cancel": "Cancel",
-        "submit": "Create content"
+        "submit": "Create content",
+        "success": "Success",
+        "successDescription": "Content created",
+        "errors": {
+          "generic": "Something went wrong, try again"
+        }
       },
       "actions": {
         "sendToReview": "Send to review",
@@ -608,6 +636,73 @@
         "scheduledAt": "Scheduled at",
         "comingSoon": "Comments, versions and files coming soon"
       }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "{count} notifications",
+      "empty": "No notifications yet",
+      "markAllRead": "Mark all as read",
+      "unread": "{count} unread",
+      "viewAll": "View all notifications",
+      "filters": {
+        "all": "All",
+        "unread": "Unread",
+        "read": "Read"
+      }
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Overview of your workspace performance",
+      "exportCsv": "Export CSV",
+      "exported": "Exported successfully",
+      "exportError": "Export failed",
+      "kpis": {
+        "clients": "Total clients",
+        "projects": "Total projects",
+        "content": "Total content",
+        "tasks": "Total tasks",
+        "pending": "{count} pending tasks",
+        "allDone": "All tasks done"
+      },
+      "sections": {
+        "contentBreakdown": "Content breakdown",
+        "contentCenter": "items",
+        "projectsByStatus": "Projects by status",
+        "tasksByPriority": "Tasks by priority",
+        "recentActivity": "Recent activity",
+        "empty": "No data yet"
+      },
+      "contentStatuses": {
+        "draft": "Draft",
+        "internal_review": "Internal review",
+        "client_review": "Client review",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "scheduled": "Scheduled",
+        "published": "Published",
+        "archived": "Archived"
+      },
+      "projectStatuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "on_hold": "On hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "taskPriorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "activity": {
+        "empty": "No activity yet"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Manage your personal information",
+      "joinedOn": "Joined"
     },
     "settings": {
       "title": "Settings",
@@ -661,7 +756,7 @@
       },
       "members": {
         "title": "Team members",
-        "subtitle": "{count} members",
+        "subtitle": "{count} members in this workspace",
         "you": "You",
         "roles": {
           "owner": "Owner",
@@ -698,42 +793,6 @@
         }
       }
     },
-    "profile": {
-      "title": "Profile",
-      "subtitle": "Manage your personal information"
-    },
-    "error": {
-      "title": "Something went wrong",
-      "description": "An unexpected error occurred. Try again.",
-      "retry": "Try again",
-      "home": "Home"
-    },
-    "portal": {
-      "portal": "Client Portal",
-      "welcome": "Welcome",
-      "subtitle": "This is your client portal — view your projects and content awaiting approval",
-      "logout": "Sign out",
-      "pendingApproval": "Awaiting approval",
-      "approve": "Approve",
-      "requestChanges": "Request changes",
-      "addNote": "Notes (optional)",
-      "notePlaceholder": "Write your notes here...",
-      "viewAll": "View all",
-      "allClear": "All clear! Nothing awaiting your approval.",
-      "backToApprovals": "Back to approvals",
-      "approvalsCount": "{count} items awaiting your approval",
-      "projectsCount": "{count} projects",
-      "noProjects": "No projects yet",
-      "stats": {
-        "pending": "Awaiting approval",
-        "approved": "Approved",
-        "projects": "Projects"
-      },
-      "sections": {
-        "pendingApprovals": "Awaiting your approval",
-        "myProjects": "My projects"
-      }
-    },
     "invite": {
       "invalidTitle": "Invitation not found",
       "invalidDescription": "This link is invalid or has expired.",
@@ -756,58 +815,31 @@
         "invalid_or_expired": "Invitation is invalid or expired"
       }
     },
-    "notifications": {
-      "title": "Notifications",
-      "subtitle": "{count} notifications",
-      "empty": "No notifications yet",
-      "markAllRead": "Mark all as read",
-      "unread": "{count} unread",
-      "viewAll": "View all notifications"
-    },
-    "analytics": {
-      "title": "Analytics",
-      "subtitle": "Overview of your workspace performance",
-      "kpis": {
-        "clients": "Total clients",
-        "projects": "Total projects",
-        "content": "Total content",
-        "tasks": "Total tasks",
-        "pending": "{count} pending tasks",
-        "allDone": "All tasks done"
+    "portal": {
+      "portal": "Client Portal",
+      "welcome": "Welcome",
+      "subtitle": "This is your client portal — view your projects and content awaiting approval",
+      "noWorkspace": "You're not a member of any workspace yet. When you receive an invitation, you'll see your content here.",
+      "logout": "Sign out",
+      "pendingApproval": "Awaiting approval",
+      "approve": "Approve",
+      "requestChanges": "Request changes",
+      "addNote": "Notes (optional)",
+      "notePlaceholder": "Write your notes here...",
+      "viewAll": "View all",
+      "allClear": "All clear! Nothing awaiting your approval.",
+      "backToApprovals": "Back to approvals",
+      "approvalsCount": "{count} items awaiting your approval",
+      "projectsCount": "{count} projects",
+      "noProjects": "No projects yet",
+      "stats": {
+        "pending": "Awaiting approval",
+        "approved": "Approved",
+        "projects": "Projects"
       },
       "sections": {
-        "contentBreakdown": "Content breakdown",
-        "contentCenter": "items",
-        "projectsByStatus": "Projects by status",
-        "tasksByPriority": "Tasks by priority",
-        "recentActivity": "Recent activity",
-        "empty": "No data yet"
-      },
-      "contentStatuses": {
-        "draft": "Draft",
-        "internal_review": "Internal review",
-        "client_review": "Client review",
-        "approved": "Approved",
-        "rejected": "Rejected",
-        "scheduled": "Scheduled",
-        "published": "Published",
-        "archived": "Archived"
-      },
-      "projectStatuses": {
-        "draft": "Draft",
-        "active": "Active",
-        "on_hold": "On hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled"
-      },
-      "taskPriorities": {
-        "low": "Low",
-        "medium": "Medium",
-        "high": "High",
-        "urgent": "Urgent"
-      },
-      "activity": {
-        "empty": "No activity yet"
+        "pendingApprovals": "Awaiting your approval",
+        "myProjects": "My projects"
       }
     },
     "commandPalette": {
@@ -828,49 +860,31 @@
       }
     }
   },
+  "files": {
+    "upload": {
+      "title": "Drag & drop files here",
+      "subtitle": "Or click to select • Max {max}",
+      "uploading": "Uploading...",
+      "tooLarge": "{name} is larger than the limit ({max})"
+    },
+    "avatar": {
+      "title": "Profile picture",
+      "subtitle": "JPG, PNG, or WebP • Max 5MB",
+      "change": "Change picture",
+      "invalidType": "Must be an image",
+      "tooLarge": "Image is larger than 5MB"
+    },
+    "attachments": {
+      "title": "Attachments",
+      "addFile": "Add file",
+      "empty": "No attachments yet",
+      "confirmDelete": "Are you sure you want to delete this attachment?"
+    }
+  },
   "errors": {
     "title": "Something went wrong",
     "description": "An unexpected error occurred. Try again.",
     "retry": "Try again",
     "home": "Home"
-  },
-  "onboarding": {
-    "welcome": {
-      "title": "Welcome to Marketing Hub",
-      "description": "Let's set up your account in two quick steps and start your marketing journey.",
-      "cta": "Let's start"
-    },
-    "organization": {
-      "title": "Organization Info",
-      "description": "This will be your {type} on the platform.",
-      "fieldLabel": "Organization name",
-      "placeholder": "e.g., Al-Noor Agency"
-    },
-    "workspace": {
-      "title": "Your first workspace",
-      "description": "This workspace is where you'll manage clients and projects.",
-      "fieldLabel": "Workspace name",
-      "placeholder": "e.g., Main Team"
-    },
-    "done": {
-      "title": "All set! 🎉",
-      "description": "Your workspace has been created successfully. Let's jump into your dashboard.",
-      "cta": "Go to dashboard"
-    },
-    "back": "Back",
-    "next": "Next",
-    "creating": "Creating...",
-    "finish": "Create account",
-    "types": {
-      "client": "company",
-      "agency": "agency",
-      "freelancer": "freelancer"
-    },
-    "errors": {
-      "not_authenticated": "You need to sign in first",
-      "missing_fields": "Please fill in all fields",
-      "org_failed": "Failed to create organization",
-      "workspace_failed": "Failed to create workspace"
-    }
   }
 }

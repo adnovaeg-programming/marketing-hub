@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Loader2, Check, X, Send, Play, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
+import { toastSuccess, toastError } from "@/lib/actions/toast";
 import {
   deleteTaskAction,
   updateTaskStatusAction,
@@ -20,18 +22,37 @@ export function TaskActions({
   currentStatus: string;
 }) {
   const t = useTranslations("dashboard.tasks.actions");
+  const router = useRouter();
   const [pending, setPending] = useState<string | null>(null);
 
   const handleUpdate = async (next: Status) => {
     setPending(next);
-    await updateTaskStatusAction(taskId, next);
+    const result = await updateTaskStatusAction(taskId, next);
     setPending(null);
+
+    if (!result.success) {
+      toastError(result.error, "فشل تحديث الحالة");
+      return;
+    }
+    router.refresh();
   };
 
   const handleDelete = async () => {
     if (!confirm(t("confirmDelete"))) return;
+
     setPending("delete");
-    await deleteTaskAction(taskId);
+    const result = await deleteTaskAction(taskId);
+
+    if (!result.success) {
+      toastError(result.error, "فشل حذف المهمة");
+      setPending(null);
+      return;
+    }
+
+    toastSuccess("تم حذف المهمة");
+
+    // ✅ استخدام window.location.href لضمان التنقل الفوري
+    window.location.href = "/ar/dashboard/tasks";
   };
 
   const buttons: {

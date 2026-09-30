@@ -44,10 +44,11 @@ export function NotificationBell() {
   const [markingAll, setMarkingAll] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const channelRef = useRef<RealtimeChannel | null>(null);
+  const isSetupRef = useRef(false);
 
   const unreadCount = notifications.filter((n) => !n.read_at).length;
 
-  /* ─── Initial Load ─── */
+  /* ─── Load Notifications ─── */
   const load = useCallback(async () => {
     try {
       const supabase = createClient();
@@ -69,18 +70,20 @@ export function NotificationBell() {
     }
   }, []);
 
-  /* ─── Realtime Subscription ─── */
+  /* ─── Realtime Subscription (guarded) ─── */
   useEffect(() => {
+    // Guard: don't setup twice (Strict Mode)
+    if (isSetupRef.current) return;
+    isSetupRef.current = true;
+
     const supabase = createClient();
 
-    // Get the current user's ID
     const setupRealtime = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
 
       if (!user) {
-        // لو مش مسجل دخول، نكتفي بالتحميل الأولي
         load();
         return;
       }
@@ -88,9 +91,11 @@ export function NotificationBell() {
       // Initial load
       load();
 
-      // Realtime subscription
+      // ✅ Channel name فريد لمنع التضارب
+      const channelName = `notifications-${user.id}-${Date.now()}`;
+
       const channel = supabase
-        .channel("notifications-realtime")
+        .channel(channelName)
         .on(
           "postgres_changes",
           {
@@ -102,7 +107,6 @@ export function NotificationBell() {
           (payload) => {
             const newNotif = payload.new as Notification;
             setNotifications((prev) => {
-              // منع التكرار
               if (prev.some((n) => n.id === newNotif.id)) return prev;
               return [newNotif, ...prev].slice(0, 20);
             });
@@ -138,36 +142,29 @@ export function NotificationBell() {
             );
           }
         )
-        .subscribe((status) => {
-          if (status === "CHANNEL_ERROR") {
-            console.warn(
-              "[NotificationBell] Realtime channel error — falling back to polling"
-            );
-          }
-        });
+        .subscribe();
 
       channelRef.current = channel;
     };
 
     setupRealtime();
 
-    /* ─── Fallback: Polling كل 60 ثانية (لو Realtime فشل) ─── */
+    /* ─── Fallback polling كل 60s ─── */
     const pollInterval = setInterval(() => {
-      // نعمل refresh بس لو القناة مش متصلة
-      if (
-        !channelRef.current ||
-        channelRef.current.state !== "joined"
-      ) {
+      if (!channelRef.current || channelRef.current.state !== "joined") {
         load();
       }
     }, 60000);
 
+    /* ─── Cleanup ─── */
     return () => {
+      const supabase = createClient();
       if (channelRef.current) {
         supabase.removeChannel(channelRef.current);
         channelRef.current = null;
       }
       clearInterval(pollInterval);
+      isSetupRef.current = false;
     };
   }, [load]);
 
@@ -227,7 +224,6 @@ export function NotificationBell() {
     }
   };
 
-  /* ─── Render ─── */
   return (
     <div className="relative" ref={dropdownRef}>
       <Button
@@ -246,8 +242,7 @@ export function NotificationBell() {
       </Button>
 
       {open && (
-        <div className="glass-strong animate-scale-in absolute end-0 top-12 z-50 w-80 overflow-hidden rounded-2xl border border-glass-border shadow-2xl md:w-96">
-          {/* Header */}
+        <div className="glass-strong absolute end-0 top-12 z-50 w-80 overflow-hidden rounded-2xl border border-glass-border shadow-2xl md:w-96">
           <div className="flex items-center justify-between border-b border-border/40 p-3">
             <h3 className="text-sm font-semibold">{t("title")}</h3>
             {unreadCount > 0 && (
@@ -266,7 +261,6 @@ export function NotificationBell() {
             )}
           </div>
 
-          {/* List */}
           <div className="max-h-96 overflow-y-auto">
             {loading ? (
               <div className="flex items-center justify-center py-8">
@@ -317,7 +311,6 @@ export function NotificationBell() {
             )}
           </div>
 
-          {/* Footer */}
           <div className="border-t border-border/40 p-2">
             <Link
               href="/dashboard/notifications"

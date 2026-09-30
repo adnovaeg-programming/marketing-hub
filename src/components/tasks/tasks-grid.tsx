@@ -1,13 +1,21 @@
 "use client";
 
 import { useState, useMemo, useDeferredValue } from "react";
-import { CheckSquare, Search, LayoutGrid, Columns3 } from "lucide-react";
+import {
+  CheckSquare,
+  Search,
+  LayoutGrid,
+  Columns3,
+  CheckSquare2,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { NewTaskDialog } from "@/components/tasks/new-task-dialog";
 import { TaskCard } from "@/components/tasks/task-card";
 import { TasksKanban } from "@/components/tasks/tasks-kanban";
+import { BulkActionBar } from "@/components/tasks/bulk-action-bar";
 
 type Task = {
   id: string;
@@ -37,11 +45,12 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [priorityFilter, setPriorityFilter] = useState<PriorityFilter>("all");
   const [view, setView] = useState<ViewMode>("grid");
+  const [selectionMode, setSelectionMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const deferredQuery = useDeferredValue(query);
 
   const filtered = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
-
     return tasks.filter((task) => {
       if (statusFilter !== "all" && task.status !== statusFilter) return false;
       if (priorityFilter !== "all" && task.priority !== priorityFilter)
@@ -55,6 +64,21 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
       );
     });
   }, [tasks, deferredQuery, statusFilter, priorityFilter]);
+
+  const toggleSelection = (id: string) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
+
+  const clearSelection = () => {
+    setSelectedIds([]);
+    setSelectionMode(false);
+  };
+
+  const selectAll = () => {
+    setSelectedIds(filtered.map((t) => t.id));
+  };
 
   const statuses: { key: StatusFilter; label: string }[] = [
     { key: "all", label: t("filters.all") },
@@ -72,7 +96,6 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
     { key: "low", label: t("priorities.low") },
   ];
 
-  // Empty state
   if (tasks.length === 0) {
     return (
       <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-card/30 py-20 text-center">
@@ -94,7 +117,6 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
     <>
       {/* Toolbar */}
       <div className="mt-8 flex flex-col gap-3 lg:flex-row lg:items-center">
-        {/* Search */}
         <div className="relative flex-1">
           <Search className="absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -105,7 +127,6 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
           />
         </div>
 
-        {/* Status filter (desktop) */}
         <div className="hidden items-center gap-1 rounded-xl glass p-1 xl:flex">
           {statuses.map((s) => (
             <button
@@ -122,7 +143,6 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
           ))}
         </div>
 
-        {/* View toggle */}
         <div className="glass flex items-center gap-1 rounded-xl p-1">
           <button
             onClick={() => setView("grid")}
@@ -148,13 +168,57 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
           </button>
         </div>
 
-        {/* New task */}
+        <Button
+          variant={selectionMode ? "default" : "outline"}
+          size="sm"
+          onClick={() => {
+            if (selectionMode) {
+              clearSelection();
+            } else {
+              setSelectionMode(true);
+            }
+          }}
+          className={`rounded-xl ${
+            selectionMode
+              ? "bg-gradient-to-r from-primary to-accent"
+              : "glass"
+          }`}
+        >
+          <CheckSquare2 className="size-4" />
+          <span className="hidden sm:inline">
+            {selectionMode ? t("bulk.exit") : t("bulk.select")}
+          </span>
+        </Button>
+
         <div className="lg:shrink-0">
           <NewTaskDialog />
         </div>
       </div>
 
-      {/* Priority filter (mobile + tablet) */}
+      {/* Selection bar */}
+      {selectionMode && (
+        <div className="mt-3 flex items-center justify-between rounded-xl glass p-2">
+          <span className="text-xs text-muted-foreground">
+            {selectedIds.length} / {filtered.length}
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={selectAll}
+              className="rounded-lg px-3 py-1 text-xs font-medium text-primary hover:bg-primary/5"
+            >
+              {t("bulk.selectAll")}
+            </button>
+            <button
+              onClick={() => setSelectedIds([])}
+              className="rounded-lg px-3 py-1 text-xs font-medium text-muted-foreground hover:bg-muted/50"
+            >
+              {t("bulk.clearAll")}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Priority filter (mobile) */}
       <div className="mt-3 flex gap-2 overflow-x-auto pb-1 xl:hidden">
         {priorities.map((p) => (
           <button
@@ -170,13 +234,6 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
           </button>
         ))}
       </div>
-
-      {/* Results counter */}
-      {(query || statusFilter !== "all" || priorityFilter !== "all") && (
-        <p className="mt-4 text-xs text-muted-foreground">
-          {t("resultsCount", { count: filtered.length })}
-        </p>
-      )}
 
       {/* Content */}
       {filtered.length === 0 ? (
@@ -197,7 +254,13 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
       ) : view === "grid" ? (
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((task) => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard
+              key={task.id}
+              task={task}
+              showSelect={selectionMode}
+              selected={selectedIds.includes(task.id)}
+              onToggleSelect={toggleSelection}
+            />
           ))}
         </div>
       ) : (
@@ -205,6 +268,9 @@ export function TasksGrid({ tasks }: { tasks: Task[] }) {
           <TasksKanban tasks={filtered} />
         </div>
       )}
+
+      {/* Bulk Action Bar */}
+      <BulkActionBar selectedIds={selectedIds} onClear={clearSelection} />
     </>
   );
 }

@@ -7,22 +7,23 @@ import {
 } from "@/lib/workspace/active";
 import { DashboardSidebar } from "@/components/dashboard/sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
-import { CommandPalette } from "@/components/fx/command-palette";
-import { PageTransition } from "@/components/fx/page-transition";
 
 export default async function DashboardLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect("/login");
+  if (!user) redirect(`/${locale}/login`);
 
-  // لو الدور client أو viewer → نوديه للـ Portal
   const { data: member } = await supabase
     .from("workspace_members")
     .select("role")
@@ -32,7 +33,7 @@ export default async function DashboardLayout({
     .maybeSingle();
 
   if (member?.role === "client" || member?.role === "viewer") {
-    redirect("/portal");
+    redirect(`/${locale}/portal`);
   }
 
   const activeWorkspaceId = await getActiveWorkspaceId();
@@ -46,9 +47,8 @@ export default async function DashboardLayout({
       />
       <main className="flex-1 min-w-0">
         <DashboardTopbar />
-        <PageTransition>{children}</PageTransition>
+        {children}
       </main>
-      <CommandPalette />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
+import { getActiveWorkspaceId } from "@/lib/workspace/active";
 
 type TaskStatus = "todo" | "in_progress" | "review" | "completed" | "cancelled";
 type Priority = "low" | "medium" | "high" | "urgent";
@@ -22,33 +23,12 @@ type Result =
   | { success: true; taskId: string }
   | { success: false; error: string };
 
-async function getWorkspaceId(): Promise<string | null> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
-
-  const { data: member } = await supabase
-    .from("workspace_members")
-    .select("workspace_id")
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .limit(1)
-    .maybeSingle();
-
-  return member?.workspace_id ?? null;
-}
-
 export async function createTaskAction(input: TaskInput): Promise<Result> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { success: false, error: "not_authenticated" };
 
-  const workspaceId = await getWorkspaceId();
+  const workspaceId = await getActiveWorkspaceId();
   if (!workspaceId) return { success: false, error: "no_workspace" };
 
   const title = input.title.trim();
@@ -74,7 +54,7 @@ export async function createTaskAction(input: TaskInput): Promise<Result> {
   if (error) return { success: false, error: error.message };
 
   revalidatePath("/dashboard/tasks");
-  revalidatePath("/dashboard/projects");
+  revalidatePath("/dashboard");
   return { success: true, taskId: data.id };
 }
 
@@ -83,46 +63,78 @@ export async function updateTaskStatusAction(
   status: TaskStatus
 ): Promise<Result> {
   const supabase = await createClient();
-
   const update: Record<string, unknown> = { status };
-  if (status === "completed") {
-    update.completed_at = new Date().toISOString();
-  }
+  if (status === "completed") update.completed_at = new Date().toISOString();
 
-  const { error } = await supabase
-    .from("tasks")
-    .update(update)
-    .eq("id", taskId);
-
+  const { error } = await supabase.from("tasks").update(update).eq("id", taskId);
   if (error) return { success: false, error: error.message };
 
   revalidatePath("/dashboard/tasks");
   revalidatePath(`/dashboard/tasks/${taskId}`);
-  revalidatePath("/dashboard/projects");
+  revalidatePath("/dashboard");
   return { success: true, taskId };
 }
 
 export async function deleteTaskAction(taskId: string): Promise<Result> {
   const supabase = await createClient();
-
   const { error } = await supabase.from("tasks").delete().eq("id", taskId);
+  if (error) return { success: false, error: error.message };
+
+  revalidatePath("/dashboard/tasks");
+  revalidatePath("/dashboard");
+  return { success: true, taskId };
+}
+
+/* ═══════════ BULK ACTIONS ═══════════ */
+
+export async function bulkDeleteTasksAction(
+  taskIds: string[]
+): Promise<{ success: boolean; error?: string; count?: number }> {
+  if (taskIds.length === 0) return { success: false, error: "no_items" };
+
+  const supabase = await createClient();
+  const { error, count } = await supabase
+    .from("tasks")
+    .delete({ count: "exact" })
+    .in("id", taskIds);
 
   if (error) return { success: false, error: error.message };
 
   revalidatePath("/dashboard/tasks");
-  revalidatePath("/dashboard/projects");
-  return { success: true, taskId };
+  revalidatePath("/dashboard");
+  return { success: true, count: count ?? 0 };
 }
+
+export async function bulkUpdateTasksStatusAction(
+  taskIds: string[],
+  status: TaskStatus
+): Promise<{ success: boolean; error?: string; count?: number }> {
+  if (taskIds.length === 0) return { success: false, error: "no_items" };
+
+  const supabase = await createClient();
+  const update: Record<string, unknown> = { status };
+  if (status === "completed") update.completed_at = new Date().toISOString();
+
+  const { error, count } = await supabase
+    .from("tasks")
+    .update(update, { count: "exact" })
+    .in("id", taskIds);
+
+  if (error) return { success: false, error: error.message };
+
+  revalidatePath("/dashboard/tasks");
+  revalidatePath("/dashboard");
+  return { success: true, count: count ?? 0 };
+}
+
+/* ═══════════ COMMENTS ═══════════ */
 
 export async function addTaskCommentAction(
   taskId: string,
   content: string
 ): Promise<Result> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { success: false, error: "not_authenticated" };
 
   const trimmed = content.trim();
@@ -138,4 +150,21 @@ export async function addTaskCommentAction(
 
   revalidatePath(`/dashboard/tasks/${taskId}`);
   return { success: true, taskId };
+}
+
+export async function deleteTaskCommentAction(
+  commentId: string
+): Promise<{ success: boolean; error?: string }> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "not_authenticated" };
+
+  const { error } = await supabase
+    .from("task_comments")
+    .delete()
+    .eq("id", commentId)
+    .eq("user_id", user.id);
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
 }

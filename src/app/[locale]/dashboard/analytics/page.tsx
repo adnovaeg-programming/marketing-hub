@@ -14,13 +14,11 @@ import { StatCard } from "@/components/analytics/stat-card";
 import { BarChart } from "@/components/analytics/bar-chart";
 import { DonutChart } from "@/components/analytics/donut-chart";
 import { ActivityFeed } from "@/components/analytics/activity-feed";
+import { AnalyticsToolbar } from "@/components/analytics/analytics-toolbar";
 
 export default async function AnalyticsPage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
   const workspaceId = await getActiveWorkspaceId();
@@ -76,14 +74,9 @@ export default async function AnalyticsPage() {
   const taskStats = countBy(tasksByPriority, "priority");
 
   const donutColors: Record<string, string> = {
-    draft: "#94a3b8",
-    internal_review: "#3b82f6",
-    client_review: "#f59e0b",
-    approved: "#10b981",
-    rejected: "#ef4444",
-    scheduled: "#a855f7",
-    published: "#8b5cf6",
-    archived: "#64748b",
+    draft: "#94a3b8", internal_review: "#3b82f6", client_review: "#f59e0b",
+    approved: "#10b981", rejected: "#ef4444", scheduled: "#a855f7",
+    published: "#8b5cf6", archived: "#64748b",
   };
 
   const donutSegments = Object.entries(contentStats)
@@ -103,59 +96,61 @@ export default async function AnalyticsPage() {
     label: t(`taskPriorities.${key}`),
     value,
     color:
-      key === "urgent"
-        ? "bg-destructive"
-        : key === "high"
-          ? "bg-orange-500"
-          : key === "medium"
-            ? "bg-blue-500"
-            : "bg-muted-foreground/60",
+      key === "urgent" ? "bg-destructive"
+      : key === "high" ? "bg-orange-500"
+      : key === "medium" ? "bg-blue-500"
+      : "bg-muted-foreground/60",
   }));
 
   const activities = [
     ...(recentClients ?? []).map((c) => ({
-      id: c.id,
-      type: "client" as const,
-      title: c.name,
-      subtitle: c.company,
-      href: `/dashboard/clients/${c.id}`,
+      id: c.id, type: "client" as const, title: c.name,
+      subtitle: c.company, href: `/dashboard/clients/${c.id}`,
       created_at: c.created_at,
     })),
     ...(recentProjects ?? []).map((p) => ({
-      id: p.id,
-      type: "project" as const,
-      title: p.name,
+      id: p.id, type: "project" as const, title: p.name,
       subtitle: t(`projectStatuses.${p.status}`),
-      href: `/dashboard/projects/${p.id}`,
-      created_at: p.created_at,
+      href: `/dashboard/projects/${p.id}`, created_at: p.created_at,
     })),
     ...(recentContent ?? []).map((c) => ({
-      id: c.id,
-      type: "content" as const,
-      title: c.title,
+      id: c.id, type: "content" as const, title: c.title,
       subtitle: t(`contentStatuses.${c.status}`),
-      href: `/dashboard/content/${c.id}`,
-      created_at: c.created_at,
+      href: `/dashboard/content/${c.id}`, created_at: c.created_at,
     })),
     ...(recentTasks ?? []).map((t2) => ({
-      id: t2.id,
-      type: "task" as const,
-      title: t2.title,
-      subtitle: t2.status,
-      href: `/dashboard/tasks/${t2.id}`,
+      id: t2.id, type: "task" as const, title: t2.title,
+      subtitle: t2.status, href: `/dashboard/tasks/${t2.id}`,
       created_at: t2.created_at,
     })),
   ]
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 8);
 
+  // Data for CSV export
+  const exportData = {
+    kpis: {
+      clients: clientsCount ?? 0,
+      projects: projectsCount ?? 0,
+      content: contentCount ?? 0,
+      tasks: tasksCount ?? 0,
+    },
+    contentByStatus: contentStats,
+    projectsByStatus: projectStats,
+    tasksByPriority: taskStats,
+  };
+
   return (
     <div className="p-6 md:p-10">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          {t("title")}
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+            {t("title")}
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
+        </div>
+
+        <AnalyticsToolbar exportData={exportData} />
       </div>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -179,9 +174,7 @@ export default async function AnalyticsPage() {
         <div className="glass-strong glass-reflect rounded-3xl p-6 md:p-8">
           <div className="mb-6 flex items-center gap-2">
             <FileText className="size-5 text-primary" />
-            <h2 className="text-lg font-semibold">
-              {t("sections.contentBreakdown")}
-            </h2>
+            <h2 className="text-lg font-semibold">{t("sections.contentBreakdown")}</h2>
           </div>
           <DonutChart
             segments={donutSegments}
@@ -193,9 +186,7 @@ export default async function AnalyticsPage() {
         <div className="glass-strong glass-reflect rounded-3xl p-6 md:p-8">
           <div className="mb-6 flex items-center gap-2">
             <FolderKanban className="size-5 text-accent" />
-            <h2 className="text-lg font-semibold">
-              {t("sections.projectsByStatus")}
-            </h2>
+            <h2 className="text-lg font-semibold">{t("sections.projectsByStatus")}</h2>
           </div>
           {projectBars.length > 0 ? (
             <BarChart data={projectBars} />
@@ -212,9 +203,7 @@ export default async function AnalyticsPage() {
         <div className="glass-strong glass-reflect rounded-3xl p-6 md:p-8">
           <div className="mb-6 flex items-center gap-2">
             <TrendingUp className="size-5 text-primary" />
-            <h2 className="text-lg font-semibold">
-              {t("sections.tasksByPriority")}
-            </h2>
+            <h2 className="text-lg font-semibold">{t("sections.tasksByPriority")}</h2>
           </div>
           {taskBars.length > 0 ? (
             <BarChart data={taskBars} />

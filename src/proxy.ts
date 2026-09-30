@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 
 import { routing } from "./i18n/routing";
 import { updateSession } from "./lib/supabase/middleware";
@@ -7,19 +7,29 @@ import { updateSession } from "./lib/supabase/middleware";
 const intlMiddleware = createMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
-  // 1. نحدّث session Supabase الأول
+  // 1. نحدّث Supabase session
   const supabaseResponse = await updateSession(request);
 
-  // 2. نطبّق i18n routing
+  // 2. نطبّق i18n middleware
   const intlResponse = intlMiddleware(request);
 
-  // 3. ندمج الـ headers والـ cookies من intl للـ supabase response
-  intlResponse.headers.forEach((value, key) => {
-    supabaseResponse.headers.set(key, value);
-  });
+  // 3. لو i18n بيعمل redirect/rewrite → نرجّع الـ intlResponse
+  //    (مع نسخ cookies الـ Supabase)
+  const isRedirect = intlResponse.headers.has("location");
+  const isRewrite = intlResponse.headers.has("x-middleware-rewrite");
 
-  intlResponse.cookies.getAll().forEach((cookie) => {
-    supabaseResponse.cookies.set(cookie.name, cookie.value);
+  if (isRedirect || isRewrite) {
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      intlResponse.cookies.set(cookie.name, cookie.value);
+    });
+    return intlResponse;
+  }
+
+  // 4. ندمج headers الـ i18n مع الـ Supabase response
+  intlResponse.headers.forEach((value, key) => {
+    if (!supabaseResponse.headers.has(key)) {
+      supabaseResponse.headers.set(key, value);
+    }
   });
 
   return supabaseResponse;

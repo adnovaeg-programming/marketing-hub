@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus, AlertCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -25,6 +27,11 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/client";
+import {
+  contentSchema,
+  type ContentFormValues,
+} from "@/lib/validations/schemas";
+import { toastSuccess, toastError } from "@/lib/actions/toast";
 import { createContentAction } from "@/app/[locale]/dashboard/content/actions";
 
 type Client = { id: string; name: string };
@@ -49,118 +56,139 @@ const PLATFORMS = [
   "youtube",
 ] as const;
 
-const PRIORITIES = ["low", "medium", "high", "urgent"] as const;
-
 export function NewContentDialog() {
   const t = useTranslations("dashboard.content.form");
   const tRoot = useTranslations("dashboard.content");
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [clients, setClients] = useState<Client[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const [clientId, setClientId] = useState("none");
-  const [projectId, setProjectId] = useState("none");
-  const [contentType, setContentType] = useState("post");
-  const [platform, setPlatform] = useState("none");
-  const [priority, setPriority] = useState("medium");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch,
+  } = useForm<ContentFormValues>({
+    resolver: zodResolver(contentSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+      clientId: "",
+      projectId: "",
+      contentType: "post",
+      platform: undefined,
+      priority: "medium",
+      scheduledAt: "",
+    },
+  });
 
   useEffect(() => {
     if (!open) return;
-
     const load = async () => {
       const supabase = createClient();
-      const [clientsRes, projectsRes] = await Promise.all([
+      const [c, p] = await Promise.all([
         supabase.from("clients").select("id, name").order("name"),
         supabase.from("projects").select("id, name").order("name"),
       ]);
-      setClients(clientsRes.data ?? []);
-      setProjects(projectsRes.data ?? []);
+      setClients(c.data ?? []);
+      setProjects(p.data ?? []);
     };
-
     load();
   }, [open]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
+  const onSubmit = async (data: ContentFormValues) => {
     setPending(true);
 
-    const form = new FormData(e.currentTarget);
-    const scheduledAt = String(form.get("scheduledAt") ?? "");
+    const scheduledISO = data.scheduledAt
+      ? new Date(data.scheduledAt).toISOString()
+      : undefined;
 
     const result = await createContentAction({
-      title: String(form.get("title") ?? ""),
-      description: String(form.get("description") ?? ""),
-      clientId: clientId === "none" ? null : clientId,
-      projectId: projectId === "none" ? null : projectId,
-      contentType: contentType as never,
-      platform: platform === "none" ? null : (platform as never),
-      priority: priority as never,
-      status: scheduledAt ? "scheduled" : "draft",
-      scheduledAt: scheduledAt
-        ? new Date(scheduledAt).toISOString()
-        : undefined,
+      title: data.title,
+      description: data.description,
+      clientId: data.clientId || null,
+      projectId: data.projectId || null,
+      contentType: data.contentType,
+      platform: data.platform ?? null,
+      priority: data.priority,
+      scheduledAt: scheduledISO,
+      status: scheduledISO ? "scheduled" : "draft",
     });
+    setPending(false);
 
     if (!result.success) {
-      setError(result.error);
-      setPending(false);
+      toastError(result.error, t("errors.generic"));
       return;
     }
 
-    setPending(false);
+    toastSuccess(t("success"), t("successDescription"));
+    reset();
     setOpen(false);
-    setClientId("none");
-    setProjectId("none");
-    setContentType("post");
-    setPlatform("none");
-    setPriority("medium");
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        setOpen(v);
+        if (!v) reset();
+      }}
+    >
       <DialogTrigger asChild>
-        <Button className="rounded-full shadow-lg shadow-primary/30">
+        <Button className="rounded-full bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30">
           <Plus className="size-4" />
           {t("trigger")}
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90vh] max-w-lg overflow-y-auto">
+      <DialogContent className="glass-strong max-h-[90vh] max-w-lg overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="title">{t("titleLabel")} *</Label>
             <Input
               id="title"
-              name="title"
+              {...register("title")}
               placeholder={t("titlePlaceholder")}
-              required
-              className="h-11"
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.title}
             />
+            {errors.title && (
+              <p className="flex items-center gap-1 text-[11px] text-destructive">
+                <AlertCircle className="size-3" />
+                {errors.title.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="description">{t("descriptionLabel")}</Label>
             <Textarea
               id="description"
-              name="description"
+              {...register("description")}
               placeholder={t("descriptionPlaceholder")}
               rows={3}
+              className="rounded-xl"
             />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>{t("client")}</Label>
-              <Select value={clientId} onValueChange={setClientId}>
-                <SelectTrigger className="h-11">
+              <Select
+                value={watch("clientId") || "none"}
+                onValueChange={(v) =>
+                  setValue("clientId", v === "none" ? "" : v)
+                }
+              >
+                <SelectTrigger className="h-11 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -176,8 +204,13 @@ export function NewContentDialog() {
 
             <div className="space-y-2">
               <Label>{t("project")}</Label>
-              <Select value={projectId} onValueChange={setProjectId}>
-                <SelectTrigger className="h-11">
+              <Select
+                value={watch("projectId") || "none"}
+                onValueChange={(v) =>
+                  setValue("projectId", v === "none" ? "" : v)
+                }
+              >
+                <SelectTrigger className="h-11 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -195,8 +228,13 @@ export function NewContentDialog() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>{t("type")}</Label>
-              <Select value={contentType} onValueChange={setContentType}>
-                <SelectTrigger className="h-11">
+              <Select
+                value={watch("contentType")}
+                onValueChange={(v) =>
+                  setValue("contentType", v as ContentFormValues["contentType"])
+                }
+              >
+                <SelectTrigger className="h-11 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -211,8 +249,16 @@ export function NewContentDialog() {
 
             <div className="space-y-2">
               <Label>{t("platform")}</Label>
-              <Select value={platform} onValueChange={setPlatform}>
-                <SelectTrigger className="h-11">
+              <Select
+                value={watch("platform") || "none"}
+                onValueChange={(v) =>
+                  setValue(
+                    "platform",
+                    v === "none" ? undefined : (v as ContentFormValues["platform"])
+                  )
+                }
+              >
+                <SelectTrigger className="h-11 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -230,12 +276,17 @@ export function NewContentDialog() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>{t("priority")}</Label>
-              <Select value={priority} onValueChange={setPriority}>
-                <SelectTrigger className="h-11">
+              <Select
+                value={watch("priority")}
+                onValueChange={(v) =>
+                  setValue("priority", v as ContentFormValues["priority"])
+                }
+              >
+                <SelectTrigger className="h-11 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {PRIORITIES.map((p) => (
+                  {(["low", "medium", "high", "urgent"] as const).map((p) => (
                     <SelectItem key={p} value={p}>
                       {tRoot(`priorities.${p}`)}
                     </SelectItem>
@@ -248,20 +299,12 @@ export function NewContentDialog() {
               <Label htmlFor="scheduledAt">{t("scheduledAt")}</Label>
               <Input
                 id="scheduledAt"
-                name="scheduledAt"
                 type="datetime-local"
-                className="h-11"
-                dir="ltr"
+                {...register("scheduledAt")}
+                className="h-11 rounded-xl"
               />
             </div>
           </div>
-
-          {error && (
-            <div className="flex items-start gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
-              <AlertCircle className="mt-0.5 size-4 shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
 
           <DialogFooter>
             <Button
@@ -269,10 +312,15 @@ export function NewContentDialog() {
               variant="outline"
               onClick={() => setOpen(false)}
               disabled={pending}
+              className="rounded-xl"
             >
               {t("cancel")}
             </Button>
-            <Button type="submit" disabled={pending}>
+            <Button
+              type="submit"
+              disabled={pending}
+              className="rounded-xl bg-gradient-to-r from-primary to-accent"
+            >
               {pending && <Loader2 className="size-4 animate-spin" />}
               {t("submit")}
             </Button>

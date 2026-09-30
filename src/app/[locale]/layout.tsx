@@ -8,6 +8,8 @@ import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConditionalNavbar } from "@/components/conditional-navbar";
 import { BackgroundLayer } from "@/components/background-layer";
+import { CursorSpotlight } from "@/components/fx/cursor-spotlight";
+import { Toaster } from "@/components/ui/sonner";
 import { createClient } from "@/lib/supabase/server";
 
 import "../globals.css";
@@ -46,7 +48,6 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // 🔑 مهم جدًا: تفعيل اللغة للـ Server Components
   setRequestLocale(locale);
 
   const messages = await getMessages();
@@ -62,9 +63,11 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${cairo.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <CursorSpotlight />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -75,6 +78,7 @@ export default async function LocaleLayout({
             <BackgroundLayer />
             <ConditionalNavbar user={user ? { email: user.email ?? "" } : null} />
             {children}
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

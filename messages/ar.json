@@ -1,6 +1,5 @@
 {
   "nav": {
-    "start": "ابدأ الآن",
     "features": "المميزات",
     "pricing": "الأسعار",
     "marketplace": "Marketplace",
@@ -8,9 +7,10 @@
     "login": "تسجيل الدخول",
     "getStarted": "ابدأ الآن",
     "dashboard": "لوحة التحكم",
-    "settings": "الإعدادات",
     "profile": "الملف الشخصي",
-    "logout": "تسجيل الخروج"
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "notifications": "الإشعارات"
   },
   "hero": {
     "badge": "منصة التسويق المتكاملة الأولى عربيًا",
@@ -144,61 +144,16 @@
     "rights": "جميع الحقوق محفوظة.",
     "madeIn": "صنع في مصر 🇪🇬"
   },
-  "styleGuide": {
-    "title": "دليل التصميم",
-    "subtitle": "مرجع شامل لكل الألوان والمكونات في Marketing Hub",
-    "sections": {
-      "colors": "الألوان",
-      "typography": "الخطوط",
-      "buttons": "الأزرار",
-      "glass": "الزجاج (Glass)",
-      "inputs": "حقول الإدخال",
-      "animations": "الأنيميشن",
-      "radius": "الحواف الدائرية"
-    },
-    "labels": {
-      "primary": "أساسي",
-      "secondary": "ثانوي",
-      "muted": "باهت",
-      "accent": "تمييز",
-      "destructive": "خطر",
-      "background": "الخلفية",
-      "foreground": "النص"
-    },
-    "buttonVariants": {
-      "default": "افتراضي",
-      "outline": "بحدود",
-      "ghost": "شفاف",
-      "secondary": "ثانوي",
-      "destructive": "خطر"
-    }
-  },
-  "files": {
-    "upload": {
-      "title": "اسحب وأفلت الملفات هنا",
-      "subtitle": "أو اضغط للاختيار • الحد الأقصى {max}",
-      "uploading": "جاري الرفع...",
-      "tooLarge": "الملف {name} أكبر من الحد ({max})"
-    },
-    "avatar": {
-      "title": "الصورة الشخصية",
-      "subtitle": "JPG أو PNG أو WebP • حد أقصى 5MB",
-      "change": "تغيير الصورة",
-      "invalidType": "لازم تكون صورة",
-      "tooLarge": "الصورة أكبر من 5MB"
-    },
-    "attachments": {
-      "title": "المرفقات",
-      "addFile": "إضافة ملف",
-      "empty": "مفيش مرفقات لسه",
-      "confirmDelete": "متأكد إنك عايز تحذف المرفق ده؟"
-    }
-  },
   "auth": {
     "layout": {
       "visualTitle": "كل تسويقك في",
       "visualHighlight": "مكان واحد",
-      "visualDescription": "منصة موحدة لإدارة المحتوى، الفريق، العملاء، والحملات الإعلانية."
+      "visualDescription": "منصة موحدة لإدارة المحتوى، الفريق، العملاء، والحملات الإعلانية.",
+      "features": {
+        "fast": "إعداد في أقل من دقيقة",
+        "secure": "بيانات مشفرة وآمنة",
+        "team": "تعاون الفريق في الوقت الحقيقي"
+      }
     },
     "login": {
       "title": "أهلاً بعودتك",
@@ -262,16 +217,50 @@
       "successMessage": "لو الإيميل ده مسجّل عندنا، هتوصلك رسالة فيها رابط إعادة تعيين كلمة المرور."
     }
   },
+  "onboarding": {
+    "welcome": {
+      "title": "أهلاً بيك في Marketing Hub",
+      "description": "خلينا نجهّز حسابك في خطوتين سريعتين ونبدأ رحلتك التسويقية.",
+      "cta": "يلا نبدأ"
+    },
+    "organization": {
+      "title": "معلومات المؤسسة",
+      "description": "دي هتكون {type} بتاعتك على المنصة.",
+      "fieldLabel": "اسم المؤسسة",
+      "placeholder": "مثال: وكالة النور"
+    },
+    "workspace": {
+      "title": "مساحة العمل الأولى",
+      "description": "مساحة العمل دي هي المكان اللي هتدير فيه العملاء والمشاريع.",
+      "fieldLabel": "اسم مساحة العمل",
+      "placeholder": "مثال: الفريق الرئيسي"
+    },
+    "done": {
+      "title": "كل حاجة جاهزة! 🎉",
+      "description": "مساحة عملك اتعملت بنجاح. يلا ندخل لوحة التحكم ونبدأ.",
+      "cta": "ادخل لوحة التحكم"
+    },
+    "back": "رجوع",
+    "next": "التالي",
+    "creating": "بيتم الإنشاء...",
+    "finish": "إنشاء الحساب",
+    "types": {
+      "client": "شركة",
+      "agency": "وكالة",
+      "freelancer": "مستقل"
+    },
+    "errors": {
+      "not_authenticated": "لازم تسجّل دخول الأول",
+      "missing_fields": "من فضلك املأ كل الحقول",
+      "org_failed": "فشل إنشاء المؤسسة",
+      "workspace_failed": "فشل إنشاء مساحة العمل"
+    }
+  },
   "dashboard": {
     "welcome": "أهلاً بيك",
     "subtitle": "دي لوحة التحكم",
-    "liveSynced": "متزامن منذ",
     "placeholder": "المحتوى الكامل جاي قريبًا",
-    "noWorkspace": {
-      "title": "لسه محتاج تنشئ مساحة عمل",
-      "description": "خلينا نجهّز مساحة العمل بتاعتك في خطوة سريعة.",
-      "cta": "ابدأ الإعداد"
-    },
+    "liveSynced": "متزامن",
     "stats": {
       "clients": "العملاء",
       "activeProjects": "مشاريع نشطة",
@@ -294,31 +283,44 @@
       "addFirst": "أضف أول عميل ←",
       "addFirstProject": "أنشئ أول مشروع ←"
     },
+    "noWorkspace": {
+      "title": "لسه محتاج تنشئ مساحة عمل",
+      "description": "خلينا نجهّز مساحة العمل بتاعتك في خطوة سريعة.",
+      "cta": "ابدأ الإعداد"
+    },
+    "bulk": {
+      "select": "تحديد",
+      "exit": "خروج من التحديد",
+      "selectAll": "تحديد الكل",
+      "clearAll": "مسح الكل",
+      "delete": "حذف المحدد",
+      "confirmDelete": "متأكد إنك عايز تحذف {count} عنصر؟"
+    },
     "nav": {
       "overview": "نظرة عامة",
       "clients": "العملاء",
       "projects": "المشاريع",
       "tasks": "المهام",
       "content": "المحتوى",
-      "analytics": "التحليلات",
-      "settings": "الإعدادات",
       "notifications": "الإشعارات",
+      "analytics": "التحليلات",
       "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
       "logout": "تسجيل الخروج",
       "openMenu": "افتح القائمة"
     },
     "clients": {
       "title": "العملاء",
       "subtitle": "عندك {count} عميل في مساحة العمل دي",
+      "searchPlaceholder": "ابحث بالاسم، الإيميل، الشركة...",
+      "resultsCount": "{count} نتيجة",
+      "noResults": "مفيش نتائج مطابقة للبحث",
+      "clearFilters": "مسح الفلاتر",
       "delete": "حذف العميل",
       "confirmDelete": "متأكد إنك عايز تحذف العميل ده؟",
       "noContact": "مفيش بيانات تواصل",
       "emptyTitle": "مفيش عملاء لسه",
       "emptyDescription": "ابدأ بإضافة أول عميل عشان تدير مشاريعه ومحتواه من مكان واحد.",
-      "searchPlaceholder": "ابحث بالاسم، الإيميل، الشركة...",
-      "resultsCount": "{count} نتيجة",
-      "noResults": "مفيش نتائج مطابقة للبحث",
-      "clearFilters": "مسح الفلاتر",
       "filters": {
         "all": "الكل"
       },
@@ -349,7 +351,12 @@
         "notes": "ملاحظات",
         "notesPlaceholder": "أي تفاصيل إضافية...",
         "cancel": "إلغاء",
-        "submit": "إضافة العميل"
+        "submit": "إضافة العميل",
+        "success": "تم بنجاح",
+        "successDescription": "تم إضافة العميل",
+        "errors": {
+          "generic": "حصل خطأ، حاول تاني"
+        }
       }
     },
     "clientDetails": {
@@ -373,8 +380,6 @@
     "projects": {
       "title": "المشاريع",
       "subtitle": "عندك {count} مشروع",
-      "emptyTitle": "مفيش مشاريع لسه",
-      "emptyDescription": "ابدأ بإنشاء أول مشروع واربطه بعميل.",
       "searchPlaceholder": "ابحث بالاسم، الوصف، العميل...",
       "resultsCount": "{count} نتيجة",
       "noResults": "مفيش نتائج مطابقة للبحث",
@@ -382,6 +387,8 @@
       "viewGrid": "شبكة",
       "viewKanban": "كانبان",
       "kanbanEmpty": "مفيش مشاريع",
+      "emptyTitle": "مفيش مشاريع لسه",
+      "emptyDescription": "ابدأ بإنشاء أول مشروع واربطه بعميل.",
       "filters": {
         "all": "الكل"
       },
@@ -415,7 +422,12 @@
         "descriptionLabel": "الوصف",
         "descriptionPlaceholder": "تفاصيل المشروع...",
         "cancel": "إلغاء",
-        "submit": "إنشاء المشروع"
+        "submit": "إنشاء المشروع",
+        "success": "تم بنجاح",
+        "successDescription": "تم إنشاء المشروع",
+        "errors": {
+          "generic": "حصل خطأ، حاول تاني"
+        }
       }
     },
     "projectDetails": {
@@ -424,9 +436,9 @@
       "budget": "الميزانية",
       "startDate": "تاريخ البداية",
       "endDate": "تاريخ النهاية",
-      "comingSoon": "المهام والملفات جاية قريبًا",
       "tasks": "المهام",
       "noTasks": "مفيش مهام لسه — ابدأ بإضافة مهمة",
+      "comingSoon": "المهام والملفات جاية قريبًا",
       "statuses": {
         "draft": "مسودة",
         "active": "نشط",
@@ -438,8 +450,6 @@
     "tasks": {
       "title": "المهام",
       "subtitle": "عندك {count} مهمة",
-      "emptyTitle": "مفيش مهام لسه",
-      "emptyDescription": "ابدأ بإنشاء أول مهمة واربطها بمشروع.",
       "searchPlaceholder": "ابحث بالمهمة، المشروع، العميل...",
       "resultsCount": "{count} نتيجة",
       "noResults": "مفيش نتائج مطابقة للبحث",
@@ -449,9 +459,17 @@
       "kanbanEmpty": "مفيش مهام",
       "overdue": "متأخرة",
       "noDetails": "بدون تفاصيل",
+      "emptyTitle": "مفيش مهام لسه",
+      "emptyDescription": "ابدأ بإنشاء أول مهمة واربطها بمشروع.",
       "filters": {
         "all": "الكل",
         "allPriorities": "كل الأولويات"
+      },
+      "bulk": {
+        "select": "تحديد",
+        "exit": "خروج",
+        "selectAll": "تحديد الكل",
+        "clearAll": "مسح"
       },
       "statuses": {
         "todo": "قائمة الانتظار",
@@ -482,7 +500,12 @@
         "priority": "الأولوية",
         "dueDate": "تاريخ التسليم",
         "cancel": "إلغاء",
-        "submit": "إنشاء المهمة"
+        "submit": "إنشاء المهمة",
+        "success": "تم بنجاح",
+        "successDescription": "تم إضافة المهمة",
+        "errors": {
+          "generic": "حصل خطأ، حاول تاني"
+        }
       },
       "actions": {
         "start": "ابدأ التنفيذ",
@@ -510,8 +533,6 @@
       "title": "المحتوى",
       "subtitle": "عندك {count} قطعة محتوى",
       "viewCalendar": "الروزنامة",
-      "emptyTitle": "مفيش محتوى لسه",
-      "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
       "searchPlaceholder": "ابحث بالمحتوى، العميل، المشروع...",
       "resultsCount": "{count} نتيجة",
       "noResults": "مفيش نتائج مطابقة للبحث",
@@ -519,6 +540,8 @@
       "viewGrid": "شبكة",
       "viewKanban": "كانبان",
       "kanbanEmpty": "مفيش محتوى",
+      "emptyTitle": "مفيش محتوى لسه",
+      "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
       "filters": {
         "all": "الكل"
       },
@@ -589,7 +612,12 @@
         "priority": "الأولوية",
         "scheduledAt": "موعد النشر (اختياري)",
         "cancel": "إلغاء",
-        "submit": "إنشاء المحتوى"
+        "submit": "إنشاء المحتوى",
+        "success": "تم بنجاح",
+        "successDescription": "تم إنشاء المحتوى",
+        "errors": {
+          "generic": "حصل خطأ، حاول تاني"
+        }
       },
       "actions": {
         "sendToReview": "إرسال للمراجعة",
@@ -608,6 +636,73 @@
         "scheduledAt": "موعد النشر",
         "comingSoon": "التعليقات والنسخ والملفات جاية قريبًا"
       }
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "subtitle": "{count} إشعار",
+      "empty": "مفيش إشعارات لسه",
+      "markAllRead": "تعليم الكل كمقروء",
+      "unread": "{count} غير مقروء",
+      "viewAll": "عرض كل الإشعارات",
+      "filters": {
+        "all": "الكل",
+        "unread": "غير مقروء",
+        "read": "مقروء"
+      }
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "subtitle": "نظرة شاملة على أداء مساحة العمل",
+      "exportCsv": "تصدير CSV",
+      "exported": "تم التصدير بنجاح",
+      "exportError": "فشل التصدير",
+      "kpis": {
+        "clients": "إجمالي العملاء",
+        "projects": "إجمالي المشاريع",
+        "content": "إجمالي المحتوى",
+        "tasks": "إجمالي المهام",
+        "pending": "{count} مهمة معلقة",
+        "allDone": "كل المهام مكتملة"
+      },
+      "sections": {
+        "contentBreakdown": "توزيع المحتوى",
+        "contentCenter": "قطعة",
+        "projectsByStatus": "المشاريع حسب الحالة",
+        "tasksByPriority": "المهام حسب الأولوية",
+        "recentActivity": "آخر الأنشطة",
+        "empty": "مفيش بيانات لسه"
+      },
+      "contentStatuses": {
+        "draft": "مسودة",
+        "internal_review": "مراجعة داخلية",
+        "client_review": "مراجعة العميل",
+        "approved": "معتمد",
+        "rejected": "مرفوض",
+        "scheduled": "مجدول",
+        "published": "منشور",
+        "archived": "مؤرشف"
+      },
+      "projectStatuses": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "on_hold": "معلّق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي"
+      },
+      "taskPriorities": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "activity": {
+        "empty": "مفيش نشاط لسه"
+      }
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "subtitle": "أدر بياناتك الشخصية",
+      "joinedOn": "عضو من"
     },
     "settings": {
       "title": "الإعدادات",
@@ -661,7 +756,7 @@
       },
       "members": {
         "title": "أعضاء الفريق",
-        "subtitle": "{count} عضو",
+        "subtitle": "{count} عضو في مساحة العمل",
         "you": "أنت",
         "roles": {
           "owner": "مالك",
@@ -698,42 +793,6 @@
         }
       }
     },
-    "profile": {
-      "title": "الملف الشخصي",
-      "subtitle": "أدر بياناتك الشخصية"
-    },
-    "error": {
-      "title": "حصلت مشكلة",
-      "description": "حصل خطأ غير متوقع. جرّب تاني.",
-      "retry": "حاول تاني",
-      "home": "الصفحة الرئيسية"
-    },
-    "portal": {
-      "portal": "بوابة العميل",
-      "welcome": "مرحبًا",
-      "subtitle": "دي بوابة العميل — تشوف فيها مشاريعك والمحتوى المطلوب موافقتك",
-      "logout": "تسجيل الخروج",
-      "pendingApproval": "بانتظار موافقتك",
-      "approve": "موافقة",
-      "requestChanges": "طلب تعديلات",
-      "addNote": "ملاحظات (اختياري)",
-      "notePlaceholder": "اكتب ملاحظاتك هنا...",
-      "viewAll": "عرض الكل",
-      "allClear": "كل حاجة تحت السيطرة! مفيش محتوى بانتظار موافقتك.",
-      "backToApprovals": "رجوع للموافقات",
-      "approvalsCount": "{count} عنصر بانتظار موافقتك",
-      "projectsCount": "{count} مشروع",
-      "noProjects": "مفيش مشاريع لسه",
-      "stats": {
-        "pending": "بانتظار موافقتك",
-        "approved": "معتمد",
-        "projects": "المشاريع"
-      },
-      "sections": {
-        "pendingApprovals": "بانتظار موافقتك",
-        "myProjects": "مشاريعي"
-      }
-    },
     "invite": {
       "invalidTitle": "الدعوة مش موجودة",
       "invalidDescription": "الرابط ده مش صحيح أو انتهت صلاحيته.",
@@ -756,58 +815,31 @@
         "invalid_or_expired": "الدعوة مش صحيحة أو انتهت"
       }
     },
-    "notifications": {
-      "title": "الإشعارات",
-      "subtitle": "{count} إشعار",
-      "empty": "مفيش إشعارات لسه",
-      "markAllRead": "تعليم الكل كمقروء",
-      "unread": "{count} غير مقروء",
-      "viewAll": "عرض كل الإشعارات"
-    },
-    "analytics": {
-      "title": "التحليلات",
-      "subtitle": "نظرة شاملة على أداء مساحة العمل",
-      "kpis": {
-        "clients": "إجمالي العملاء",
-        "projects": "إجمالي المشاريع",
-        "content": "إجمالي المحتوى",
-        "tasks": "إجمالي المهام",
-        "pending": "{count} مهمة معلقة",
-        "allDone": "كل المهام مكتملة"
+    "portal": {
+      "portal": "بوابة العميل",
+      "welcome": "مرحبًا",
+      "subtitle": "دي بوابة العميل — تشوف فيها مشاريعك والمحتوى المطلوب موافقتك",
+      "noWorkspace": "لسه مش عضو في أي مساحة عمل. لما توصلك دعوة، هتقدر تشوف محتواك هنا.",
+      "logout": "تسجيل الخروج",
+      "pendingApproval": "بانتظار موافقتك",
+      "approve": "موافقة",
+      "requestChanges": "طلب تعديلات",
+      "addNote": "ملاحظات (اختياري)",
+      "notePlaceholder": "اكتب ملاحظاتك هنا...",
+      "viewAll": "عرض الكل",
+      "allClear": "كل حاجة تحت السيطرة! مفيش محتوى بانتظار موافقتك.",
+      "backToApprovals": "رجوع للموافقات",
+      "approvalsCount": "{count} عنصر بانتظار موافقتك",
+      "projectsCount": "{count} مشروع",
+      "noProjects": "مفيش مشاريع لسه",
+      "stats": {
+        "pending": "بانتظار موافقتك",
+        "approved": "معتمد",
+        "projects": "المشاريع"
       },
       "sections": {
-        "contentBreakdown": "توزيع المحتوى",
-        "contentCenter": "قطعة",
-        "projectsByStatus": "المشاريع حسب الحالة",
-        "tasksByPriority": "المهام حسب الأولوية",
-        "recentActivity": "آخر الأنشطة",
-        "empty": "مفيش بيانات لسه"
-      },
-      "contentStatuses": {
-        "draft": "مسودة",
-        "internal_review": "مراجعة داخلية",
-        "client_review": "مراجعة العميل",
-        "approved": "معتمد",
-        "rejected": "مرفوض",
-        "scheduled": "مجدول",
-        "published": "منشور",
-        "archived": "مؤرشف"
-      },
-      "projectStatuses": {
-        "draft": "مسودة",
-        "active": "نشط",
-        "on_hold": "معلّق",
-        "completed": "مكتمل",
-        "cancelled": "ملغي"
-      },
-      "taskPriorities": {
-        "low": "منخفضة",
-        "medium": "متوسطة",
-        "high": "عالية",
-        "urgent": "عاجلة"
-      },
-      "activity": {
-        "empty": "مفيش نشاط لسه"
+        "pendingApprovals": "بانتظار موافقتك",
+        "myProjects": "مشاريعي"
       }
     },
     "commandPalette": {
@@ -828,49 +860,31 @@
       }
     }
   },
+  "files": {
+    "upload": {
+      "title": "اسحب وأفلت الملفات هنا",
+      "subtitle": "أو اضغط للاختيار • الحد الأقصى {max}",
+      "uploading": "جاري الرفع...",
+      "tooLarge": "الملف {name} أكبر من الحد ({max})"
+    },
+    "avatar": {
+      "title": "الصورة الشخصية",
+      "subtitle": "JPG أو PNG أو WebP • حد أقصى 5MB",
+      "change": "تغيير الصورة",
+      "invalidType": "لازم تكون صورة",
+      "tooLarge": "الصورة أكبر من 5MB"
+    },
+    "attachments": {
+      "title": "المرفقات",
+      "addFile": "إضافة ملف",
+      "empty": "مفيش مرفقات لسه",
+      "confirmDelete": "متأكد إنك عايز تحذف المرفق ده؟"
+    }
+  },
   "errors": {
     "title": "حصلت مشكلة",
     "description": "حصل خطأ غير متوقع. جرّب تاني.",
     "retry": "حاول تاني",
     "home": "الصفحة الرئيسية"
-  },
-  "onboarding": {
-    "welcome": {
-      "title": "أهلاً بيك في Marketing Hub",
-      "description": "خلينا نجهّز حسابك في خطوتين سريعتين ونبدأ رحلتك التسويقية.",
-      "cta": "يلا نبدأ"
-    },
-    "organization": {
-      "title": "معلومات المؤسسة",
-      "description": "دي هتكون {type} بتاعتك على المنصة.",
-      "fieldLabel": "اسم المؤسسة",
-      "placeholder": "مثال: وكالة النور"
-    },
-    "workspace": {
-      "title": "مساحة العمل الأولى",
-      "description": "مساحة العمل دي هي المكان اللي هتدير فيه العملاء والمشاريع.",
-      "fieldLabel": "اسم مساحة العمل",
-      "placeholder": "مثال: الفريق الرئيسي"
-    },
-    "done": {
-      "title": "كل حاجة جاهزة! 🎉",
-      "description": "مساحة عملك اتعملت بنجاح. يلا ندخل لوحة التحكم ونبدأ.",
-      "cta": "ادخل لوحة التحكم"
-    },
-    "back": "رجوع",
-    "next": "التالي",
-    "creating": "بيتم الإنشاء...",
-    "finish": "إنشاء الحساب",
-    "types": {
-      "client": "شركة",
-      "agency": "وكالة",
-      "freelancer": "مستقل"
-    },
-    "errors": {
-      "not_authenticated": "لازم تسجّل دخول الأول",
-      "missing_fields": "من فضلك املأ كل الحقول",
-      "org_failed": "فشل إنشاء المؤسسة",
-      "workspace_failed": "فشل إنشاء مساحة العمل"
-    }
   }
 }

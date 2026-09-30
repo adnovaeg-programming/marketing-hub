@@ -13,6 +13,7 @@ export async function getActiveWorkspaceId(): Promise<string | null> {
   } = await supabase.auth.getUser();
   if (!user) return null;
 
+  // لو فيه cookie صالحة → استخدمها
   if (fromCookie) {
     const { data: member } = await supabase
       .from("workspace_members")
@@ -21,18 +22,21 @@ export async function getActiveWorkspaceId(): Promise<string | null> {
       .eq("workspace_id", fromCookie)
       .eq("status", "active")
       .maybeSingle();
+
     if (member) return member.workspace_id;
   }
 
-  const { data: first } = await supabase
+  // ✅ آخر workspace انضم له (الأحدث)
+  const { data: last } = await supabase
     .from("workspace_members")
-    .select("workspace_id")
+    .select("workspace_id, joined_at")
     .eq("user_id", user.id)
     .eq("status", "active")
+    .order("joined_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  return first?.workspace_id ?? null;
+  return last?.workspace_id ?? null;
 }
 
 export async function getUserWorkspaces() {
@@ -48,11 +52,13 @@ export async function getUserWorkspaces() {
       `
       workspace_id,
       role,
+      joined_at,
       workspace:workspaces (id, name, slug)
     `
     )
     .eq("user_id", user.id)
-    .eq("status", "active");
+    .eq("status", "active")
+    .order("joined_at", { ascending: false });
 
   return (data ?? []).map((m) => {
     const w = Array.isArray(m.workspace) ? m.workspace[0] : m.workspace;
@@ -63,4 +69,20 @@ export async function getUserWorkspaces() {
       slug: w?.slug ?? "",
     };
   });
+}
+
+export async function getWorkspaceById(id: string) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data } = await supabase
+    .from("workspaces")
+    .select("id, name, slug, organization_id")
+    .eq("id", id)
+    .maybeSingle();
+
+  return data;
 }

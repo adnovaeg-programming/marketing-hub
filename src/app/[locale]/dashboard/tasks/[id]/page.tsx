@@ -12,6 +12,7 @@ import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { TaskActions } from "@/components/tasks/task-actions";
 import { TaskComments } from "@/components/tasks/task-comments";
+import { TaskAttachments } from "@/components/tasks/task-attachments";
 
 export default async function TaskDetailsPage({
   params,
@@ -37,6 +38,7 @@ export default async function TaskDetailsPage({
 
   if (!member) redirect("/onboarding");
 
+  // ✅ FK محدد لـ assigned_to
   const { data: task } = await supabase
     .from("tasks")
     .select(
@@ -44,7 +46,7 @@ export default async function TaskDetailsPage({
       *,
       project:projects (id, name),
       client:clients (id, name),
-      assignee:profiles (id, first_name, last_name, email)
+      assignee:profiles!tasks_assigned_to_fkey (id, first_name, last_name, email)
     `
     )
     .eq("id", id)
@@ -53,12 +55,13 @@ export default async function TaskDetailsPage({
 
   if (!task) notFound();
 
+  // ✅ FK محدد لـ user_id في التعليقات
   const { data: comments } = await supabase
     .from("task_comments")
     .select(
       `
       id, content, created_at, user_id,
-      author:profiles (id, first_name, last_name, email)
+      author:profiles!task_comments_user_id_fkey (id, first_name, last_name, email)
     `
     )
     .eq("task_id", id)
@@ -74,18 +77,23 @@ export default async function TaskDetailsPage({
     : task.assignee;
 
   const statusStyles: Record<string, string> = {
-    todo: "bg-muted text-muted-foreground",
-    in_progress: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-    review: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    completed: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-    cancelled: "bg-destructive/10 text-destructive",
+    todo: "bg-muted text-muted-foreground border-border/40",
+    in_progress:
+      "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+    review:
+      "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+    completed:
+      "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+    cancelled: "bg-destructive/10 text-destructive border-destructive/20",
   };
 
   const priorityStyles: Record<string, string> = {
-    low: "bg-muted text-muted-foreground",
-    medium: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-    high: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
-    urgent: "bg-destructive/10 text-destructive",
+    low: "bg-muted text-muted-foreground border-border/40",
+    medium:
+      "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+    high:
+      "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
+    urgent: "bg-destructive/10 text-destructive border-destructive/20",
   };
 
   const dueDate = task.due_date
@@ -118,14 +126,14 @@ export default async function TaskDetailsPage({
       <div className="glass-strong mt-6 rounded-3xl p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-2">
           <span
-            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${
               statusStyles[task.status] ?? statusStyles.todo
             }`}
           >
             {t(`statuses.${task.status}`)}
           </span>
           <span
-            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${
               priorityStyles[task.priority] ?? priorityStyles.medium
             }`}
           >
@@ -196,7 +204,12 @@ export default async function TaskDetailsPage({
         )}
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <TaskAttachments
+          taskId={task.id}
+          workspaceId={member.workspace_id}
+          userId={user.id}
+        />
         <TaskComments
           taskId={task.id}
           comments={normalizedComments}

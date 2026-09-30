@@ -29,7 +29,7 @@ export default async function TasksPage() {
       created_at,
       project:projects (id, name),
       client:clients (id, name),
-      assignee:profiles (id, first_name, last_name, email)
+      assignee:profiles!tasks_assigned_to_fkey (id, first_name, last_name, email)
     `
     )
     .eq("workspace_id", workspaceId)
@@ -39,7 +39,9 @@ export default async function TasksPage() {
 
   const normalized = (tasks ?? []).map((task) => ({
     ...task,
-    project: Array.isArray(task.project) ? task.project[0] ?? null : task.project,
+    project: Array.isArray(task.project)
+      ? task.project[0] ?? null
+      : task.project,
     client: Array.isArray(task.client) ? task.client[0] ?? null : task.client,
     assignee: Array.isArray(task.assignee)
       ? task.assignee[0] ?? null

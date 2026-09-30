@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus, AlertCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -24,129 +26,176 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  clientSchema,
+  type ClientFormValues,
+} from "@/lib/validations/schemas";
+import { toastSuccess, toastError } from "@/lib/actions/toast";
 import { createClientAction } from "@/app/[locale]/dashboard/clients/actions";
 
 export function NewClientDialog() {
   const t = useTranslations("dashboard.clients.form");
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [status, setStatus] = useState<"active" | "lead">("active");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch,
+  } = useForm<ClientFormValues>({
+    resolver: zodResolver(clientSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      industry: "",
+      website: "",
+      status: "active",
+      notes: "",
+    },
+  });
+
+  const statusValue = watch("status");
+
+  const onSubmit = async (data: ClientFormValues) => {
     setPending(true);
-
-    const form = new FormData(e.currentTarget);
-    const result = await createClientAction({
-      name: String(form.get("name") ?? ""),
-      email: String(form.get("email") ?? ""),
-      phone: String(form.get("phone") ?? ""),
-      company: String(form.get("company") ?? ""),
-      industry: String(form.get("industry") ?? ""),
-      website: String(form.get("website") ?? ""),
-      notes: String(form.get("notes") ?? ""),
-      status,
-    });
+    const result = await createClientAction(data);
+    setPending(false);
 
     if (!result.success) {
-      setError(result.error);
-      setPending(false);
+      toastError(result.error, t("errors.generic"));
       return;
     }
 
-    setPending(false);
+    toastSuccess(t("success"), t("successDescription"));
+    reset();
     setOpen(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        setOpen(v);
+        if (!v) reset();
+      }}
+    >
       <DialogTrigger asChild>
-        <Button className="rounded-full shadow-lg shadow-primary/30">
+        <Button className="rounded-full bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 transition-shadow hover:shadow-xl hover:shadow-primary/40">
           <Plus className="size-4" />
           {t("trigger")}
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-lg">
+      <DialogContent className="glass-strong max-h-[90vh] max-w-lg overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="name">{t("name")} *</Label>
             <Input
               id="name"
-              name="name"
+              {...register("name")}
               placeholder={t("namePlaceholder")}
-              required
-              className="h-11"
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.name}
             />
+            {errors.name && (
+              <p className="flex items-center gap-1 text-[11px] text-destructive">
+                <AlertCircle className="size-3" />
+                {errors.name.message}
+              </p>
+            )}
           </div>
 
+          {/* Email + Phone */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="email">{t("email")}</Label>
               <Input
                 id="email"
-                name="email"
                 type="email"
+                {...register("email")}
                 placeholder={t("emailPlaceholder")}
-                className="h-11"
+                className="h-11 rounded-xl"
+                aria-invalid={!!errors.email}
               />
+              {errors.email && (
+                <p className="flex items-center gap-1 text-[11px] text-destructive">
+                  <AlertCircle className="size-3" />
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone">{t("phone")}</Label>
               <Input
                 id="phone"
-                name="phone"
+                {...register("phone")}
                 placeholder={t("phonePlaceholder")}
-                className="h-11"
+                className="h-11 rounded-xl"
               />
             </div>
           </div>
 
+          {/* Company + Industry */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="company">{t("company")}</Label>
               <Input
                 id="company"
-                name="company"
+                {...register("company")}
                 placeholder={t("companyPlaceholder")}
-                className="h-11"
+                className="h-11 rounded-xl"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="industry">{t("industry")}</Label>
               <Input
                 id="industry"
-                name="industry"
+                {...register("industry")}
                 placeholder={t("industryPlaceholder")}
-                className="h-11"
+                className="h-11 rounded-xl"
               />
             </div>
           </div>
 
+          {/* Website */}
           <div className="space-y-2">
             <Label htmlFor="website">{t("website")}</Label>
             <Input
               id="website"
-              name="website"
+              {...register("website")}
               placeholder={t("websitePlaceholder")}
-              className="h-11"
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.website}
             />
+            {errors.website && (
+              <p className="flex items-center gap-1 text-[11px] text-destructive">
+                <AlertCircle className="size-3" />
+                {errors.website.message}
+              </p>
+            )}
           </div>
 
+          {/* Status */}
           <div className="space-y-2">
-            <Label htmlFor="status">{t("status")}</Label>
+            <Label>{t("status")}</Label>
             <Select
-              value={status}
-              onValueChange={(v) => setStatus(v as "active" | "lead")}
+              value={statusValue}
+              onValueChange={(v) =>
+                setValue("status", v as ClientFormValues["status"])
+              }
             >
-              <SelectTrigger id="status" className="h-11">
+              <SelectTrigger className="h-11 rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -156,22 +205,17 @@ export function NewClientDialog() {
             </Select>
           </div>
 
+          {/* Notes */}
           <div className="space-y-2">
             <Label htmlFor="notes">{t("notes")}</Label>
             <Textarea
               id="notes"
-              name="notes"
+              {...register("notes")}
               placeholder={t("notesPlaceholder")}
               rows={3}
+              className="rounded-xl"
             />
           </div>
-
-          {error && (
-            <div className="flex items-start gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
-              <AlertCircle className="mt-0.5 size-4 shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
 
           <DialogFooter>
             <Button
@@ -179,10 +223,15 @@ export function NewClientDialog() {
               variant="outline"
               onClick={() => setOpen(false)}
               disabled={pending}
+              className="rounded-xl"
             >
               {t("cancel")}
             </Button>
-            <Button type="submit" disabled={pending}>
+            <Button
+              type="submit"
+              disabled={pending}
+              className="rounded-xl bg-gradient-to-r from-primary to-accent"
+            >
               {pending && <Loader2 className="size-4 animate-spin" />}
               {t("submit")}
             </Button>
