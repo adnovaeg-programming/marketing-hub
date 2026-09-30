@@ -46,8 +46,10 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-              <Sparkles className="size-6 text-primary" />
+            <Link href="/" className="flex items-center gap-2.5 font-bold text-lg">
+              <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+                <Sparkles className="size-4.5  text-white" />
+              </div>
               <span>Marketing Hub</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">

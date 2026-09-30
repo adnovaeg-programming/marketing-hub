@@ -1,12 +1,9 @@
 import { redirect } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import { FileText, Calendar } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
-import { NewContentDialog } from "@/components/content/new-content-dialog";
-import { ContentCard } from "@/components/content/content-card";
-import { Button } from "@/components/ui/button";
+import { getActiveWorkspaceId } from "@/lib/workspace/active";
+import { ContentGrid } from "@/components/content/content-grid";
 
 export default async function ContentPage() {
   const supabase = await createClient();
@@ -16,15 +13,8 @@ export default async function ContentPage() {
 
   if (!user) redirect("/login");
 
-  const { data: member } = await supabase
-    .from("workspace_members")
-    .select("workspace_id")
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .limit(1)
-    .maybeSingle();
-
-  if (!member) redirect("/onboarding");
+  const workspaceId = await getActiveWorkspaceId();
+  if (!workspaceId) redirect("/onboarding");
 
   const { data: items } = await supabase
     .from("content_items")
@@ -32,22 +22,29 @@ export default async function ContentPage() {
       `
       id,
       title,
+      description,
       content_type,
       platform,
       status,
       priority,
       scheduled_at,
-      client:clients (id, name)
+      published_at,
+      created_at,
+      client:clients (id, name),
+      project:projects (id, name)
     `
     )
-    .eq("workspace_id", member.workspace_id)
+    .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false });
 
   const t = await getTranslations("dashboard.content");
 
-  const normalizedItems = (items ?? []).map((item) => ({
+  const normalized = (items ?? []).map((item) => ({
     ...item,
     client: Array.isArray(item.client) ? item.client[0] ?? null : item.client,
+    project: Array.isArray(item.project)
+      ? item.project[0] ?? null
+      : item.project,
   }));
 
   return (
@@ -58,45 +55,12 @@ export default async function ContentPage() {
             {t("title")}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {t("subtitle", { count: normalizedItems.length })}
+            {t("subtitle", { count: normalized.length })}
           </p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            className="rounded-full"
-            asChild
-          >
-            <Link href="/dashboard/content/calendar">
-              <Calendar className="size-4" />
-              {t("viewCalendar")}
-            </Link>
-          </Button>
-          <NewContentDialog />
         </div>
       </div>
 
-      {normalizedItems.length === 0 ? (
-        <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-card/30 py-20 text-center">
-          <div className="flex size-16 items-center justify-center rounded-2xl bg-primary/10">
-            <FileText className="size-8 text-primary" />
-          </div>
-          <h2 className="mt-4 text-lg font-semibold">{t("emptyTitle")}</h2>
-          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            {t("emptyDescription")}
-          </p>
-          <div className="mt-6">
-            <NewContentDialog />
-          </div>
-        </div>
-      ) : (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {normalizedItems.map((item) => (
-            <ContentCard key={item.id} item={item} />
-          ))}
-        </div>
-      )}
+      <ContentGrid items={normalized} />
     </div>
   );
 }

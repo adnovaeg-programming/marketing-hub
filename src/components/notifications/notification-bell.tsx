@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import type { RealtimeChannel } from "@supabase/supabase-js";
 import { Bell, Check, Trash2, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -22,22 +23,16 @@ type Notification = {
   created_at: string;
 };
 
-function timeAgo(dateStr: string, locale: string): string {
+function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
 
-  if (locale === "ar") {
-    if (mins < 1) return "الآن";
-    if (mins < 60) return `قبل ${mins} دقيقة`;
-    if (hours < 24) return `قبل ${hours} ساعة`;
-    return `قبل ${days} يوم`;
-  }
-  if (mins < 1) return "Now";
-  if (mins < 60) return `${mins}m ago`;
-  if (hours < 24) return `${hours}h ago`;
-  return `${days}d ago`;
+  if (mins < 1) return "الآن";
+  if (mins < 60) return `قبل ${mins} دقيقة`;
+  if (hours < 24) return `قبل ${hours} ساعة`;
+  return `قبل ${days} يوم`;
 }
 
 export function NotificationBell() {
@@ -45,68 +40,138 @@ export function NotificationBell() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [markingAll, setMarkingAll] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const channelRef = useRef<RealtimeChannel | null>(null);
 
   const unreadCount = notifications.filter((n) => !n.read_at).length;
 
-  // نجيب الإشعارات + نعمل subscribe للتحديثات
-  useEffect(() => {
-    const supabase = createClient();
-
-    const load = async () => {
-      setLoading(true);
-      const { data } = await supabase
+  /* ─── Initial Load ─── */
+  const load = useCallback(async () => {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase
         .from("notifications")
         .select("*")
         .order("created_at", { ascending: false })
         .limit(20);
-      setNotifications(data ?? []);
+
+      if (error) {
+        console.warn("[NotificationBell] Load error:", error.message);
+      } else {
+        setNotifications(data ?? []);
+      }
+    } catch (err) {
+      console.warn("[NotificationBell] Failed to load:", err);
+    } finally {
       setLoading(false);
-    };
-
-    load();
-
-    // Realtime subscription
-    const channel = supabase
-      .channel("notifications-realtime")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "notifications",
-        },
-        (payload) => {
-          if (payload.eventType === "INSERT") {
-            setNotifications((prev) => [
-              payload.new as Notification,
-              ...prev,
-            ]);
-          } else if (payload.eventType === "UPDATE") {
-            setNotifications((prev) =>
-              prev.map((n) =>
-                n.id === (payload.new as Notification).id
-                  ? (payload.new as Notification)
-                  : n
-              )
-            );
-          } else if (payload.eventType === "DELETE") {
-            setNotifications((prev) =>
-              prev.filter((n) => n.id !== (payload.old as Notification).id)
-            );
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    }
   }, []);
 
-  // إغلاق الـ Dropdown لما نضغط برة
+  /* ─── Realtime Subscription ─── */
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Get the current user's ID
+    const setupRealtime = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        // لو مش مسجل دخول، نكتفي بالتحميل الأولي
+        load();
+        return;
+      }
+
+      // Initial load
+      load();
+
+      // Realtime subscription
+      const channel = supabase
+        .channel("notifications-realtime")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${user.id}`,
+          },
+          (payload) => {
+            const newNotif = payload.new as Notification;
+            setNotifications((prev) => {
+              // منع التكرار
+              if (prev.some((n) => n.id === newNotif.id)) return prev;
+              return [newNotif, ...prev].slice(0, 20);
+            });
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${user.id}`,
+          },
+          (payload) => {
+            const updated = payload.new as Notification;
+            setNotifications((prev) =>
+              prev.map((n) => (n.id === updated.id ? updated : n))
+            );
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "DELETE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${user.id}`,
+          },
+          (payload) => {
+            const deleted = payload.old as { id: string };
+            setNotifications((prev) =>
+              prev.filter((n) => n.id !== deleted.id)
+            );
+          }
+        )
+        .subscribe((status) => {
+          if (status === "CHANNEL_ERROR") {
+            console.warn(
+              "[NotificationBell] Realtime channel error — falling back to polling"
+            );
+          }
+        });
+
+      channelRef.current = channel;
+    };
+
+    setupRealtime();
+
+    /* ─── Fallback: Polling كل 60 ثانية (لو Realtime فشل) ─── */
+    const pollInterval = setInterval(() => {
+      // نعمل refresh بس لو القناة مش متصلة
+      if (
+        !channelRef.current ||
+        channelRef.current.state !== "joined"
+      ) {
+        load();
+      }
+    }, 60000);
+
+    return () => {
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current);
+        channelRef.current = null;
+      }
+      clearInterval(pollInterval);
+    };
+  }, [load]);
+
+  /* ─── Outside Click ─── */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -122,20 +187,23 @@ export function NotificationBell() {
     }
   }, [open]);
 
+  /* ─── Actions ─── */
   const handleMarkAllRead = async () => {
     setMarkingAll(true);
-    await markAllNotificationsReadAction();
-    setNotifications((prev) =>
-      prev.map((n) =>
-        n.read_at ? n : { ...n, read_at: new Date().toISOString() }
-      )
-    );
+    try {
+      await markAllNotificationsReadAction();
+      const now = new Date().toISOString();
+      setNotifications((prev) =>
+        prev.map((n) => (n.read_at ? n : { ...n, read_at: now }))
+      );
+      router.refresh();
+    } catch (err) {
+      console.warn("[NotificationBell] Mark all read failed:", err);
+    }
     setMarkingAll(false);
-    router.refresh();
   };
 
   const handleOpenNotification = async (n: Notification) => {
-    // نحدّث read محليًا
     if (!n.read_at) {
       setNotifications((prev) =>
         prev.map((x) =>
@@ -144,8 +212,6 @@ export function NotificationBell() {
       );
     }
     setOpen(false);
-
-    // نوديه للرابط
     if (n.action_url) {
       window.location.href = n.action_url;
     }
@@ -154,9 +220,14 @@ export function NotificationBell() {
   const handleDelete = async (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
     setNotifications((prev) => prev.filter((n) => n.id !== id));
-    await deleteNotificationAction(id);
+    try {
+      await deleteNotificationAction(id);
+    } catch (err) {
+      console.warn("[NotificationBell] Delete failed:", err);
+    }
   };
 
+  /* ─── Render ─── */
   return (
     <div className="relative" ref={dropdownRef}>
       <Button
@@ -175,7 +246,7 @@ export function NotificationBell() {
       </Button>
 
       {open && (
-        <div className="glass-strong absolute end-0 top-12 z-50 w-80 overflow-hidden rounded-2xl border border-glass-border shadow-2xl md:w-96">
+        <div className="glass-strong animate-scale-in absolute end-0 top-12 z-50 w-80 overflow-hidden rounded-2xl border border-glass-border shadow-2xl md:w-96">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border/40 p-3">
             <h3 className="text-sm font-semibold">{t("title")}</h3>
@@ -238,7 +309,7 @@ export function NotificationBell() {
                       </p>
                     )}
                     <p className="mt-1 text-[10px] text-muted-foreground/70">
-                      {timeAgo(n.created_at, "ar")}
+                      {timeAgo(n.created_at)}
                     </p>
                   </div>
                 </button>

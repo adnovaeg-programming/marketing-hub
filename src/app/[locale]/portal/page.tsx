@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   Sparkles,
   FolderKanban,
@@ -7,6 +7,7 @@ import {
   CheckSquare,
   Clock,
   ArrowLeft,
+  TrendingUp,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
@@ -28,16 +29,18 @@ export default async function PortalHomePage() {
     .limit(1)
     .maybeSingle();
 
+  const t = await getTranslations("dashboard.portal");
+
   if (!member) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
         <div className="glass-strong rounded-3xl p-12">
-          <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-primary/10">
-            <Sparkles className="size-8 text-primary" />
+          <div className="glass mx-auto flex size-20 items-center justify-center rounded-3xl">
+            <Sparkles className="size-10 text-primary" />
           </div>
-          <h1 className="mt-6 text-2xl font-bold">مرحبًا بيك! 👋</h1>
+          <h1 className="mt-6 text-2xl font-bold">{t("welcome")} 👋</h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            لسه مش عضو في أي مساحة عمل. لما توصلك دعوة، هتقدر تشوف محتواك هنا.
+            {t("noWorkspace")}
           </p>
         </div>
       </div>
@@ -52,61 +55,16 @@ export default async function PortalHomePage() {
     { count: approvedCount },
     { data: pendingItems },
   ] = await Promise.all([
-    supabase
-      .from("projects")
-      .select("*", { count: "exact", head: true })
-      .eq("workspace_id", workspaceId),
-    supabase
-      .from("content_items")
-      .select("*", { count: "exact", head: true })
-      .eq("workspace_id", workspaceId)
-      .eq("status", "client_review"),
-    supabase
-      .from("content_items")
-      .select("*", { count: "exact", head: true })
-      .eq("workspace_id", workspaceId)
-      .eq("status", "approved"),
-    supabase
-      .from("content_items")
-      .select(
-        `
-        id, title, content_type, platform, scheduled_at, created_at,
-        project:projects (id, name)
-      `
-      )
-      .eq("workspace_id", workspaceId)
-      .eq("status", "client_review")
-      .order("created_at", { ascending: false })
-      .limit(6),
+    supabase.from("projects").select("*", { count: "exact", head: true }).eq("workspace_id", workspaceId),
+    supabase.from("content_items").select("*", { count: "exact", head: true }).eq("workspace_id", workspaceId).eq("status", "client_review"),
+    supabase.from("content_items").select("*", { count: "exact", head: true }).eq("workspace_id", workspaceId).eq("status", "approved"),
+    supabase.from("content_items").select(`id, title, content_type, platform, scheduled_at, created_at, project:projects (id, name)`).eq("workspace_id", workspaceId).eq("status", "client_review").order("created_at", { ascending: false }).limit(6),
   ]);
 
-  const t = await getTranslations("dashboard.portal");
-
   const stats = [
-    {
-      icon: Clock,
-      label: t("stats.pending"),
-      value: pendingCount ?? 0,
-      color: "text-amber-500",
-      bg: "from-amber-500/20 to-primary/20",
-      href: "/portal/approvals",
-    },
-    {
-      icon: FileText,
-      label: t("stats.approved"),
-      value: approvedCount ?? 0,
-      color: "text-emerald-500",
-      bg: "from-emerald-500/20 to-primary/20",
-      href: "/portal/projects",
-    },
-    {
-      icon: FolderKanban,
-      label: t("stats.projects"),
-      value: projectsCount ?? 0,
-      color: "text-primary",
-      bg: "from-primary/20 to-accent/20",
-      href: "/portal/projects",
-    },
+    { icon: Clock, label: t("stats.pending"), value: pendingCount ?? 0, color: "text-amber-500", bg: "from-amber-500/20 to-primary/20", href: "/portal/approvals" },
+    { icon: FileText, label: t("stats.approved"), value: approvedCount ?? 0, color: "text-emerald-500", bg: "from-emerald-500/20 to-primary/20", href: "/portal/projects" },
+    { icon: FolderKanban, label: t("stats.projects"), value: projectsCount ?? 0, color: "text-primary", bg: "from-primary/20 to-accent/20", href: "/portal/projects" },
   ];
 
   const normalizedPending = (pendingItems ?? []).map((item) => ({
@@ -116,46 +74,52 @@ export default async function PortalHomePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-16">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+      {/* Hero */}
+      <div className="mb-10">
+        <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary">
+          <Sparkles className="size-3" />
+          {t("portal")}
+        </div>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
           {t("welcome")} 👋
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      {/* Stats */}
+      <div className="grid gap-4 sm:grid-cols-3">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
             <Link
               key={stat.label}
               href={stat.href}
-              className="glass glass-hover group rounded-2xl p-5 transition-transform hover:-translate-y-0.5"
+              className="glass glass-reflect group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10"
             >
-              <div
-                className={`inline-flex size-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.bg}`}
-              >
-                <Icon className={`size-5 ${stat.color}`} />
+              <div className="flex items-start justify-between">
+                <div className={`inline-flex size-11 items-center justify-center rounded-xl bg-gradient-to-br ${stat.bg}`}>
+                  <Icon className={`size-5 ${stat.color}`} />
+                </div>
+                <ArrowLeft className="size-4 text-muted-foreground opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
               </div>
-              <p className="mt-4 text-xs font-medium text-muted-foreground">
-                {stat.label}
-              </p>
+              <p className="mt-4 text-xs font-medium text-muted-foreground">{stat.label}</p>
               <p className="mt-1 text-3xl font-bold">{stat.value}</p>
             </Link>
           );
         })}
       </div>
 
+      {/* Pending Approvals */}
       <div className="mt-10">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">
-            {t("sections.pendingApprovals")}
-          </h2>
+          <div className="flex items-center gap-2">
+            <div className="glass flex size-9 items-center justify-center rounded-xl">
+              <Clock className="size-4 text-amber-500" />
+            </div>
+            <h2 className="text-lg font-semibold">{t("sections.pendingApprovals")}</h2>
+          </div>
           {(pendingCount ?? 0) > 0 && (
-            <Link
-              href="/portal/approvals"
-              className="flex items-center gap-1 text-xs font-medium text-primary hover:opacity-80"
-            >
+            <Link href="/portal/approvals" className="flex items-center gap-1 text-xs font-medium text-primary hover:opacity-80">
               {t("viewAll")}
               <ArrowLeft className="size-3 rtl:rotate-180" />
             </Link>
@@ -165,9 +129,7 @@ export default async function PortalHomePage() {
         {normalizedPending.length === 0 ? (
           <div className="glass-strong mt-4 flex flex-col items-center justify-center rounded-3xl py-16 text-center">
             <CheckSquare className="size-12 text-emerald-500/40" />
-            <p className="mt-4 text-sm text-muted-foreground">
-              {t("allClear")}
-            </p>
+            <p className="mt-4 text-sm text-muted-foreground">{t("allClear")}</p>
           </div>
         ) : (
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -175,7 +137,7 @@ export default async function PortalHomePage() {
               <Link
                 key={item.id}
                 href={`/portal/approvals/${item.id}`}
-                className="glass glass-hover rounded-2xl p-5 transition-transform hover:-translate-y-0.5"
+                className="glass glass-reflect glass-hover rounded-2xl p-5"
               >
                 <div className="flex items-center justify-between gap-2">
                   <FileText className="size-4 text-amber-500" />
@@ -183,13 +145,9 @@ export default async function PortalHomePage() {
                     {t("pendingApproval")}
                   </span>
                 </div>
-                <h3 className="mt-3 line-clamp-2 font-semibold">
-                  {item.title}
-                </h3>
+                <h3 className="mt-3 line-clamp-2 font-semibold">{item.title}</h3>
                 {item.project && (
-                  <p className="mt-1 truncate text-xs text-muted-foreground">
-                    {item.project.name}
-                  </p>
+                  <p className="mt-1 truncate text-xs text-muted-foreground">{item.project.name}</p>
                 )}
               </Link>
             ))}

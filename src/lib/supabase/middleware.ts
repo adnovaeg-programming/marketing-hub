@@ -25,8 +25,33 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // مهم جدًا: تحديث الـ session مع كل request
-  await supabase.auth.getUser();
+  // ⚠️ مهم: نتجاهل أخطاء refresh token بدل ما توقّع التطبيق
+  try {
+    await supabase.auth.getUser();
+  } catch (error) {
+    // لو الـ refresh token مش صالح → نمسح الـ cookies المتعلقة بالجلسة
+    const isRefreshError =
+      error instanceof Error &&
+      (error.message.includes("Refresh Token") ||
+        error.message.includes("refresh_token"));
+
+    if (isRefreshError) {
+      // مسح كل cookies Supabase
+      const cookiesToClear = request.cookies
+        .getAll()
+        .filter(
+          (c) =>
+            c.name.startsWith("sb-") ||
+            c.name.includes("supabase") ||
+            c.name.includes("auth")
+        );
+
+      cookiesToClear.forEach(({ name }) => {
+        supabaseResponse.cookies.delete(name);
+      });
+    }
+    // في كل الحالات، نكمل بدل ما نرمي
+  }
 
   return supabaseResponse;
 }

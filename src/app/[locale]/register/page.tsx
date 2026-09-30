@@ -18,6 +18,9 @@ import { AuthLayout } from "@/components/auth/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TextScramble } from "@/components/fx/text-scramble";
+import { TiltCard } from "@/components/fx/tilt-card";
+import { MagneticButton } from "@/components/fx/magnetic-button";
 import { signUpAction } from "./actions";
 
 const ACCOUNT_TYPES = [
@@ -43,7 +46,6 @@ export default function RegisterPage() {
     formData.set("accountType", accountType);
 
     const result = await signUpAction(formData);
-
     setPending(false);
 
     if (!result.success) {
@@ -59,15 +61,13 @@ export default function RegisterPage() {
     return (
       <AuthLayout>
         <div className="space-y-6 text-center">
-          <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10">
-            <MailCheck className="size-8 text-primary" />
+          <div className="glass mx-auto flex size-20 items-center justify-center rounded-3xl">
+            <MailCheck className="size-10 text-primary" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">
-            {t("successTitle")}
+            <TextScramble text={t("successTitle")} />
           </h1>
-          <p className="text-sm text-muted-foreground">
-            {t("successMessage")}
-          </p>
+          <p className="text-sm text-muted-foreground">{t("successMessage")}</p>
           <Link
             href="/login"
             className="inline-block text-sm font-medium text-primary transition hover:opacity-80"
@@ -82,133 +82,153 @@ export default function RegisterPage() {
   return (
     <AuthLayout>
       <div className="space-y-6">
+        {/* Header */}
         <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            <TextScramble text={t("title")} />
+          </h1>
           <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">{t("name")}</Label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              placeholder={t("namePlaceholder")}
-              autoComplete="name"
-              required
-              className="h-11"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="email">{t("email")}</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder={t("emailPlaceholder")}
-              autoComplete="email"
-              required
-              className="h-11"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password">{t("password")}</Label>
-            <div className="relative">
+        <TiltCard>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name */}
+            <div className="space-y-2">
+              <Label htmlFor="name">{t("name")}</Label>
               <Input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder={t("passwordPlaceholder")}
-                autoComplete="new-password"
+                id="name"
+                name="name"
+                type="text"
+                placeholder={t("namePlaceholder")}
+                autoComplete="name"
                 required
-                minLength={8}
-                className="h-11 pe-10"
+                className="h-11 rounded-xl"
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword((v) => !v)}
-                className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground transition hover:text-foreground"
-                aria-label={showPassword ? "إخفاء" : "إظهار"}
-              >
-                {showPassword ? (
-                  <EyeOff className="size-4" />
-                ) : (
-                  <Eye className="size-4" />
-                )}
-              </button>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label>{t("accountType")}</Label>
-            <div className="grid grid-cols-3 gap-2">
-              {ACCOUNT_TYPES.map((type) => {
-                const Icon = type.icon;
-                const isActive = accountType === type.key;
-                return (
-                  <button
-                    key={type.key}
-                    type="button"
-                    onClick={() => setAccountType(type.key)}
-                    className={`
-                      flex flex-col items-center gap-2 rounded-xl border p-3 text-center transition
-                      ${
-                        isActive
-                          ? "border-primary bg-primary/10 text-primary"
-                          : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                      }
-                    `}
-                  >
-                    <Icon className="size-5" />
-                    <span className="text-xs font-medium">
-                      {t(`types.${type.key}`)}
-                    </span>
-                  </button>
-                );
-              })}
+            {/* Email */}
+            <div className="space-y-2">
+              <Label htmlFor="email">{t("email")}</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder={t("emailPlaceholder")}
+                autoComplete="email"
+                required
+                className="h-11 rounded-xl"
+              />
             </div>
-          </div>
 
-          <label className="flex items-start gap-2 text-xs text-muted-foreground cursor-pointer">
-            <input
-              type="checkbox"
-              required
-              className="mt-0.5 size-4 shrink-0 rounded border-border accent-primary"
-            />
-            <span>
-              {t("terms")}{" "}
-              <a href="#" className="font-medium text-primary hover:opacity-80">
-                {t("termsLink")}
-              </a>{" "}
-              {t("and")}{" "}
-              <a href="#" className="font-medium text-primary hover:opacity-80">
-                {t("privacyLink")}
-              </a>
-            </span>
-          </label>
-
-          {error && (
-            <div className="flex items-start gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
-              <AlertCircle className="mt-0.5 size-4 shrink-0" />
-              <span>{error}</span>
+            {/* Password */}
+            <div className="space-y-2">
+              <Label htmlFor="password">{t("password")}</Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder={t("passwordPlaceholder")}
+                  autoComplete="new-password"
+                  required
+                  minLength={8}
+                  className="h-11 rounded-xl pe-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground transition hover:text-foreground"
+                  aria-label={showPassword ? "إخفاء" : "إظهار"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="size-4" />
+                  ) : (
+                    <Eye className="size-4" />
+                  )}
+                </button>
+              </div>
             </div>
-          )}
 
-          <Button
-            type="submit"
-            size="lg"
-            disabled={pending}
-            className="group h-11 w-full rounded-xl"
-          >
-            {pending ? "..." : t("submit")}
-            {!pending && (
-              <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+            {/* Account Type */}
+            <div className="space-y-2">
+              <Label>{t("accountType")}</Label>
+              <div className="grid grid-cols-3 gap-2">
+                {ACCOUNT_TYPES.map((type) => {
+                  const Icon = type.icon;
+                  const isActive = accountType === type.key;
+                  return (
+                    <button
+                      key={type.key}
+                      type="button"
+                      onClick={() => setAccountType(type.key)}
+                      className={`
+                        flex flex-col items-center gap-2 rounded-xl border p-3 text-center transition-all
+                        ${
+                          isActive
+                            ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/20"
+                            : "glass text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                        }
+                      `}
+                    >
+                      <Icon className="size-5" />
+                      <span className="text-xs font-medium">
+                        {t(`types.${type.key}`)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Terms */}
+            <label className="flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">
+              <input
+                type="checkbox"
+                required
+                className="mt-0.5 size-4 shrink-0 rounded border-border accent-primary"
+              />
+              <span>
+                {t("terms")}{" "}
+                <a
+                  href="#"
+                  className="font-medium text-primary hover:opacity-80"
+                >
+                  {t("termsLink")}
+                </a>{" "}
+                {t("and")}{" "}
+                <a
+                  href="#"
+                  className="font-medium text-primary hover:opacity-80"
+                >
+                  {t("privacyLink")}
+                </a>
+              </span>
+            </label>
+
+            {/* Error */}
+            {error && (
+              <div className="flex items-start gap-2 rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
+                <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                <span>{t(`errors.${error}`, { default: error })}</span>
+              </div>
             )}
-          </Button>
-        </form>
+
+            {/* Submit */}
+            <MagneticButton>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={pending}
+                className="group h-11 w-full rounded-xl bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 transition-shadow hover:shadow-xl hover:shadow-primary/40"
+              >
+                {pending ? "..." : t("submit")}
+                {!pending && (
+                  <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1" />
+                )}
+              </Button>
+            </MagneticButton>
+          </form>
+        </TiltCard>
 
         <p className="text-center text-sm text-muted-foreground">
           {t("haveAccount")}{" "}

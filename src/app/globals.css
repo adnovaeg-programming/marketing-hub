@@ -2,86 +2,121 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* تفعيل Dark Mode بالـ class */
+/* ═══════════════════════════════════════════════════════
+   Custom Variants
+   ═══════════════════════════════════════════════════════ */
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ============================================
-   Light Mode — Glass / Lavender (الافتراضي)
-   ============================================ */
+/* ═══════════════════════════════════════════════════════
+   LIGHT MODE — Glass / Lavender-Pink-Cyan (الافتراضي)
+   ═══════════════════════════════════════════════════════ */
+
 :root {
-  --background: #f5f3ff;
+  /* Base surfaces */
+  --background: #f3e8ff;
+  --background-gradient: linear-gradient(
+    135deg,
+    #f3e8ff 0%,
+    #e0e7ff 50%,
+    #fce7f3 100%
+  );
   --foreground: #1e1b4b;
 
+  /* Cards — White translucent glass */
   --card: rgba(255, 255, 255, 0.7);
   --card-foreground: #1e1b4b;
 
-  --popover: #ffffff;
+  --popover: rgba(255, 255, 255, 0.95);
   --popover-foreground: #1e1b4b;
 
-  --primary: #7c3aed;
+  /* Primary — Neon Purple */
+  --primary: #8b5cf6;
   --primary-foreground: #ffffff;
 
-  --secondary: #ede9fe;
+  /* Secondary */
+  --secondary: rgba(139, 92, 246, 0.08);
   --secondary-foreground: #1e1b4b;
 
-  --muted: #f5f3ff;
-  --muted-foreground: #64748b;
+  /* Muted */
+  --muted: rgba(139, 92, 246, 0.06);
+  --muted-foreground: #6b6487;
 
+  /* Accent — Cyan */
   --accent: #06b6d4;
   --accent-foreground: #ffffff;
 
-  --destructive: #dc2626;
+  /* Destructive */
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(124, 58, 237, 0.15);
-  --input: rgba(124, 58, 237, 0.08);
-  --ring: #7c3aed;
+  /* Borders & inputs */
+  --border: rgba(255, 255, 255, 0.5);
+  --input: rgba(255, 255, 255, 0.7);
+  --ring: #8b5cf6;
 
   /* Glass tokens */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.8);
-  --glass-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px rgba(139, 92, 246, 0.08);
 
   /* Glow tokens */
-  --glow-primary: rgba(124, 58, 237, 0.4);
-  --glow-accent: rgba(6, 182, 212, 0.4);
+  --glow-primary: rgba(139, 92, 246, 0.25);
+  --glow-accent: rgba(6, 182, 212, 0.25);
 
-  --chart-1: #7c3aed;
+  /* Charts */
+  --chart-1: #8b5cf6;
   --chart-2: #06b6d4;
   --chart-3: #10b981;
   --chart-4: #f59e0b;
   --chart-5: #ec4899;
 
-  --radius: 0.75rem;
+  /* Radius */
+  --radius: 1rem;
 
-  --sidebar: rgba(255, 255, 255, 0.7);
+  /* Sidebar */
+  --sidebar: rgba(255, 255, 255, 0.6);
   --sidebar-foreground: #1e1b4b;
-  --sidebar-primary: #7c3aed;
+  --sidebar-primary: #8b5cf6;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ede9fe;
+  --sidebar-accent: rgba(139, 92, 246, 0.08);
   --sidebar-accent-foreground: #1e1b4b;
-  --sidebar-border: rgba(124, 58, 237, 0.15);
-  --sidebar-ring: #7c3aed;
+  --sidebar-border: rgba(255, 255, 255, 0.5);
+  --sidebar-ring: #8b5cf6;
 }
 
-/* ============================================
-   Dark Mode — Deep Night Violet
-   ============================================ */
+/* ═══════════════════════════════════════════════════════
+   DARK MODE — Deep Night Violet
+   ═══════════════════════════════════════════════════════ */
+
 .dark {
   --background: #0b0724;
+  --background-gradient: radial-gradient(
+      ellipse at top,
+      rgba(167, 139, 250, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(34, 211, 238, 0.08),
+      transparent 55%
+    ),
+    #0b0724;
   --foreground: #f8fafc;
 
-  --card: rgba(255, 255, 255, 0.05);
+  /* Cards — Dark translucent glass */
+  --card: rgba(255, 255, 255, 0.04);
   --card-foreground: #f8fafc;
 
-  --popover: #1e1b4b;
+  --popover: rgba(30, 27, 75, 0.95);
   --popover-foreground: #f8fafc;
 
+  /* Primary */
   --primary: #a78bfa;
   --primary-foreground: #0b0724;
 
-  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary: rgba(255, 255, 255, 0.06);
   --secondary-foreground: #f8fafc;
 
   --muted: rgba(255, 255, 255, 0.05);
@@ -97,21 +132,26 @@
   --input: rgba(255, 255, 255, 0.08);
   --ring: #a78bfa;
 
+  /* Glass tokens */
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-bg-strong: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(167, 139, 250, 0.08);
 
-  --glow-primary: rgba(167, 139, 250, 0.5);
-  --glow-accent: rgba(34, 211, 238, 0.5);
+  /* Glow tokens */
+  --glow-primary: rgba(167, 139, 250, 0.45);
+  --glow-accent: rgba(34, 211, 238, 0.45);
 
+  /* Charts */
   --chart-1: #a78bfa;
   --chart-2: #22d3ee;
   --chart-3: #34d399;
   --chart-4: #fbbf24;
   --chart-5: #f472b6;
 
-  --sidebar: rgba(255, 255, 255, 0.05);
+  /* Sidebar */
+  --sidebar: rgba(255, 255, 255, 0.04);
   --sidebar-foreground: #f8fafc;
   --sidebar-primary: #a78bfa;
   --sidebar-primary-foreground: #0b0724;
@@ -121,9 +161,88 @@
   --sidebar-ring: #a78bfa;
 }
 
-/* ============================================
-   Theme Mapping
-   ============================================ */
+/* ═══════════════════════════════════════════════════════
+   WOW ANIMATIONS — Keyframes جديدة
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes aurora {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: translateX(-20%) rotate(-3deg) scale(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: translateX(20%) rotate(3deg) scale(1.1);
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes particle-burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes text-scramble {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-glow {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-200%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-8px) scaleY(1.05); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   THEME MAPPING — للـ Tailwind
+   ═══════════════════════════════════════════════════════ */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -174,17 +293,28 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Animations */
+  /* Animations — الأساسية */
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 8s ease-in-out infinite;
   --animate-glow-pulse: glow-pulse 4s ease-in-out infinite;
   --animate-shimmer: shimmer 3s linear infinite;
   --animate-fade-in-up: fade-in-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animate-scale-in: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animate-slide-in-right: slide-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  /* Animations — WOW */
+  --animate-aurora: aurora 20s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 30s linear infinite;
+  --animate-gradient-shift: gradient-shift 6s ease infinite;
+  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+  --animate-shimmer-slide: shimmer-slide 3s ease-in-out infinite;
+  --animate-wave: wave 3s ease-in-out infinite;
 }
 
-/* ============================================
-   Keyframes
-   ============================================ */
+/* ═══════════════════════════════════════════════════════
+   KEYFRAMES — الأساسية
+   ═══════════════════════════════════════════════════════ */
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-24px); }
@@ -211,26 +341,88 @@
   }
 }
 
-/* ============================================
-   Base Layer
-   ============================================ */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE LAYER
+   ═══════════════════════════════════════════════════════ */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground font-sans;
-  }
+
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground font-sans;
+    background: var(--background);
+    min-height: 100vh;
+  }
+
+  /* Gradient background — طبقة خلفية ثابتة في الوضعين */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -100;
+    background: var(--background-gradient);
+    background-attachment: fixed;
+    pointer-events: none;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--primary) 30%, transparent);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--primary) 50%, transparent);
+    background-clip: padding-box;
   }
 }
 
-/* ============================================
-   Utilities — Glass System
-   ============================================ */
+/* ═══════════════════════════════════════════════════════
+   UTILITIES — Glass System + WOW
+   ═══════════════════════════════════════════════════════ */
+
 @layer utilities {
-  /* Glass — الأساسي */
+  /* ─── Glass — الأساسي ─── */
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -239,7 +431,7 @@
     box-shadow: var(--glass-shadow);
   }
 
-  /* Glass — كثيف (للكروت الرئيسية) */
+  /* ─── Glass — كثيف (للكروت الرئيسية) ─── */
   .glass-strong {
     background: var(--glass-bg-strong);
     border: 1px solid var(--glass-border);
@@ -248,10 +440,11 @@
     box-shadow: var(--glass-shadow);
   }
 
-  /* Glass Hover — ارتفاع + توهج عند المرور */
+  /* ─── Glass Hover — ارتفاع + توهج ─── */
   .glass-hover {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .glass-hover:hover {
     background: var(--glass-bg-strong);
     border-color: color-mix(in oklch, var(--primary) 50%, transparent);
@@ -261,11 +454,12 @@
     transform: translateY(-4px);
   }
 
-  /* Glass Shimmer — لمعان متحرك */
+  /* ─── Glass Shimmer — لمعان متحرك ─── */
   .glass-shimmer {
     position: relative;
     overflow: hidden;
   }
+
   .glass-shimmer::before {
     content: "";
     position: absolute;
@@ -273,7 +467,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.25),
       transparent
     );
     transform: translateX(-100%);
@@ -281,15 +475,16 @@
     pointer-events: none;
   }
 
-  /* Glow helpers */
+  /* ─── Glow helpers ─── */
   .glow-primary {
     box-shadow: 0 0 60px var(--glow-primary);
   }
+
   .glow-accent {
     box-shadow: 0 0 60px var(--glow-accent);
   }
 
-  /* Text Gradient */
+  /* ─── Text Gradient ─── */
   .text-gradient {
     background: linear-gradient(
       to left,
@@ -302,11 +497,111 @@
     color: transparent;
   }
 
-  /* Grid background */
+  /* ─── Subtle Grid ─── */
   .subtle-grid {
     background-image:
       linear-gradient(var(--foreground) 1px, transparent 1px),
       linear-gradient(90deg, var(--foreground) 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  /* ─── Float layers (للـ 3D shapes) ─── */
+  .float-layer {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     WOW UTILITIES — جديدة
+     ═══════════════════════════════════════════════════════ */
+
+  .animate-particle-burst {
+    animation: particle-burst 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-orbit {
+    animation: orbit 20s linear infinite;
+  }
+
+  .bg-aurora {
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(139, 92, 246, 0.35) 35%,
+      rgba(6, 182, 212, 0.35) 50%,
+      rgba(236, 72, 153, 0.25) 65%,
+      transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: aurora 20s ease-in-out infinite;
+    filter: blur(60px);
+  }
+
+  .bg-gradient-animate {
+    background: linear-gradient(
+      -45deg,
+      var(--primary),
+      var(--accent),
+      #ec4899,
+      var(--primary)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .spotlight-mask {
+    mask-image: radial-gradient(
+      circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      black 0%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      black 0%,
+      transparent 80%
+    );
+  }
+
+  .glass-reflect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-reflect::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+  }
+
+  .glass-reflect:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Preserve 3D for tilt cards */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* ─── Reduced motion — احترام تفضيلات المستخدم ─── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

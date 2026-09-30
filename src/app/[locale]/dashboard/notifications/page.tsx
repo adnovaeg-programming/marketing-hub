@@ -25,7 +25,7 @@ export default async function NotificationsPage() {
   return (
     <div className="p-6 md:p-10">
       <div className="flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+        <div className="glass flex size-11 items-center justify-center rounded-xl">
           <Bell className="size-5 text-primary" />
         </div>
         <div>

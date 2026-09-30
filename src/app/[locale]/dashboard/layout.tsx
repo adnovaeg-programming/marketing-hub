@@ -7,6 +7,8 @@ import {
 } from "@/lib/workspace/active";
 import { DashboardSidebar } from "@/components/dashboard/sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
+import { CommandPalette } from "@/components/fx/command-palette";
+import { PageTransition } from "@/components/fx/page-transition";
 
 export default async function DashboardLayout({
   children,
@@ -44,8 +46,9 @@ export default async function DashboardLayout({
       />
       <main className="flex-1 min-w-0">
         <DashboardTopbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
+      <CommandPalette />
     </div>
   );
 }

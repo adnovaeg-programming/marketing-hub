@@ -21,13 +21,15 @@ export function Pricing() {
   return (
     <section id="pricing" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
+        {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm">
+          <div className="glass mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm">
             <span className="text-muted-foreground">{t("badge")}</span>
           </div>
 
-          <h2 className="mt-6 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-            {t("title")} <span className="text-gradient">{t("titleHighlight")}</span>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            {t("title")}{" "}
+            <span className="text-gradient">{t("titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">{t("description")}</p>
         </div>
@@ -62,7 +64,7 @@ export function Pricing() {
             }`}
           >
             {t("billingYearly")}
-            <span className="ms-2 rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent">
+            <span className="ms-2 rounded-full bg-accent/15 px-2 py-0.5 text-xs text-accent">
               {t("savePercent")}
             </span>
           </button>
@@ -102,7 +104,6 @@ export function Pricing() {
                         {t("popular")}
                       </span>
                     </div>
-                    {/* توهج خلفي للكارت المميز */}
                     <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-gradient-to-b from-primary/10 to-transparent" />
                   </>
                 )}
@@ -123,7 +124,9 @@ export function Pricing() {
                   size="lg"
                   variant={isPro ? "default" : "outline"}
                   className={`mt-6 w-full rounded-full ${
-                    isPro ? "shadow-lg shadow-primary/40" : ""
+                    isPro
+                      ? "bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/40"
+                      : ""
                   }`}
                 >
                   {t(`plans.${key}.cta`)}

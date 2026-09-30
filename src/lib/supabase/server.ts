@@ -26,3 +26,21 @@ export async function createClient() {
     }
   );
 }
+
+/**
+ * نسخة آمنة ترجع null لو حصل خطأ refresh token
+ * استخدمها في الصفحات اللي ممكن تكون فيها جلسة قديمة
+ */
+export async function getSafeUser() {
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+    if (error) return { user: null, supabase, error };
+    return { user, supabase, error: null };
+  } catch (error) {
+    return { user: null, supabase: null, error };
+  }
+}

@@ -244,6 +244,7 @@
   "dashboard": {
     "welcome": "Welcome",
     "subtitle": "This is your dashboard",
+    "liveSynced": "Synced",
     "placeholder": "Full content coming soon",
     "stats": {
       "clients": "Clients",
@@ -288,6 +289,13 @@
       "noContact": "No contact info",
       "emptyTitle": "No clients yet",
       "emptyDescription": "Start by adding your first client to manage their projects and content from one place.",
+      "searchPlaceholder": "Search by name, email, company...",
+      "resultsCount": "{count} results",
+      "noResults": "No results match your search",
+      "clearFilters": "Clear filters",
+      "filters": {
+        "all": "All"
+      },
       "statuses": {
         "active": "Active",
         "lead": "Lead",
@@ -341,6 +349,16 @@
       "subtitle": "You have {count} projects",
       "emptyTitle": "No projects yet",
       "emptyDescription": "Start by creating your first project and linking it to a client.",
+      "searchPlaceholder": "Search by name, description, client...",
+      "resultsCount": "{count} results",
+      "noResults": "No results match your search",
+      "clearFilters": "Clear filters",
+      "viewGrid": "Grid",
+      "viewKanban": "Kanban",
+      "kanbanEmpty": "No projects",
+      "filters": {
+        "all": "All"
+      },
       "statuses": {
         "draft": "Draft",
         "active": "Active",
@@ -396,6 +414,19 @@
       "subtitle": "You have {count} tasks",
       "emptyTitle": "No tasks yet",
       "emptyDescription": "Start by creating your first task and linking it to a project.",
+      "searchPlaceholder": "Search by task, project, client...",
+      "resultsCount": "{count} results",
+      "noResults": "No results match your search",
+      "clearFilters": "Clear filters",
+      "viewGrid": "Grid",
+      "viewKanban": "Kanban",
+      "kanbanEmpty": "No tasks",
+      "overdue": "Overdue",
+      "noDetails": "No details",
+      "filters": {
+        "all": "All",
+        "allPriorities": "All priorities"
+      },
       "statuses": {
         "todo": "To do",
         "in_progress": "In progress",
@@ -455,6 +486,16 @@
       "viewCalendar": "Calendar",
       "emptyTitle": "No content yet",
       "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
+      "searchPlaceholder": "Search by content, client, project...",
+      "resultsCount": "{count} results",
+      "noResults": "No results match your search",
+      "clearFilters": "Clear filters",
+      "viewGrid": "Grid",
+      "viewKanban": "Kanban",
+      "kanbanEmpty": "No content",
+      "filters": {
+        "all": "All"
+      },
       "types": {
         "post": "Post",
         "story": "Story",
@@ -734,6 +775,23 @@
       },
       "activity": {
         "empty": "No activity yet"
+      }
+    },
+    "commandPalette": {
+      "placeholder": "Search or run a command...",
+      "empty": "No results found",
+      "openHint": "Open command palette",
+      "sections": {
+        "navigation": "Navigation",
+        "actions": "Quick actions",
+        "preferences": "Preferences"
+      },
+      "actions": {
+        "newClient": "Add new client",
+        "newProject": "Create new project",
+        "newTask": "Add new task",
+        "newContent": "Create new content",
+        "toggleTheme": "Toggle theme (Dark/Light)"
       }
     }
   },

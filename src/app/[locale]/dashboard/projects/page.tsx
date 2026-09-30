@@ -1,10 +1,9 @@
 import { redirect } from "next/navigation";
-import { FolderKanban } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
-import { NewProjectDialog } from "@/components/projects/new-project-dialog";
-import { ProjectCard } from "@/components/projects/project-card";
+import { getActiveWorkspaceId } from "@/lib/workspace/active";
+import { ProjectsGrid } from "@/components/projects/projects-grid";
 
 export default async function ProjectsPage() {
   const supabase = await createClient();
@@ -14,15 +13,8 @@ export default async function ProjectsPage() {
 
   if (!user) redirect("/login");
 
-  const { data: member } = await supabase
-    .from("workspace_members")
-    .select("workspace_id")
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .limit(1)
-    .maybeSingle();
-
-  if (!member) redirect("/onboarding");
+  const workspaceId = await getActiveWorkspaceId();
+  if (!workspaceId) redirect("/onboarding");
 
   const { data: projects } = await supabase
     .from("projects")
@@ -30,18 +22,26 @@ export default async function ProjectsPage() {
       `
       id,
       name,
+      description,
       status,
       priority,
       budget,
       currency,
+      start_date,
       end_date,
-      client:clients (id, name)
+      created_at,
+      client:clients (id, name, company)
     `
     )
-    .eq("workspace_id", member.workspace_id)
+    .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false });
 
   const t = await getTranslations("dashboard.projects");
+
+  const normalized = (projects ?? []).map((p) => ({
+    ...p,
+    client: Array.isArray(p.client) ? p.client[0] ?? null : p.client,
+  }));
 
   return (
     <div className="p-6 md:p-10">
@@ -51,41 +51,12 @@ export default async function ProjectsPage() {
             {t("title")}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {t("subtitle", { count: projects?.length ?? 0 })}
+            {t("subtitle", { count: normalized.length })}
           </p>
         </div>
-
-        <NewProjectDialog />
       </div>
 
-      {!projects || projects.length === 0 ? (
-        <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-card/30 py-20 text-center">
-          <div className="flex size-16 items-center justify-center rounded-2xl bg-primary/10">
-            <FolderKanban className="size-8 text-primary" />
-          </div>
-          <h2 className="mt-4 text-lg font-semibold">{t("emptyTitle")}</h2>
-          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            {t("emptyDescription")}
-          </p>
-          <div className="mt-6">
-            <NewProjectDialog />
-          </div>
-        </div>
-      ) : (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={{
-                ...project,
-                client: Array.isArray(project.client)
-                  ? project.client[0] ?? null
-                  : project.client,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <ProjectsGrid projects={normalized} />
     </div>
   );
 }

@@ -50,13 +50,13 @@ export function WorkspaceSwitcher({
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="glass flex w-full items-center gap-2 rounded-xl p-2.5 text-start transition hover:bg-muted/50"
+        className="glass glass-hover flex w-full items-center gap-2.5 rounded-xl p-2.5 text-start"
       >
-        <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
+        <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/30">
           <Building2 className="size-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-xs font-medium">
+          <p className="truncate text-xs font-semibold">
             {current?.name ?? "—"}
           </p>
           <p className="truncate text-[10px] capitalize text-muted-foreground">
@@ -71,14 +71,14 @@ export function WorkspaceSwitcher({
       </button>
 
       {open && (
-        <div className="glass-strong absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-glass-border shadow-2xl">
+        <div className="glass-strong animate-scale-in absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-glass-border shadow-2xl">
           <div className="max-h-64 overflow-y-auto">
             {workspaces.map((w) => (
               <button
                 key={w.id}
                 onClick={() => handleSwitch(w.id)}
                 disabled={pending}
-                className="flex w-full items-center gap-2 px-3 py-2.5 text-start text-sm transition hover:bg-muted/50"
+                className="flex w-full items-center gap-2.5 px-3 py-2.5 text-start text-sm transition hover:bg-muted/50"
               >
                 <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Building2 className="size-3.5" />

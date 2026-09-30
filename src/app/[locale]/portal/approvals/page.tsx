@@ -25,12 +25,7 @@ export default async function PortalApprovalsPage() {
 
   const { data: items } = await supabase
     .from("content_items")
-    .select(
-      `
-      id, title, content_type, platform, scheduled_at, created_at,
-      project:projects (id, name)
-    `
-    )
+    .select(`id, title, content_type, platform, scheduled_at, created_at, project:projects (id, name)`)
     .eq("workspace_id", member.workspace_id)
     .eq("status", "client_review")
     .order("created_at", { ascending: false });

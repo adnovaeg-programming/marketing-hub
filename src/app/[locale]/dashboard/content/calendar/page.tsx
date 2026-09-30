@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
+import { getActiveWorkspaceId } from "@/lib/workspace/active";
 import { CalendarView } from "@/components/content/calendar-view";
 
 export default async function ContentCalendarPage() {
@@ -12,17 +13,9 @@ export default async function ContentCalendarPage() {
 
   if (!user) redirect("/login");
 
-  const { data: member } = await supabase
-    .from("workspace_members")
-    .select("workspace_id")
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .limit(1)
-    .maybeSingle();
+  const workspaceId = await getActiveWorkspaceId();
+  if (!workspaceId) redirect("/onboarding");
 
-  if (!member) redirect("/onboarding");
-
-  // نجيب كل المحتوى المجدول فقط (اللي عنده scheduled_at)
   const { data: items } = await supabase
     .from("content_items")
     .select(
@@ -36,7 +29,7 @@ export default async function ContentCalendarPage() {
       client:clients (id, name)
     `
     )
-    .eq("workspace_id", member.workspace_id)
+    .eq("workspace_id", workspaceId)
     .not("scheduled_at", "is", null)
     .order("scheduled_at", { ascending: true });
 

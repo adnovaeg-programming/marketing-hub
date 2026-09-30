@@ -244,6 +244,7 @@
   "dashboard": {
     "welcome": "أهلاً بيك",
     "subtitle": "دي لوحة التحكم",
+    "liveSynced": "متزامن منذ",
     "placeholder": "المحتوى الكامل جاي قريبًا",
     "stats": {
       "clients": "العملاء",
@@ -288,6 +289,13 @@
       "noContact": "مفيش بيانات تواصل",
       "emptyTitle": "مفيش عملاء لسه",
       "emptyDescription": "ابدأ بإضافة أول عميل عشان تدير مشاريعه ومحتواه من مكان واحد.",
+      "searchPlaceholder": "ابحث بالاسم، الإيميل، الشركة...",
+      "resultsCount": "{count} نتيجة",
+      "noResults": "مفيش نتائج مطابقة للبحث",
+      "clearFilters": "مسح الفلاتر",
+      "filters": {
+        "all": "الكل"
+      },
       "statuses": {
         "active": "نشط",
         "lead": "محتمل",
@@ -341,6 +349,16 @@
       "subtitle": "عندك {count} مشروع",
       "emptyTitle": "مفيش مشاريع لسه",
       "emptyDescription": "ابدأ بإنشاء أول مشروع واربطه بعميل.",
+      "searchPlaceholder": "ابحث بالاسم، الوصف، العميل...",
+      "resultsCount": "{count} نتيجة",
+      "noResults": "مفيش نتائج مطابقة للبحث",
+      "clearFilters": "مسح الفلاتر",
+      "viewGrid": "شبكة",
+      "viewKanban": "كانبان",
+      "kanbanEmpty": "مفيش مشاريع",
+      "filters": {
+        "all": "الكل"
+      },
       "statuses": {
         "draft": "مسودة",
         "active": "نشط",
@@ -396,6 +414,19 @@
       "subtitle": "عندك {count} مهمة",
       "emptyTitle": "مفيش مهام لسه",
       "emptyDescription": "ابدأ بإنشاء أول مهمة واربطها بمشروع.",
+      "searchPlaceholder": "ابحث بالمهمة، المشروع، العميل...",
+      "resultsCount": "{count} نتيجة",
+      "noResults": "مفيش نتائج مطابقة للبحث",
+      "clearFilters": "مسح الفلاتر",
+      "viewGrid": "شبكة",
+      "viewKanban": "كانبان",
+      "kanbanEmpty": "مفيش مهام",
+      "overdue": "متأخرة",
+      "noDetails": "بدون تفاصيل",
+      "filters": {
+        "all": "الكل",
+        "allPriorities": "كل الأولويات"
+      },
       "statuses": {
         "todo": "قائمة الانتظار",
         "in_progress": "جاري التنفيذ",
@@ -455,6 +486,16 @@
       "viewCalendar": "الروزنامة",
       "emptyTitle": "مفيش محتوى لسه",
       "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
+      "searchPlaceholder": "ابحث بالمحتوى، العميل، المشروع...",
+      "resultsCount": "{count} نتيجة",
+      "noResults": "مفيش نتائج مطابقة للبحث",
+      "clearFilters": "مسح الفلاتر",
+      "viewGrid": "شبكة",
+      "viewKanban": "كانبان",
+      "kanbanEmpty": "مفيش محتوى",
+      "filters": {
+        "all": "الكل"
+      },
       "types": {
         "post": "منشور",
         "story": "ستوري",
@@ -734,6 +775,23 @@
       },
       "activity": {
         "empty": "مفيش نشاط لسه"
+      }
+    },
+    "commandPalette": {
+      "placeholder": "ابحث أو نفّذ أمر...",
+      "empty": "مفيش نتائج",
+      "openHint": "افتح الأوامر السريعة",
+      "sections": {
+        "navigation": "الانتقال",
+        "actions": "إجراءات سريعة",
+        "preferences": "التفضيلات"
+      },
+      "actions": {
+        "newClient": "إضافة عميل جديد",
+        "newProject": "إنشاء مشروع جديد",
+        "newTask": "إضافة مهمة جديدة",
+        "newContent": "إنشاء محتوى جديد",
+        "toggleTheme": "تبديل الوضع (Dark/Light)"
       }
     }
   },

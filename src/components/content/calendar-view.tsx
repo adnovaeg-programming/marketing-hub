@@ -31,7 +31,7 @@ const PLATFORM_COLORS: Record<string, string> = {
 };
 
 const STATUS_COLORS: Record<string, string> = {
-  draft: "bg-muted-foreground/40",
+  draft: "bg-slate-500/80",
   internal_review: "bg-blue-500",
   client_review: "bg-amber-500",
   approved: "bg-emerald-500",
@@ -44,28 +44,14 @@ const STATUS_COLORS: Record<string, string> = {
 function getMonthDays(year: number, month: number) {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
-
-  // أيام الأسبوع: في RTL العربي، أول يوم أحد، في الإنجليزي ممكن الإثنين
-  // نخلي أول يوم في الأسبوع الأحد (شائع في المنطقة العربية)
-  const startWeekDay = firstDay.getDay(); // 0 = الأحد
-
+  const startWeekDay = firstDay.getDay();
   const days: (Date | null)[] = [];
 
-  // أيام فارغة في الأول
-  for (let i = 0; i < startWeekDay; i++) {
-    days.push(null);
-  }
-
-  // أيام الشهر
+  for (let i = 0; i < startWeekDay; i++) days.push(null);
   for (let d = 1; d <= lastDay.getDate(); d++) {
     days.push(new Date(year, month, d));
   }
-
-  // اكمل لـ 42 خلية (6 أسابيع)
-  while (days.length < 42) {
-    days.push(null);
-  }
-
+  while (days.length < 42) days.push(null);
   return days;
 }
 
@@ -80,8 +66,8 @@ function isSameDay(a: Date, b: Date) {
 export function CalendarView({ items }: { items: ContentItem[] }) {
   const t = useTranslations("dashboard.content.calendar");
   const locale = useLocale();
-
   const today = new Date();
+
   const [currentDate, setCurrentDate] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
@@ -94,13 +80,11 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
     { month: "long", year: "numeric" }
   );
 
-  // أيام الأسبوع
   const weekDays =
     locale === "ar"
       ? ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"]
       : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  // نجمّع المحتوى حسب اليوم
   const itemsByDay = useMemo(() => {
     const map = new Map<string, ContentItem[]>();
     items.forEach((item) => {
@@ -115,19 +99,6 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
 
   const days = getMonthDays(year, month);
 
-  const goToPrev = () => {
-    setCurrentDate(new Date(year, month - 1, 1));
-  };
-
-  const goToNext = () => {
-    setCurrentDate(new Date(year, month + 1, 1));
-  };
-
-  const goToToday = () => {
-    setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1));
-  };
-
-  // العدد الإجمالي للمحتوى المجدول في الشهر ده
   const monthItemCount = items.filter((item) => {
     if (!item.scheduled_at) return false;
     const d = new Date(item.scheduled_at);
@@ -139,7 +110,7 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+          <div className="glass flex size-11 items-center justify-center rounded-xl">
             <CalendarIcon className="size-5 text-primary" />
           </div>
           <div>
@@ -156,16 +127,16 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
           <Button
             variant="outline"
             size="sm"
-            onClick={goToToday}
-            className="rounded-full"
+            onClick={() => setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1))}
+            className="glass rounded-full"
           >
             {t("today")}
           </Button>
-          <div className="flex items-center rounded-full border border-border">
+          <div className="glass flex items-center rounded-full p-1">
             <Button
               variant="ghost"
               size="icon"
-              onClick={goToPrev}
+              onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
               className="size-8 rounded-full"
               aria-label={t("prev")}
             >
@@ -175,7 +146,7 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
             <Button
               variant="ghost"
               size="icon"
-              onClick={goToNext}
+              onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
               className="size-8 rounded-full"
               aria-label={t("next")}
             >
@@ -187,18 +158,19 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-        {Object.entries(STATUS_COLORS).slice(0, 5).map(([key, cls]) => (
-          <div key={key} className="flex items-center gap-1.5">
-            <span className={`size-2 rounded-full ${cls}`} />
-            <span>{t(`statuses.${key}`)}</span>
-          </div>
-        ))}
+      <div className="flex flex-wrap items-center gap-3 text-[10px] text-muted-foreground">
+        {Object.entries(STATUS_COLORS)
+          .slice(0, 6)
+          .map(([key, cls]) => (
+            <div key={key} className="flex items-center gap-1.5">
+              <span className={`size-2 rounded-full ${cls}`} />
+              <span>{t(`statuses.${key}`)}</span>
+            </div>
+          ))}
       </div>
 
-      {/* Calendar Grid */}
+      {/* Grid */}
       <div className="glass-strong overflow-hidden rounded-3xl p-2 md:p-4">
-        {/* Week Days Header */}
         <div className="grid grid-cols-7 gap-1 md:gap-2">
           {weekDays.map((day) => (
             <div
@@ -210,7 +182,6 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
           ))}
         </div>
 
-        {/* Days Grid */}
         <div className="mt-1 grid grid-cols-7 gap-1 md:gap-2">
           {days.map((day, idx) => {
             if (!day) {
@@ -225,54 +196,52 @@ export function CalendarView({ items }: { items: ContentItem[] }) {
             const key = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
             const dayItems = itemsByDay.get(key) ?? [];
             const isToday = isSameDay(day, today);
-            const dayNum = day.getDate();
 
             return (
               <div
                 key={key}
                 className={`
-                  group relative min-h-[80px] rounded-xl border p-1.5 transition md:min-h-[120px] md:p-2
+                  group relative min-h-[80px] rounded-xl border p-1.5 transition-all duration-300 md:min-h-[120px] md:p-2
                   ${
                     isToday
-                      ? "border-primary bg-primary/5"
-                      : "border-border/40 hover:border-primary/30 hover:bg-muted/30"
+                      ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
+                      : "glass border-glass-border hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
                   }
                 `}
               >
-                {/* Day Number */}
                 <div className="flex items-center justify-between">
                   <span
-                    className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold ${
+                    className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold transition ${
                       isToday
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-primary text-primary-foreground shadow-md shadow-primary/40"
                         : "text-muted-foreground"
                     }`}
                   >
-                    {dayNum}
+                    {day.getDate()}
                   </span>
                   {dayItems.length > 0 && (
-                    <span className="text-[10px] font-medium text-muted-foreground">
+                    <span className="rounded-full bg-primary/10 px-1.5 text-[10px] font-medium text-primary">
                       {dayItems.length}
                     </span>
                   )}
                 </div>
 
-                {/* Items */}
                 <div className="mt-1.5 space-y-1">
                   {dayItems.slice(0, 3).map((item) => (
                     <Link
                       key={item.id}
                       href={`/dashboard/content/${item.id}`}
-                      className={`
-                        block truncate rounded-md px-1.5 py-1 text-[10px] font-medium text-white transition hover:opacity-80 md:text-xs
-                        ${STATUS_COLORS[item.status] ?? "bg-muted-foreground/40"}
-                      `}
+                      className={`block truncate rounded-md px-1.5 py-1 text-[10px] font-medium text-white transition-all hover:scale-[1.02] hover:opacity-90 md:text-xs ${
+                        STATUS_COLORS[item.status] ?? "bg-muted-foreground/40"
+                      }`}
                       title={item.title}
                     >
                       <span className="flex items-center gap-1">
                         {item.platform && (
                           <span
-                            className={`inline-block size-1.5 shrink-0 rounded-full ${PLATFORM_COLORS[item.platform] ?? "bg-white/50"}`}
+                            className={`inline-block size-1.5 shrink-0 rounded-full ${
+                              PLATFORM_COLORS[item.platform] ?? "bg-white/50"
+                            }`}
                           />
                         )}
                         <span className="truncate">{item.title}</span>

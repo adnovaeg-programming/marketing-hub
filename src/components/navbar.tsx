@@ -28,109 +28,140 @@ export function Navbar({ user }: { user: { email: string } | null }) {
   const t = useTranslations("nav");
 
   return (
-    <header className="glass sticky top-0 z-50 w-full border-b border-glass-border">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
-        {/* الشعار */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <Sparkles className="size-6 text-primary" />
-          <span className="text-foreground">Marketing Hub</span>
-        </Link>
+    <header className="sticky top-0 z-50 w-full">
+      <div className="glass border-b border-glass-border">
+        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
+          {/* Logo */}
+          <Link href="/" className="group flex items-center gap-2.5">
+            <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30 transition-transform group-hover:scale-105">
+              <Sparkles className="size-4.5 text-white" />
+            </div>
+            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text font-bold tracking-tight text-transparent">
+              Marketing Hub
+            </span>
+          </Link>
 
-        {/* الروابط — سطح المكتب */}
-        <div className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.hash}
-              href={`#${link.hash}`}
-              className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
-            >
-              {t(link.key)}
-            </a>
-          ))}
-        </div>
-
-        {/* الإجراءات */}
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher />
-          <ThemeToggle />
-
-          {/* أزرار سطح المكتب */}
-          <div className="hidden md:flex items-center gap-2">
-            {user ? (
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard">{t("dashboard")}</Link>
-              </Button>
-            ) : (
-              <>
-                <Button variant="ghost" size="sm" asChild>
-                  <Link href="/login">{t("login")}</Link>
-                </Button>
-                <Button size="sm" className="rounded-full px-5" asChild>
-                  <Link href="/register">{t("getStarted")}</Link>
-                </Button>
-              </>
-            )}
+          {/* Desktop links */}
+          <div className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.hash}
+                href={`#${link.hash}`}
+                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+              >
+                {t(link.key)}
+              </a>
+            ))}
           </div>
 
-          {/* Hamburger Menu — الموبايل */}
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="size-5" />
-                <span className="sr-only">افتح القائمة</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-72">
-              <SheetHeader>
-                <SheetTitle className="flex items-center gap-2 text-right">
-                  <Sparkles className="size-5 text-primary" />
-                  Marketing Hub
-                </SheetTitle>
-              </SheetHeader>
+          {/* Actions */}
+          <div className="flex items-center gap-1.5">
+            <LanguageSwitcher />
+            <ThemeToggle />
 
-              <div className="mt-6 flex flex-col gap-2">
-                {/* روابط الموبايل */}
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.hash}
-                    href={`#${link.hash}`}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
+            <div className="hidden items-center gap-2 md:flex">
+              {user ? (
+                <Button variant="ghost" size="sm" asChild className="rounded-full">
+                  <Link href="/dashboard">{t("dashboard")}</Link>
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    asChild
+                    className="rounded-full"
                   >
-                    {t(link.key)}
-                  </a>
-                ))}
+                    <Link href="/login">{t("login")}</Link>
+                  </Button>
+                  <Button
+                    size="sm"
+                    asChild
+                    className="rounded-full bg-gradient-to-r from-primary to-accent px-5 shadow-lg shadow-primary/30 transition-shadow hover:shadow-xl hover:shadow-primary/40"
+                  >
+                    <Link href="/register">{t("getStarted")}</Link>
+                  </Button>
+                </>
+              )}
+            </div>
 
-                {/* أزرار الموبايل */}
-                <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
-                  {user ? (
-                    <Button
-                      variant="outline"
-                      onClick={() => setOpen(false)}
-                      asChild
-                    >
-                      <Link href="/dashboard">{t("dashboard")}</Link>
-                    </Button>
-                  ) : (
-                    <>
-                      <Button
-                        variant="outline"
+            {/* Mobile menu */}
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full md:hidden"
+                >
+                  <Menu className="size-5" />
+                  <span className="sr-only">افتح القائمة</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="glass-strong w-72 p-0">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation</SheetTitle>
+                </SheetHeader>
+
+                <div className="flex flex-col p-6">
+                  <Link
+                    href="/"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2.5"
+                  >
+                    <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+                      <Sparkles className="size-4.5 text-white" />
+                    </div>
+                    <span className="font-bold">Marketing Hub</span>
+                  </Link>
+
+                  <nav className="mt-6 flex flex-col gap-1">
+                    {NAV_LINKS.map((link) => (
+                      <a
+                        key={link.hash}
+                        href={`#${link.hash}`}
                         onClick={() => setOpen(false)}
-                        asChild
+                        className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted/50 hover:text-foreground"
                       >
-                        <Link href="/login">{t("login")}</Link>
+                        {t(link.key)}
+                      </a>
+                    ))}
+                  </nav>
+
+                  <div className="mt-6 flex flex-col gap-2 border-t border-border/40 pt-6">
+                    {user ? (
+                      <Button
+                        asChild
+                        className="rounded-xl"
+                        onClick={() => setOpen(false)}
+                      >
+                        <Link href="/dashboard">{t("dashboard")}</Link>
                       </Button>
-                      <Button onClick={() => setOpen(false)} asChild>
-                        <Link href="/register">{t("getStarted")}</Link>
-                      </Button>
-                    </>
-                  )}
+                    ) : (
+                      <>
+                        <Button
+                          variant="outline"
+                          asChild
+                          className="rounded-xl"
+                          onClick={() => setOpen(false)}
+                        >
+                          <Link href="/login">{t("login")}</Link>
+                        </Button>
+                        <Button
+                          asChild
+                          className="rounded-xl bg-gradient-to-r from-primary to-accent"
+                          onClick={() => setOpen(false)}
+                        >
+                          <Link href="/register">{t("getStarted")}</Link>
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

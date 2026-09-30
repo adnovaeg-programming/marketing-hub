@@ -12,90 +12,78 @@ import {
 import { getTranslations } from "next-intl/server";
 
 import { createClient } from "@/lib/supabase/server";
+import { getActiveWorkspaceId } from "@/lib/workspace/active";
+import { CountUp } from "@/components/fx/count-up";
+import { TiltCard } from "@/components/fx/tilt-card";
 
-export default async function DashboardPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-
+export default async function DashboardPage() {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect(`/${locale}/login`);
+  if (!user) redirect("/login");
 
-  // نتحقق من العضوية
+  const activeWorkspaceId = await getActiveWorkspaceId();
+  if (!activeWorkspaceId) redirect("/onboarding");
+
   const { data: member } = await supabase
     .from("workspace_members")
     .select("workspace_id, role")
     .eq("user_id", user.id)
+    .eq("workspace_id", activeWorkspaceId)
     .eq("status", "active")
-    .limit(1)
     .maybeSingle();
 
-  if (!member) redirect(`/${locale}/onboarding`);
+  if (!member) redirect("/onboarding");
 
-  const workspaceId = member.workspace_id;
+  const workspaceId = activeWorkspaceId;
 
-  // نجيب الـ profile
   const { data: profile } = await supabase
     .from("profiles")
     .select("first_name, last_name, account_type")
     .eq("id", user.id)
     .single();
 
-  // نجيب الـ workspace
   const { data: workspace } = await supabase
     .from("workspaces")
     .select("name, slug, organization_id")
     .eq("id", workspaceId)
     .single();
 
-  // نجيب الـ organization
   const { data: organization } = await supabase
     .from("organizations")
     .select("name, type")
     .eq("id", workspace?.organization_id ?? "")
     .maybeSingle();
 
-  // ═══════════════ الإحصائيات الحقيقية ═══════════════
-
-  // 1. عدد الأعضاء
   const { count: membersCount } = await supabase
     .from("workspace_members")
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId)
     .eq("status", "active");
 
-  // 2. عدد العملاء
   const { count: clientsCount } = await supabase
     .from("clients")
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId);
 
-  // 3. عدد المشاريع النشطة
   const { count: activeProjectsCount } = await supabase
     .from("projects")
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId)
     .eq("status", "active");
 
-  // 4. إجمالي المشاريع
   const { count: totalProjectsCount } = await supabase
     .from("projects")
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId);
 
-  // 5. عدد المحتوى ✅ جديد
   const { count: contentCount } = await supabase
     .from("content_items")
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId);
 
-  // 6. أحدث العملاء
   const { data: recentClients } = await supabase
     .from("clients")
     .select("id, name, company, status, created_at")
@@ -103,7 +91,6 @@ export default async function DashboardPage({
     .order("created_at", { ascending: false })
     .limit(3);
 
-  // 7. أحدث المشاريع
   const { data: recentProjects } = await supabase
     .from("projects")
     .select(
@@ -129,16 +116,16 @@ export default async function DashboardPage({
     {
       icon: Users,
       label: t("stats.clients"),
-      value: String(clientsCount ?? 0),
-      href: `/${locale}/dashboard/clients`,
+      value: clientsCount ?? 0,
+      href: "/dashboard/clients",
       color: "text-primary",
       bg: "from-primary/20 to-accent/20",
     },
     {
       icon: FolderKanban,
       label: t("stats.activeProjects"),
-      value: String(activeProjectsCount ?? 0),
-      href: `/${locale}/dashboard/projects`,
+      value: activeProjectsCount ?? 0,
+      href: "/dashboard/projects",
       color: "text-accent",
       bg: "from-accent/20 to-primary/20",
       subtext: t("stats.totalProjects", { count: totalProjectsCount ?? 0 }),
@@ -146,16 +133,16 @@ export default async function DashboardPage({
     {
       icon: FileText,
       label: t("stats.content"),
-      value: String(contentCount ?? 0), // ✅ بقى حقيقي
-      href: `/${locale}/dashboard/content`,
+      value: contentCount ?? 0,
+      href: "/dashboard/content",
       color: "text-primary",
       bg: "from-primary/20 to-accent/20",
     },
     {
       icon: TrendingUp,
       label: t("stats.team"),
-      value: String(membersCount ?? 1),
-      href: `/${locale}/dashboard/settings`,
+      value: membersCount ?? 1,
+      href: "/dashboard/settings",
       color: "text-accent",
       bg: "from-accent/20 to-primary/20",
     },
@@ -166,7 +153,7 @@ export default async function DashboardPage({
       {/* Header */}
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary">
             <Sparkles className="size-3" />
             {workspace?.name ?? "Workspace"}
           </div>
@@ -179,56 +166,48 @@ export default async function DashboardPage({
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Stats — Tilt Cards + Count-up */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
-          const isClickable = !!stat.href;
-
-          const inner = (
-            <div className="glass glass-hover rounded-2xl p-5 transition-transform hover:-translate-y-0.5">
-              <div className="flex items-start justify-between">
-                <div
-                  className={`inline-flex size-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.bg}`}
-                >
-                  <Icon className={`size-5 ${stat.color}`} />
+          return (
+            <TiltCard key={stat.label} maxTilt={6}>
+              <Link
+                href={stat.href}
+                className="glass glass-reflect group block rounded-2xl p-5 transition-shadow hover:shadow-xl hover:shadow-primary/10"
+              >
+                <div className="flex items-start justify-between">
+                  <div
+                    className={`inline-flex size-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.bg}`}
+                  >
+                    <Icon className={`size-5 ${stat.color}`} />
+                  </div>
+                  <ArrowLeft className="size-4 text-muted-foreground transition-transform group-hover:-translate-x-1 rtl:rotate-180 rtl:group-hover:translate-x-1" />
                 </div>
-                {isClickable && (
-                  <ArrowLeft className="size-4 text-muted-foreground transition-transform group-hover:-translate-x-1 rtl:rotate-180" />
-                )}
-              </div>
-              <p className="mt-4 text-xs font-medium text-muted-foreground">
-                {stat.label}
-              </p>
-              <p className="mt-1 text-2xl font-bold">{stat.value}</p>
-              {stat.subtext && (
-                <p className="mt-1 text-[11px] text-muted-foreground">
-                  {stat.subtext}
+                <p className="mt-4 text-xs font-medium text-muted-foreground">
+                  {stat.label}
                 </p>
-              )}
-            </div>
-          );
-
-          return isClickable ? (
-            <Link key={stat.label} href={stat.href} className="group block">
-              {inner}
-            </Link>
-          ) : (
-            <div key={stat.label}>{inner}</div>
+                <p className="mt-1 text-3xl font-bold tracking-tight">
+                  <CountUp end={stat.value} duration={1200} />
+                </p>
+                {stat.subtext && (
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    {stat.subtext}
+                  </p>
+                )}
+              </Link>
+            </TiltCard>
           );
         })}
       </div>
 
-      {/* Recent Activity Grid */}
+      {/* Recent */}
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        {/* Recent Clients */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">
-              {t("sections.recentClients")}
-            </h2>
+            <h2 className="text-lg font-semibold">{t("sections.recentClients")}</h2>
             <Link
-              href={`/${locale}/dashboard/clients`}
+              href="/dashboard/clients"
               className="inline-flex items-center gap-1 text-xs font-medium text-primary transition hover:opacity-80"
             >
               {t("sections.viewAll")}
@@ -241,16 +220,14 @@ export default async function DashboardPage({
               {recentClients.map((client) => (
                 <Link
                   key={client.id}
-                  href={`/${locale}/dashboard/clients/${client.id}`}
-                  className="glass glass-hover flex items-center gap-3 rounded-xl p-3 transition-transform hover:-translate-y-0.5"
+                  href={`/dashboard/clients/${client.id}`}
+                  className="glass glass-hover flex items-center gap-3 rounded-xl p-3"
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-xs font-bold text-white">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-xs font-bold text-white shadow-md shadow-primary/30">
                     {client.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
-                      {client.name}
-                    </p>
+                    <p className="truncate text-sm font-medium">{client.name}</p>
                     {client.company && (
                       <p className="truncate text-xs text-muted-foreground">
                         {client.company}
@@ -268,8 +245,8 @@ export default async function DashboardPage({
                 {t("sections.noClients")}
               </p>
               <Link
-                href={`/${locale}/dashboard/clients`}
-                className="mt-3 text-xs font-medium text-primary transition hover:opacity-80"
+                href="/dashboard/clients"
+                className="mt-3 text-xs font-medium text-primary hover:opacity-80"
               >
                 {t("sections.addFirst")}
               </Link>
@@ -277,14 +254,13 @@ export default async function DashboardPage({
           )}
         </div>
 
-        {/* Recent Projects */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">
               {t("sections.recentProjects")}
             </h2>
             <Link
-              href={`/${locale}/dashboard/projects`}
+              href="/dashboard/projects"
               className="inline-flex items-center gap-1 text-xs font-medium text-primary transition hover:opacity-80"
             >
               {t("sections.viewAll")}
@@ -301,10 +277,10 @@ export default async function DashboardPage({
                 return (
                   <Link
                     key={project.id}
-                    href={`/${locale}/dashboard/projects/${project.id}`}
-                    className="glass glass-hover flex items-center gap-3 rounded-xl p-3 transition-transform hover:-translate-y-0.5"
+                    href={`/dashboard/projects/${project.id}`}
+                    className="glass glass-hover flex items-center gap-3 rounded-xl p-3"
                   >
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-primary text-white">
+                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-primary text-white shadow-md shadow-accent/30">
                       <FolderKanban className="size-4" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -331,8 +307,8 @@ export default async function DashboardPage({
                 {t("sections.noProjects")}
               </p>
               <Link
-                href={`/${locale}/dashboard/projects`}
-                className="mt-3 text-xs font-medium text-primary transition hover:opacity-80"
+                href="/dashboard/projects"
+                className="mt-3 text-xs font-medium text-primary hover:opacity-80"
               >
                 {t("sections.addFirstProject")}
               </Link>

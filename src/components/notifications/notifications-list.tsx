@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Bell, Check, Trash2, Loader2 } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Bell, Check, Trash2, Loader2, CheckCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { useRouter } from "@/i18n/navigation";
@@ -21,10 +21,18 @@ type Notification = {
   created_at: string;
 };
 
-function formatDate(dateStr: string, locale = "ar"): string {
-  return new Date(dateStr).toLocaleDateString(
+type Filter = "all" | "unread" | "read";
+
+function formatDate(dateStr: string, locale: string) {
+  return new Date(dateStr).toLocaleString(
     locale === "ar" ? "ar-EG" : "en-US",
-    { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }
+    {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }
   );
 }
 
@@ -36,8 +44,15 @@ export function NotificationsList({
   const t = useTranslations("dashboard.notifications");
   const router = useRouter();
   const [notifications, setNotifications] = useState(initial);
+  const [filter, setFilter] = useState<Filter>("all");
   const [pending, setPending] = useState<string | null>(null);
   const [markingAll, setMarkingAll] = useState(false);
+
+  const filtered = useMemo(() => {
+    if (filter === "unread") return notifications.filter((n) => !n.read_at);
+    if (filter === "read") return notifications.filter((n) => n.read_at);
+    return notifications;
+  }, [notifications, filter]);
 
   const unreadCount = notifications.filter((n) => !n.read_at).length;
 
@@ -50,9 +65,7 @@ export function NotificationsList({
       );
       await markNotificationReadAction(n.id);
     }
-    if (n.action_url) {
-      window.location.href = n.action_url;
-    }
+    if (n.action_url) window.location.href = n.action_url;
   };
 
   const handleDelete = async (e: React.MouseEvent, id: string) => {
@@ -75,22 +88,44 @@ export function NotificationsList({
     router.refresh();
   };
 
-  if (notifications.length === 0) {
-    return (
-      <div className="glass flex flex-col items-center justify-center rounded-3xl py-20 text-center">
-        <Bell className="size-12 text-muted-foreground/40" />
-        <p className="mt-4 text-sm text-muted-foreground">{t("empty")}</p>
-      </div>
-    );
-  }
+  const filters: { key: Filter; label: string; count?: number }[] = [
+    { key: "all", label: t("filters.all"), count: notifications.length },
+    { key: "unread", label: t("filters.unread"), count: unreadCount },
+    { key: "read", label: t("filters.read") },
+  ];
 
   return (
     <div className="space-y-4">
-      {unreadCount > 0 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
-            {t("unread", { count: unreadCount })}
-          </p>
+      {/* Toolbar */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="glass flex items-center gap-1 rounded-xl p-1">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                filter === f.key
+                  ? "bg-gradient-to-r from-primary to-accent text-white shadow-md shadow-primary/30"
+                  : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+              }`}
+            >
+              {f.label}
+              {f.count !== undefined && f.count > 0 && (
+                <span
+                  className={`rounded-full px-1.5 py-0.5 text-[9px] font-bold ${
+                    filter === f.key
+                      ? "bg-white/20"
+                      : "bg-primary/10 text-primary"
+                  }`}
+                >
+                  {f.count}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {unreadCount > 0 && (
           <button
             onClick={handleMarkAllRead}
             disabled={markingAll}
@@ -99,63 +134,72 @@ export function NotificationsList({
             {markingAll ? (
               <Loader2 className="size-3.5 animate-spin" />
             ) : (
-              <Check className="size-3.5" />
+              <CheckCheck className="size-3.5" />
             )}
             {t("markAllRead")}
           </button>
+        )}
+      </div>
+
+      {/* List */}
+      {filtered.length === 0 ? (
+        <div className="glass flex flex-col items-center justify-center rounded-3xl py-20 text-center">
+          <Bell className="size-12 text-muted-foreground/40" />
+          <p className="mt-4 text-sm text-muted-foreground">{t("empty")}</p>
         </div>
-      )}
-
-      <div className="space-y-2">
-        {notifications.map((n) => (
-          <div
-            key={n.id}
-            onClick={() => handleOpen(n)}
-            className={`glass glass-hover group relative flex cursor-pointer items-start gap-3 rounded-2xl p-4 transition-transform hover:-translate-y-0.5 ${
-              !n.read_at ? "border-s-4 border-primary" : ""
-            }`}
-          >
+      ) : (
+        <div className="space-y-2">
+          {filtered.map((n) => (
             <div
-              className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${
-                !n.read_at
-                  ? "bg-primary/10 text-primary"
-                  : "bg-muted text-muted-foreground"
-              }`}
+              key={n.id}
+              onClick={() => handleOpen(n)}
+              className={`
+                glass glass-reflect group relative flex cursor-pointer items-start gap-3 overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10
+                ${!n.read_at ? "border-s-4 border-primary" : ""}
+              `}
             >
-              <Bell className="size-4" />
-            </div>
+              <div
+                className={`flex size-10 shrink-0 items-center justify-center rounded-xl transition-all ${
+                  !n.read_at
+                    ? "bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/30"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                <Bell className="size-4" />
+              </div>
 
-            <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-sm font-semibold">{n.title}</p>
-                  {n.message && (
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {n.message}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold">{n.title}</p>
+                    {n.message && (
+                      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                        {n.message}
+                      </p>
+                    )}
+                    <p className="mt-2 text-[10px] text-muted-foreground/70">
+                      {formatDate(n.created_at, "ar")}
                     </p>
-                  )}
-                  <p className="mt-2 text-[10px] text-muted-foreground/70">
-                    {formatDate(n.created_at)}
-                  </p>
-                </div>
+                  </div>
 
-                <button
-                  onClick={(e) => handleDelete(e, n.id)}
-                  disabled={pending === n.id}
-                  className="shrink-0 text-muted-foreground opacity-0 transition group-hover:opacity-100 hover:text-destructive"
-                  aria-label="delete"
-                >
-                  {pending === n.id ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <Trash2 className="size-4" />
-                  )}
-                </button>
+                  <button
+                    onClick={(e) => handleDelete(e, n.id)}
+                    disabled={pending === n.id}
+                    className="shrink-0 text-muted-foreground opacity-0 transition group-hover:opacity-100 hover:text-destructive"
+                    aria-label="delete"
+                  >
+                    {pending === n.id ? (
+                      <Loader2 className="size-4 animate-spin" />
+                    ) : (
+                      <Trash2 className="size-4" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
