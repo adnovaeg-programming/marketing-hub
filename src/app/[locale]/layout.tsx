@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
@@ -13,7 +13,16 @@ import { CookieBanner } from "@/components/legal/cookie-banner";
 import { Toaster } from "@/components/ui/sonner";
 import { createClient } from "@/lib/supabase/server";
 
+// ✅ Import messages directly
+import arMessages from "../../../messages/ar.json";
+import enMessages from "../../../messages/en.json";
+
 import "../globals.css";
+
+const ALL_MESSAGES = {
+  ar: arMessages,
+  en: enMessages,
+} as const;
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -49,11 +58,11 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // ✅ مهم جدًا: setRequestLocale قبل getMessages
   setRequestLocale(locale);
 
-  // ✅ getMessages بدون args
-  const messages = await getMessages();
+  // ✅ ناخد الرسائل من الـ params مباشرة — 100% مضمون
+  const messages = ALL_MESSAGES[locale as keyof typeof ALL_MESSAGES];
+
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   const supabase = await createClient();
