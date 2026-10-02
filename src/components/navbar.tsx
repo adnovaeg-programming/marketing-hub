@@ -17,15 +17,18 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 const NAV_LINKS = [
-  { hash: "features", key: "features" },
-  { hash: "pricing", key: "pricing" },
-  { hash: "marketplace", key: "marketplace" },
-  { hash: "how-it-works", key: "howItWorks" },
+  { href: "/#features", key: "features" },
+  { href: "/#pricing", key: "pricing" },
+  { href: "/marketplace", key: "marketplace" },
+  { href: "/#how-it-works", key: "howItWorks" },
 ] as const;
 
 export function Navbar({ user }: { user: { email: string } | null }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("nav");
+
+  const linkClass =
+    "relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground";
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -37,21 +40,23 @@ export function Navbar({ user }: { user: { email: string } | null }) {
               <Sparkles className="size-4.5 text-white" />
             </div>
             <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text font-bold tracking-tight text-transparent">
-              Marketing Hub
+              One Post
             </span>
           </Link>
 
           {/* Desktop links */}
           <div className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.hash}
-                href={`#${link.hash}`}
-                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
-              >
-                {t(link.key)}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href.startsWith("/") && !link.href.includes("#") ? (
+                <Link key={link.key} href={link.href} className={linkClass}>
+                  {t(link.key)}
+                </Link>
+              ) : (
+                <a key={link.key} href={link.href} className={linkClass}>
+                  {t(link.key)}
+                </a>
+              )
+            )}
           </div>
 
           {/* Actions */}
@@ -61,7 +66,12 @@ export function Navbar({ user }: { user: { email: string } | null }) {
 
             <div className="hidden items-center gap-2 md:flex">
               {user ? (
-                <Button variant="ghost" size="sm" asChild className="rounded-full">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="rounded-full"
+                >
                   <Link href="/dashboard">{t("dashboard")}</Link>
                 </Button>
               ) : (
@@ -111,20 +121,31 @@ export function Navbar({ user }: { user: { email: string } | null }) {
                     <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
                       <Sparkles className="size-4.5 text-white" />
                     </div>
-                    <span className="font-bold">Marketing Hub</span>
+                    <span className="font-bold">One Post</span>
                   </Link>
 
                   <nav className="mt-6 flex flex-col gap-1">
-                    {NAV_LINKS.map((link) => (
-                      <a
-                        key={link.hash}
-                        href={`#${link.hash}`}
-                        onClick={() => setOpen(false)}
-                        className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted/50 hover:text-foreground"
-                      >
-                        {t(link.key)}
-                      </a>
-                    ))}
+                    {NAV_LINKS.map((link) =>
+                      link.href.startsWith("/") && !link.href.includes("#") ? (
+                        <Link
+                          key={link.key}
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted/50 hover:text-foreground"
+                        >
+                          {t(link.key)}
+                        </Link>
+                      ) : (
+                        <a
+                          key={link.key}
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted/50 hover:text-foreground"
+                        >
+                          {t(link.key)}
+                        </a>
+                      )
+                    )}
                   </nav>
 
                   <div className="mt-6 flex flex-col gap-2 border-t border-border/40 pt-6">

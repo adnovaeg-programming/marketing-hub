@@ -6,6 +6,7 @@ import {
   Building2,
   ScrollText,
   Settings,
+  Wallet,   // ← ضيف ده
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -15,6 +16,7 @@ const NAV = [
   { href: "/admin", icon: LayoutDashboard, key: "overview" },
   { href: "/admin/users", icon: Users, key: "users" },
   { href: "/admin/workspaces", icon: Building2, key: "workspaces" },
+  { href: "/admin/payouts", icon: Wallet, key: "payouts" }, // ← ضيف ده
   { href: "/admin/audit", icon: ScrollText, key: "audit" },
   { href: "/admin/settings", icon: Settings, key: "settings" },
 ] as const;
