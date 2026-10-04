@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -11,9 +11,9 @@ import { BackgroundLayer } from "@/components/background-layer";
 import { CursorSpotlight } from "@/components/fx/cursor-spotlight";
 import { CookieBanner } from "@/components/legal/cookie-banner";
 import { Toaster } from "@/components/ui/sonner";
+import { SkipLink } from "@/components/a11y/skip-link";
 import { createClient } from "@/lib/supabase/server";
-
-// ✅ Import messages directly
+import { buildMetadata, BASE_METADATA } from "@/lib/seo/metadata";
 import arMessages from "../../../messages/ar.json";
 import enMessages from "../../../messages/en.json";
 
@@ -35,11 +35,39 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Marketing Hub | منصة موحدة لإدارة التسويق",
-  description:
-    "منصة مركزية لإدارة التسويق، المحتوى، والفريق، والعملاء — كل حاجة في مكان واحد.",
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3e8ff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0724" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const safeLocale = locale === "en" ? "en" : "ar";
+
+  return {
+    ...buildMetadata({ locale: safeLocale }),
+    title: {
+      default: `${BASE_METADATA.name} | منصة موحدة لإدارة التسويق`,
+      template: `%s | ${BASE_METADATA.name}`,
+    },
+    applicationName: BASE_METADATA.name,
+    authors: [{ name: BASE_METADATA.name }],
+    creator: BASE_METADATA.name,
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: [{ url: "/favicon.ico" }],
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -60,9 +88,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  // ✅ ناخد الرسائل من الـ params مباشرة — 100% مضمون
   const messages = ALL_MESSAGES[locale as keyof typeof ALL_MESSAGES];
-
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   const supabase = await createClient();
@@ -80,6 +106,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <CursorSpotlight />
+
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -87,11 +114,15 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SkipLink />
+
             <BackgroundLayer />
-            <ConditionalNavbar
-              user={user ? { email: user.email ?? "" } : null}
-            />
-            {children}
+            <ConditionalNavbar user={user ? { email: user.email ?? "" } : null} />
+
+            <div id="main-content" className="flex flex-1 flex-col">
+              {children}
+            </div>
+
             <CookieBanner />
             <Toaster />
           </ThemeProvider>

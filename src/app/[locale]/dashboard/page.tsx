@@ -15,6 +15,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getActiveWorkspaceId } from "@/lib/workspace/active";
 import { CountUp } from "@/components/fx/count-up";
 import { TiltCard } from "@/components/fx/tilt-card";
+import { UpcomingPostsWidget } from "@/components/dashboard/upcoming-posts-widget";
 
 export default async function DashboardPage({
   params,
@@ -32,7 +33,7 @@ export default async function DashboardPage({
 
   const activeWorkspaceId = await getActiveWorkspaceId();
 
-  // ✅ بدل redirect، نعرض رسالة أنيقة مع زر
+  // لو مفيش workspace → نعرض رسالة + زر (بدون redirect loop)
   if (!activeWorkspaceId) {
     const t2 = await getTranslations("dashboard.noWorkspace");
 
@@ -71,6 +72,8 @@ export default async function DashboardPage({
 
   const workspaceId = activeWorkspaceId;
 
+  /* ═══════════ Profile + Workspace + Org ═══════════ */
+
   const { data: profile } = await supabase
     .from("profiles")
     .select("first_name, last_name, account_type")
@@ -88,6 +91,8 @@ export default async function DashboardPage({
     .select("name, type")
     .eq("id", workspace?.organization_id ?? "")
     .maybeSingle();
+
+  /* ═══════════ Counts ═══════════ */
 
   const { count: membersCount } = await supabase
     .from("workspace_members")
@@ -116,6 +121,8 @@ export default async function DashboardPage({
     .select("*", { count: "exact", head: true })
     .eq("workspace_id", workspaceId);
 
+  /* ═══════════ Recent Items ═══════════ */
+
   const { data: recentClients } = await supabase
     .from("clients")
     .select("id, name, company, status, created_at")
@@ -125,10 +132,39 @@ export default async function DashboardPage({
 
   const { data: recentProjects } = await supabase
     .from("projects")
-    .select(`id, name, status, created_at, client:clients (name)`)
+    .select(
+      `
+      id, name, status, created_at,
+      client:clients (name)
+    `
+    )
     .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false })
     .limit(3);
+
+  /* ═══════════ Upcoming Posts ═══════════ */
+
+  const { data: upcomingPosts } = await supabase
+    .from("scheduled_posts")
+    .select(
+      `
+      id, platform, scheduled_for, status,
+      content:content_items (id, title),
+      account:social_accounts (id, account_name)
+    `
+    )
+    .eq("workspace_id", workspaceId)
+    .in("status", ["pending", "processing"])
+    .order("scheduled_for", { ascending: true })
+    .limit(5);
+
+  const normalizedUpcomingPosts = (upcomingPosts ?? []).map((p) => ({
+    ...p,
+    content: Array.isArray(p.content) ? p.content[0] ?? null : p.content,
+    account: Array.isArray(p.account) ? p.account[0] ?? null : p.account,
+  }));
+
+  /* ═══════════ i18n ═══════════ */
 
   const t = await getTranslations("dashboard");
 
@@ -174,6 +210,7 @@ export default async function DashboardPage({
 
   return (
     <div className="p-6 md:p-10">
+      {/* Header */}
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary">
@@ -189,6 +226,7 @@ export default async function DashboardPage({
         </div>
       </div>
 
+      {/* Stats */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
@@ -223,7 +261,9 @@ export default async function DashboardPage({
         })}
       </div>
 
+      {/* Recent Items */}
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        {/* Recent Clients */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">
@@ -250,9 +290,7 @@ export default async function DashboardPage({
                     {client.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
-                      {client.name}
-                    </p>
+                    <p className="truncate text-sm font-medium">{client.name}</p>
                     {client.company && (
                       <p className="truncate text-xs text-muted-foreground">
                         {client.company}
@@ -279,6 +317,7 @@ export default async function DashboardPage({
           )}
         </div>
 
+        {/* Recent Projects */}
         <div className="glass-strong rounded-3xl p-6 md:p-8">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">
@@ -340,6 +379,11 @@ export default async function DashboardPage({
             </div>
           )}
         </div>
+      </div>
+
+      {/* Upcoming Posts */}
+      <div className="mt-6">
+        <UpcomingPostsWidget posts={normalizedUpcomingPosts} />
       </div>
     </div>
   );

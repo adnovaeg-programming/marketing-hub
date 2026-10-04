@@ -237,12 +237,16 @@
     "noWorkspace": { "title": "You need a workspace", "description": "Let's set up your workspace in a quick step.", "cta": "Start setup" },
     "bulk": { "select": "Select", "exit": "Exit selection", "selectAll": "Select all", "clearAll": "Clear all", "delete": "Delete selected", "confirmDelete": "Delete {count} items?" },
     "nav": {
-      "overview": "Overview", "clients": "Clients", "projects": "Projects", "tasks": "Tasks",
-      "content": "Content", "marketplace": "My Services", "proposals": "Proposals", "contracts": "Contracts",
-      "disputes": "Disputes", "messages": "Messages", "notifications": "Notifications",
-      "analytics": "Analytics", "wallet": "Wallet", "profile": "Profile",
+      "overview": "Overview", "ai": "AI", "clients": "Clients", "projects": "Projects",
+      "tasks": "Tasks", "content": "Content", "social": "Social", "marketplace": "My Services",
+      "proposals": "Proposals", "contracts": "Contracts", "messages": "Messages",
+      "disputes": "Disputes", "notifications": "Notifications", "analytics": "Analytics",
+      "wallet": "Wallet", "apiKeys": "API", "webhooks": "Webhooks",
+      "integrations": "Integrations", "profile": "Profile",
       "settings": "Settings", "logout": "Sign out", "openMenu": "Open menu"
     },
+    "upcomingPosts": { "title": "Upcoming Posts", "empty": "No scheduled posts", "viewAll": "View all", "goToScheduled": "Go to scheduled posts", "today": "Today", "soon": "Soon" },
+    "ai": { "title": "AI Assistant", "subtitle": "Ask about content, ads, or strategy", "newConversation": "New conversation", "history": "History", "noHistory": "No previous conversations", "welcome": "Hi! I'm your AI assistant", "welcomeDescription": "Ask me anything about marketing — I'll help you write content, plan campaigns, or develop your strategy.", "startConversation": "Start conversation", "typeMessage": "Type your question...", "confirmDelete": "Are you sure you want to delete this conversation?", "modes": { "general": "General", "content": "Content", "ads": "Ads", "strategy": "Strategy" } },
     "clients": {
       "title": "Clients", "subtitle": "You have {count} clients in this workspace",
       "searchPlaceholder": "Search by name, email, company...", "resultsCount": "{count} results",
@@ -252,80 +256,33 @@
       "emptyDescription": "Start by adding your first client to manage their projects and content from one place.",
       "filters": { "all": "All" },
       "statuses": { "active": "Active", "lead": "Lead", "archived": "Archived" },
-      "form": {
-        "trigger": "Add client", "title": "New client", "description": "Add the new client's details — you can edit later",
-        "name": "Client name", "namePlaceholder": "e.g., John Doe",
-        "email": "Email", "emailPlaceholder": "client@example.com",
-        "phone": "Phone", "phonePlaceholder": "+20 100 000 0000",
-        "company": "Company", "companyPlaceholder": "e.g., Al-Noor Co.",
-        "industry": "Industry", "industryPlaceholder": "e.g., E-commerce",
-        "website": "Website", "websitePlaceholder": "https://example.com",
-        "status": "Status", "statusActive": "Active", "statusLead": "Lead",
-        "notes": "Notes", "notesPlaceholder": "Any additional details...",
-        "cancel": "Cancel", "submit": "Add client",
-        "success": "Success", "successDescription": "Client added",
-        "errors": { "generic": "Something went wrong, try again" }
-      }
+      "form": { "trigger": "Add client", "title": "New client", "description": "Add the new client's details — you can edit later", "name": "Client name", "namePlaceholder": "e.g., John Doe", "email": "Email", "emailPlaceholder": "client@example.com", "phone": "Phone", "phonePlaceholder": "+20 100 000 0000", "company": "Company", "companyPlaceholder": "e.g., Al-Noor Co.", "industry": "Industry", "industryPlaceholder": "e.g., E-commerce", "website": "Website", "websitePlaceholder": "https://example.com", "status": "Status", "statusActive": "Active", "statusLead": "Lead", "notes": "Notes", "notesPlaceholder": "Any additional details...", "cancel": "Cancel", "submit": "Add client", "success": "Success", "successDescription": "Client added", "errors": { "generic": "Something went wrong, try again" } }
     },
-    "clientDetails": {
-      "back": "Back to clients", "email": "Email", "phone": "Phone", "company": "Company",
-      "website": "Website", "notes": "Notes", "comingSoon": "Projects and content details coming soon",
-      "stats": { "projects": "Projects", "content": "Content" },
-      "statuses": { "active": "Active", "lead": "Lead", "archived": "Archived" }
-    },
+    "clientDetails": { "back": "Back to clients", "email": "Email", "phone": "Phone", "company": "Company", "website": "Website", "notes": "Notes", "comingSoon": "Projects and content details coming soon", "stats": { "projects": "Projects", "content": "Content" }, "statuses": { "active": "Active", "lead": "Lead", "archived": "Archived" } },
     "projects": {
       "title": "Projects", "subtitle": "You have {count} projects",
       "searchPlaceholder": "Search by name, description, client...", "resultsCount": "{count} results",
       "noResults": "No results match your search", "clearFilters": "Clear filters",
       "viewGrid": "Grid", "viewKanban": "Kanban", "kanbanEmpty": "No projects",
-      "emptyTitle": "No projects yet",
-      "emptyDescription": "Start by creating your first project and linking it to a client.",
+      "emptyTitle": "No projects yet", "emptyDescription": "Start by creating your first project and linking it to a client.",
       "filters": { "all": "All" },
       "statuses": { "draft": "Draft", "active": "Active", "on_hold": "On hold", "completed": "Completed", "cancelled": "Cancelled" },
       "priorities": { "low": "Low", "medium": "Medium", "high": "High", "urgent": "Urgent" },
-      "form": {
-        "trigger": "New project", "title": "Create project", "description": "Fill in the project details — you can edit later",
-        "name": "Project name", "namePlaceholder": "e.g., Ramadan campaign 2026",
-        "client": "Client", "noClient": "No client",
-        "status": "Status", "priority": "Priority",
-        "startDate": "Start date", "endDate": "End date",
-        "budget": "Budget", "currency": "Currency",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Project details...",
-        "cancel": "Cancel", "submit": "Create project",
-        "success": "Success", "successDescription": "Project created",
-        "errors": { "generic": "Something went wrong, try again" }
-      }
+      "form": { "trigger": "New project", "title": "Create project", "description": "Fill in the project details — you can edit later", "name": "Project name", "namePlaceholder": "e.g., Ramadan campaign 2026", "client": "Client", "noClient": "No client", "status": "Status", "priority": "Priority", "startDate": "Start date", "endDate": "End date", "budget": "Budget", "currency": "Currency", "descriptionLabel": "Description", "descriptionPlaceholder": "Project details...", "cancel": "Cancel", "submit": "Create project", "success": "Success", "successDescription": "Project created", "errors": { "generic": "Something went wrong, try again" } }
     },
-    "projectDetails": {
-      "back": "Back to projects", "client": "Client", "budget": "Budget",
-      "startDate": "Start date", "endDate": "End date", "tasks": "Tasks",
-      "noTasks": "No tasks yet — start by adding a task",
-      "comingSoon": "Tasks and files coming soon",
-      "statuses": { "draft": "Draft", "active": "Active", "on_hold": "On hold", "completed": "Completed", "cancelled": "Cancelled" }
-    },
+    "projectDetails": { "back": "Back to projects", "client": "Client", "budget": "Budget", "startDate": "Start date", "endDate": "End date", "tasks": "Tasks", "noTasks": "No tasks yet — start by adding a task", "comingSoon": "Tasks and files coming soon", "statuses": { "draft": "Draft", "active": "Active", "on_hold": "On hold", "completed": "Completed", "cancelled": "Cancelled" } },
     "tasks": {
       "title": "Tasks", "subtitle": "You have {count} tasks",
       "searchPlaceholder": "Search by task, project, client...", "resultsCount": "{count} results",
       "noResults": "No results match your search", "clearFilters": "Clear filters",
       "viewGrid": "Grid", "viewKanban": "Kanban", "kanbanEmpty": "No tasks",
       "overdue": "Overdue", "noDetails": "No details",
-      "emptyTitle": "No tasks yet",
-      "emptyDescription": "Start by creating your first task and linking it to a project.",
+      "emptyTitle": "No tasks yet", "emptyDescription": "Start by creating your first task and linking it to a project.",
       "filters": { "all": "All", "allPriorities": "All priorities" },
       "bulk": { "select": "Select", "exit": "Exit", "selectAll": "Select all", "clearAll": "Clear" },
       "statuses": { "todo": "To do", "in_progress": "In progress", "review": "Review", "completed": "Completed", "cancelled": "Cancelled" },
       "priorities": { "low": "Low", "medium": "Medium", "high": "High", "urgent": "Urgent" },
-      "form": {
-        "trigger": "New task", "title": "Create task", "description": "Add the task details",
-        "titleLabel": "Task title", "titlePlaceholder": "e.g., Design Ramadan campaign banner",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Task details...",
-        "project": "Project", "noProject": "No project",
-        "client": "Client", "noClient": "No client",
-        "status": "Status", "priority": "Priority", "dueDate": "Due date",
-        "cancel": "Cancel", "submit": "Create task",
-        "success": "Success", "successDescription": "Task added",
-        "errors": { "generic": "Something went wrong, try again" }
-      },
+      "form": { "trigger": "New task", "title": "Create task", "description": "Add the task details", "titleLabel": "Task title", "titlePlaceholder": "e.g., Design Ramadan campaign banner", "descriptionLabel": "Description", "descriptionPlaceholder": "Task details...", "project": "Project", "noProject": "No project", "client": "Client", "noClient": "No client", "status": "Status", "priority": "Priority", "dueDate": "Due date", "cancel": "Cancel", "submit": "Create task", "success": "Success", "successDescription": "Task added", "errors": { "generic": "Something went wrong, try again" } },
       "actions": { "start": "Start", "sendToReview": "Send to review", "complete": "Complete", "reopen": "Reopen", "delete": "Delete", "confirmDelete": "Are you sure you want to delete this task?" },
       "details": { "back": "Back to tasks", "project": "Project", "client": "Client", "assignedTo": "Assigned to", "dueDate": "Due date" },
       "comments": { "title": "Comments", "empty": "No comments yet — start the conversation", "placeholder": "Write a comment...", "submit": "Add" }
@@ -335,171 +292,70 @@
       "viewCalendar": "Calendar", "searchPlaceholder": "Search by content, client, project...",
       "resultsCount": "{count} results", "noResults": "No results match your search",
       "clearFilters": "Clear filters", "viewGrid": "Grid", "viewKanban": "Kanban", "kanbanEmpty": "No content",
-      "emptyTitle": "No content yet",
-      "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
+      "emptyTitle": "No content yet", "emptyDescription": "Start by creating your first content item, then send it for review and approval.",
       "filters": { "all": "All" },
       "types": { "post": "Post", "story": "Story", "reel": "Reel", "video": "Video", "image": "Image", "article": "Article", "carousel": "Carousel" },
       "platforms": { "instagram": "Instagram", "facebook": "Facebook", "tiktok": "TikTok", "x": "X", "linkedin": "LinkedIn", "youtube": "YouTube" },
       "statuses": { "draft": "Draft", "internal_review": "Internal review", "client_review": "Client review", "approved": "Approved", "rejected": "Rejected", "scheduled": "Scheduled", "published": "Published", "archived": "Archived" },
       "priorities": { "low": "Low", "medium": "Medium", "high": "High", "urgent": "Urgent" },
-      "calendar": {
-        "title": "Content Calendar", "subtitle": "Monthly view of all scheduled content",
-        "today": "Today", "prev": "Previous month", "next": "Next month", "more": "more",
-        "monthSummary": "{count} scheduled items this month",
-        "statuses": { "draft": "Draft", "internal_review": "Internal review", "client_review": "Client review", "approved": "Approved", "scheduled": "Scheduled" }
-      },
-      "form": {
-        "trigger": "New content", "title": "Create content", "description": "Add the new content details",
-        "titleLabel": "Title", "titlePlaceholder": "e.g., Product launch post",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Content details or caption...",
-        "client": "Client", "noClient": "No client",
-        "project": "Project", "noProject": "No project",
-        "type": "Content type", "platform": "Platform", "noPlatform": "No platform",
-        "priority": "Priority", "scheduledAt": "Publish date (optional)",
-        "cancel": "Cancel", "submit": "Create content",
-        "success": "Success", "successDescription": "Content created",
-        "errors": { "generic": "Something went wrong, try again" }
-      },
+      "calendar": { "title": "Content Calendar", "subtitle": "Monthly view of all scheduled content", "today": "Today", "prev": "Previous month", "next": "Next month", "more": "more", "monthSummary": "{count} scheduled items this month", "statuses": { "draft": "Draft", "internal_review": "Internal review", "client_review": "Client review", "approved": "Approved", "scheduled": "Scheduled" } },
+      "schedule": { "trigger": "Schedule Post", "title": "Schedule Content Publishing", "description": "Choose account and time for publishing", "account": "Account", "caption": "Caption", "captionPlaceholder": "Write a caption...", "scheduledFor": "Publish time", "timeNote": "Must be a future time", "cancel": "Cancel", "submit": "Schedule", "selectAccount": "Select account", "selectTime": "Select time", "success": "Scheduled successfully", "successDescription": "The post will be published at the specified time", "noAccounts": { "title": "No accounts connected", "description": "Connect a social account first to schedule posts.", "cta": "Go to connect account" }, "errors": { "invalid_date": "Invalid date", "date_in_past": "Must choose a future time", "account_not_found_or_disconnected": "Account not found or disconnected", "content_not_found": "Content not found", "workspace_mismatch": "Content and account are in different workspaces", "not_a_member": "You must be a member of the workspace" } },
+      "form": { "trigger": "New content", "title": "Create content", "description": "Add the new content details", "titleLabel": "Title", "titlePlaceholder": "e.g., Product launch post", "descriptionLabel": "Description", "descriptionPlaceholder": "Content details or caption...", "client": "Client", "noClient": "No client", "project": "Project", "noProject": "No project", "type": "Content type", "platform": "Platform", "noPlatform": "No platform", "priority": "Priority", "scheduledAt": "Publish date (optional)", "cancel": "Cancel", "submit": "Create content", "success": "Success", "successDescription": "Content created", "errors": { "generic": "Something went wrong, try again" } },
       "actions": { "sendToReview": "Send to review", "sendToClient": "Send to client", "approve": "Approve", "reject": "Reject", "publish": "Publish", "backToDraft": "Back to draft", "delete": "Delete", "confirmDelete": "Are you sure you want to delete this content?" },
-      "details": { "back": "Back to content", "client": "Client", "project": "Project", "scheduledAt": "Scheduled at", "comingSoon": "Comments, versions and files coming soon" }
+      "details": { "back": "Back to content", "client": "Client", "project": "Project", "scheduledAt": "Scheduled at", "comingSoon": "Comments, versions and files coming soon", "scheduledPosts": "Scheduled Posts", "viewPost": "View Post" }
+    },
+    "social": {
+      "title": "Social Accounts", "subtitle": "Connect your accounts to auto-publish content",
+      "scheduledPosts": "Scheduled Posts", "connectAccount": "Connect new account",
+      "reconnect": "Reconnect", "disconnect": "Disconnect", "disconnected": "Disconnected", "deleted": "Deleted", "view": "View",
+      "confirmDisconnect": "Are you sure you want to disconnect this account?", "confirmDelete": "Delete this account permanently?", "reconnectComingSoon": "Coming soon",
+      "status": { "connected": "Connected", "expired": "Expired", "error": "Error", "disconnected": "Disconnected" },
+      "empty": { "title": "No accounts yet", "description": "Connect your first account on Instagram, Facebook, TikTok, or any other platform to auto-publish content." },
+      "connect": { "title": "Connect new account", "description": "Choose the platform and enter the account name", "platform": "Platform", "accountName": "Account name", "accountNamePlaceholder": "e.g., Al-Noor Store", "oauthNote": "Coming soon: you'll be redirected to the platform's official login page.", "fillRequired": "Please select a platform and enter the account name", "success": "Connected", "successDescription": "{platform} connected successfully", "cancel": "Cancel", "submit": "Connect" },
+      "scheduled": { "title": "Scheduled Posts", "subtitle": "Track and manage all scheduled and published posts", "backToAccounts": "Back to accounts", "processNow": "Process now ({count})", "searchPlaceholder": "Search by title, account...", "scheduledFor": "Scheduled for", "publishedAt": "Published", "retry": "Retry", "cancel": "Cancel", "view": "View", "cancelled": "Cancelled", "retried": "Rescheduled", "queueProcessed": "{count} post(s) processed", "confirmCancel": "Cancel this post?", "filters": { "all": "All", "pending": "Pending", "published": "Published", "failed": "Failed" }, "stats": { "pending": "Pending", "published": "Published", "failed": "Failed", "accounts": "Connected accounts" }, "status": { "pending": "Pending", "processing": "Publishing", "published": "Published", "failed": "Failed", "cancelled": "Cancelled", "retry": "Retry" }, "empty": { "title": "No scheduled posts", "description": "Schedule a post from the Content page and it will appear here automatically." } }
     },
     "marketplace": {
-      "title": "My Services", "subtitle": "Manage your listings and services",
-      "myListings": "My listings", "newListing": "New service",
-      "statusUpdated": "Status updated", "deleted": "Deleted",
-      "confirmDelete": "Are you sure you want to delete this service?",
+      "title": "My Services", "subtitle": "Manage your listings and services", "myListings": "My listings", "newListing": "New service",
+      "statusUpdated": "Status updated", "deleted": "Deleted", "confirmDelete": "Are you sure you want to delete this service?",
       "stats": { "total": "Total services", "views": "Total views", "orders": "Total orders", "avgRating": "Average rating" },
       "empty": { "title": "No services yet", "description": "Add your first service to the marketplace and start receiving orders from clients.", "cta": "Add your first service" },
       "status": { "draft": "Draft", "published": "Published", "paused": "Paused", "archived": "Archived" },
       "actions": { "view": "View in marketplace", "pause": "Pause", "publish": "Publish", "delete": "Delete" },
-      "form": {
-        "title": "Add new service", "description": "Fill in your service details",
-        "category": "Category", "categoryPlaceholder": "Select a category",
-        "listingTitle": "Service title", "listingTitlePlaceholder": "e.g., Complete brand identity design",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Describe your service in detail...",
-        "basePrice": "Base price", "currency": "Currency",
-        "deliveryDays": "Delivery days", "revisions": "Number of revisions",
-        "fillRequired": "Please fill in all required fields",
-        "invalidPrice": "Price must be greater than zero",
-        "failed": "Failed to add", "success": "Published",
-        "successDescription": "Your service is now live in the marketplace",
-        "cancel": "Cancel", "submit": "Publish service"
-      }
+      "form": { "title": "Add new service", "description": "Fill in your service details", "category": "Category", "categoryPlaceholder": "Select a category", "listingTitle": "Service title", "listingTitlePlaceholder": "e.g., Complete brand identity design", "descriptionLabel": "Description", "descriptionPlaceholder": "Describe your service in detail...", "basePrice": "Base price", "currency": "Currency", "deliveryDays": "Delivery days", "revisions": "Number of revisions", "fillRequired": "Please fill in all required fields", "invalidPrice": "Price must be greater than zero", "failed": "Failed to add", "success": "Published", "successDescription": "Your service is now live in the marketplace", "cancel": "Cancel", "submit": "Publish service" }
     },
     "proposals": {
-      "title": "Proposals",
-      "subtitle": "All proposals you've sent or received",
-      "searchPlaceholder": "Search by title or reference...",
-      "noResults": "No results",
-      "amount": "Amount",
-      "days": "days",
-      "fromProvider": "From provider",
-      "fromClient": "From client",
-      "accept": "Accept",
-      "reject": "Reject",
-      "confirmAccept": "Accepting will create a contract automatically. Continue?",
-      "rejectReasonPrompt": "Rejection reason (optional):",
-      "accepted": "Accepted — contract created",
-      "rejected": "Rejected",
-      "waitingClient": "Awaiting client response",
+      "title": "Proposals", "subtitle": "All proposals you've sent or received", "searchPlaceholder": "Search by title or reference...", "noResults": "No results",
+      "amount": "Amount", "days": "days", "fromProvider": "From provider", "fromClient": "From client",
+      "accept": "Accept", "reject": "Reject", "confirmAccept": "Accepting will create a contract automatically. Continue?", "rejectReasonPrompt": "Rejection reason (optional):",
+      "accepted": "Accepted — contract created", "rejected": "Rejected", "waitingClient": "Awaiting client response",
       "filters": { "all": "All", "pending": "Pending", "accepted": "Accepted", "rejected": "Rejected" },
       "status": { "pending": "Pending", "accepted": "Accepted", "rejected": "Rejected", "withdrawn": "Withdrawn", "expired": "Expired" },
       "empty": { "title": "No proposals yet", "description": "When you send or receive a proposal, it will appear here." }
     },
     "contracts": {
-      "title": "Contracts",
-      "subtitle": "All active and completed contracts",
-      "searchPlaceholder": "Search by contract title or reference...",
-      "noResults": "No results",
-      "provider": "Provider",
-      "client": "Client",
-      "totalAmount": "Total",
-      "milestones": "{completed} of {total} milestones",
+      "title": "Contracts", "subtitle": "All active and completed contracts", "searchPlaceholder": "Search by contract title or reference...", "noResults": "No results",
+      "provider": "Provider", "client": "Client", "totalAmount": "Total", "milestones": "{completed} of {total} milestones",
       "filters": { "all": "All", "active": "Active", "completed": "Completed", "cancelled": "Cancelled", "disputed": "Disputed" },
       "status": { "draft": "Draft", "active": "Active", "completed": "Completed", "cancelled": "Cancelled", "disputed": "Disputed" },
       "empty": { "title": "No contracts yet", "description": "When you accept a proposal, a contract will be created automatically and appear here." }
     },
     "contractDetails": {
-      "back": "Back to contracts",
-      "total": "Contract total",
-      "yourEarnings": "Your earnings",
-      "endDate": "End date",
-      "milestonesLabel": "Milestones",
-      "client": "Client",
-      "provider": "Provider",
+      "back": "Back to contracts", "total": "Contract total", "yourEarnings": "Your earnings", "endDate": "End date", "milestonesLabel": "Milestones", "client": "Client", "provider": "Provider",
       "status": { "draft": "Draft", "active": "Active", "completed": "Completed", "cancelled": "Cancelled", "disputed": "Disputed" },
-      "milestones": {
-        "title": "Milestones",
-        "empty": "No milestones defined",
-        "amount": "Amount",
-        "dueDate": "Due date",
-        "submit": "Submit for review",
-        "approve": "Approve",
-        "submitted": "Submitted for review",
-        "approved": "Approved",
-        "confirmApprove": "Approving will release the amount. Continue?"
-      }
+      "milestones": { "title": "Milestones", "empty": "No milestones defined", "amount": "Amount", "dueDate": "Due date", "submit": "Submit for review", "approve": "Approve", "submitted": "Submitted for review", "approved": "Approved", "confirmApprove": "Approving will release the amount. Continue?" }
     },
-    "messages": {
-      "title": "Messages",
-      "subtitle": "Communicate with your team and clients",
-      "conversations": "Conversations",
-      "selectConversation": "Select a conversation",
-      "noMessages": "No messages yet",
-      "typeMessage": "Type a message...",
-      "unknownUser": "User",
-      "empty": {
-        "title": "No conversations yet",
-        "description": "Conversations will appear here when you start one with someone."
-      }
-    },
+    "messages": { "title": "Messages", "subtitle": "Communicate with your team and clients", "conversations": "Conversations", "selectConversation": "Select a conversation", "noMessages": "No messages yet", "typeMessage": "Type a message...", "unknownUser": "User", "empty": { "title": "No conversations yet", "description": "Conversations will appear here when you start one with someone." } },
     "disputes": {
-      "title": "Disputes",
-      "subtitle": "Manage contract disputes",
-      "searchPlaceholder": "Search by reason or reference...",
-      "noResults": "No results",
-      "youOpened": "You opened the dispute",
-      "againstYou": "Dispute against you",
-      "disputedAmount": "Disputed amount",
-      "filters": {
-        "all": "All",
-        "open": "Open",
-        "under_review": "Under review",
-        "resolved": "Resolved"
-      },
-      "status": {
-        "open": "Open",
-        "under_review": "Under review",
-        "waiting_evidence": "Waiting for evidence",
-        "resolved": "Resolved",
-        "closed": "Closed"
-      },
-      "empty": {
-        "title": "No disputes",
-        "description": "All good! No disputes on contracts."
-      }
+      "title": "Disputes", "subtitle": "Manage contract disputes", "searchPlaceholder": "Search by reason or reference...", "noResults": "No results",
+      "youOpened": "You opened the dispute", "againstYou": "Dispute against you", "disputedAmount": "Disputed amount",
+      "filters": { "all": "All", "open": "Open", "under_review": "Under review", "resolved": "Resolved" },
+      "status": { "open": "Open", "under_review": "Under review", "waiting_evidence": "Waiting for evidence", "resolved": "Resolved", "closed": "Closed" },
+      "empty": { "title": "No disputes", "description": "All good! No disputes on contracts." }
     },
-    "disputeDetails": {
-      "back": "Back to disputes",
-      "openedBy": "Opened by",
-      "against": "Against",
-      "disputedAmount": "Amount",
-      "chat": {
-        "title": "Messages",
-        "empty": "No messages yet",
-        "placeholder": "Type a message...",
-        "closed": "This dispute is closed",
-        "unknownUser": "User"
-      }
-    },
-    "notifications": {
-      "title": "Notifications", "subtitle": "{count} notifications", "empty": "No notifications yet",
-      "markAllRead": "Mark all as read", "unread": "{count} unread", "viewAll": "View all notifications",
-      "filters": { "all": "All", "unread": "Unread", "read": "Read" }
-    },
+    "disputeDetails": { "back": "Back to disputes", "openedBy": "Opened by", "against": "Against", "disputedAmount": "Amount", "chat": { "title": "Messages", "empty": "No messages yet", "placeholder": "Type a message...", "closed": "This dispute is closed", "unknownUser": "User" } },
+    "notifications": { "title": "Notifications", "subtitle": "{count} notifications", "empty": "No notifications yet", "markAllRead": "Mark all as read", "unread": "{count} unread", "viewAll": "View all notifications", "filters": { "all": "All", "unread": "Unread", "read": "Read" } },
     "analytics": {
-      "title": "Analytics", "subtitle": "Overview of your workspace performance",
-      "exportCsv": "Export CSV", "exported": "Exported successfully", "exportError": "Export failed",
+      "title": "Analytics", "subtitle": "Overview of your workspace performance", "exportCsv": "Export CSV", "exported": "Exported successfully", "exportError": "Export failed",
       "kpis": { "clients": "Total clients", "projects": "Total projects", "content": "Total content", "tasks": "Total tasks", "pending": "{count} pending tasks", "allDone": "All tasks done" },
       "sections": { "contentBreakdown": "Content breakdown", "contentCenter": "items", "projectsByStatus": "Projects by status", "tasksByPriority": "Tasks by priority", "recentActivity": "Recent activity", "empty": "No data yet" },
       "contentStatuses": { "draft": "Draft", "internal_review": "Internal review", "client_review": "Client review", "approved": "Approved", "rejected": "Rejected", "scheduled": "Scheduled", "published": "Published", "archived": "Archived" },
@@ -517,222 +373,45 @@
       "transactions": { "title": "Transactions", "subtitle": "{count} transactions", "searchPlaceholder": "Search by type...", "empty": "No transactions yet", "noResults": "No results" },
       "transactionTypes": { "deposit": "Deposit", "withdrawal": "Withdrawal", "escrow_hold": "Escrow Hold", "escrow_release": "Escrow Release", "refund": "Refund", "commission": "Commission", "fee": "Fee", "transfer_in": "Transfer In", "transfer_out": "Transfer Out", "ad_spend": "Ad Spend", "ad_rebate": "Ad Rebate", "adjustment": "Adjustment" },
       "transactionStatus": { "pending": "Pending", "completed": "Completed", "failed": "Failed", "cancelled": "Cancelled" },
-      "deposit": {
-        "title": "Deposit to Wallet", "description": "Add balance to your wallet",
-        "amountLabel": "Amount", "defaultDescription": "Manual deposit",
-        "note": "In the next phase we'll integrate real payment gateways (Paymob / Stripe).",
-        "cancel": "Cancel", "submit": "Deposit",
-        "invalidAmount": "Invalid amount", "success": "Deposited {amount}",
-        "errors": { "invalid_amount": "Invalid amount", "wallet_not_found": "Wallet not found", "wallet_not_active": "Wallet not active", "not_authenticated": "Please sign in", "amount_too_large": "Amount too large" }
-      },
-      "withdraw": {
-        "title": "Withdraw Request", "description": "Request a transfer from your balance",
-        "amountLabel": "Amount", "availableBalance": "Available balance",
-        "comingSoonNote": "Coming soon: we'll connect withdrawal methods (InstaPay, Vodafone Cash, Bank Transfer).",
-        "cancel": "Cancel", "submit": "Request Withdrawal",
-        "invalidAmount": "Invalid amount", "insufficientBalance": "Insufficient balance",
-        "success": "Withdrawal request recorded",
-        "errors": { "invalid_amount": "Invalid amount", "insufficient_balance": "Insufficient balance", "wallet_not_found": "Wallet not found", "not_authenticated": "Please sign in" }
-      }
+      "deposit": { "title": "Deposit to Wallet", "description": "Add balance to your wallet", "amountLabel": "Amount", "defaultDescription": "Manual deposit", "note": "In the next phase we'll integrate real payment gateways (Paymob / Stripe).", "cancel": "Cancel", "submit": "Deposit", "invalidAmount": "Invalid amount", "success": "Deposited {amount}", "errors": { "invalid_amount": "Invalid amount", "wallet_not_found": "Wallet not found", "wallet_not_active": "Wallet not active", "not_authenticated": "Please sign in", "amount_too_large": "Amount too large" } },
+      "withdraw": { "title": "Withdraw Request", "description": "Request a transfer from your balance", "amountLabel": "Amount", "availableBalance": "Available balance", "comingSoonNote": "Coming soon: we'll connect withdrawal methods (InstaPay, Vodafone Cash, Bank Transfer).", "cancel": "Cancel", "submit": "Request Withdrawal", "invalidAmount": "Invalid amount", "insufficientBalance": "Insufficient balance", "success": "Withdrawal request recorded", "errors": { "invalid_amount": "Invalid amount", "insufficient_balance": "Insufficient balance", "wallet_not_found": "Wallet not found", "not_authenticated": "Please sign in" } }
     },
     "payouts": {
-      "title": "Payouts", "subtitle": "Manage your payout methods and requests",
-      "backToWallet": "Back to wallet", "requestPayout": "Request Payout",
-      "methods": {
-        "title": "Payout Methods", "add": "Add Method", "default": "Default", "isDefault": "Default",
-        "setDefault": "Set as default", "setAsDefault": "Updated",
-        "delete": "Delete", "confirmDelete": "Are you sure you want to delete this method?", "deleted": "Deleted",
-        "empty": { "title": "No payout methods yet", "description": "Add a payout method to withdraw your earnings (InstaPay, Bank Transfer, Vodafone Cash)." },
-        "form": {
-          "title": "Add Payout Method", "description": "Choose the type and fill in the details",
-          "type": "Type",
-          "types": { "instapay": "InstaPay", "bank_transfer": "Bank Transfer", "vodafone_cash": "Vodafone Cash", "paypal": "PayPal", "paymob": "Paymob" },
-          "label": "Method name", "labelPlaceholder": "e.g., Personal Account",
-          "bankName": "Bank name", "bankNamePlaceholder": "e.g., NBE",
-          "identifiers": { "instapay": "InstaPay handle", "instapayPlaceholder": "username@instapay", "bank_transfer": "Account number / IBAN", "bank_transferPlaceholder": "EG380019000500000000263180002", "vodafone_cash": "Wallet number", "vodafone_cashPlaceholder": "01xxxxxxxxx", "paypal": "PayPal email", "paypalPlaceholder": "you@example.com", "paymob": "Paymob number", "paymobPlaceholder": "01xxxxxxxxx" },
-          "fillRequired": "Please fill in all fields",
-          "failed": "Failed to add", "success": "Payout method added",
-          "cancel": "Cancel", "submit": "Add"
-        }
-      },
-      "request": {
-        "title": "Request Payout", "description": "Request a transfer from your balance",
-        "amountLabel": "Amount", "availableBalance": "Available balance",
-        "method": "Payout method", "default": "Default",
-        "amount": "Amount", "fee": "Fee", "netAmount": "Net amount",
-        "processingNote": "Your request will be reviewed by our team within 1-3 business days.",
-        "cancel": "Cancel", "submit": "Submit Request",
-        "invalidAmount": "Invalid amount", "minAmount": "Minimum withdrawal is 100",
-        "insufficientBalance": "Insufficient balance", "selectMethod": "Select a payout method",
-        "success": "Payout request submitted",
-        "errors": { "invalid_amount": "Invalid amount", "min_amount": "Minimum 100", "insufficient_balance": "Insufficient balance", "wallet_not_found": "Wallet not found", "method_not_found": "Payout method not found", "not_authenticated": "Please sign in" }
-      },
-      "history": {
-        "title": "Payout History", "subtitle": "{count} requests",
-        "searchPlaceholder": "Search by reference or method...",
-        "empty": "No payout requests yet", "noResults": "No results",
-        "confirmCancel": "Are you sure you want to cancel this request?",
-        "cancelled": "Request cancelled",
-        "status": { "pending": "Under review", "approved": "Approved", "processing": "Processing", "completed": "Completed", "rejected": "Rejected", "cancelled": "Cancelled", "failed": "Failed" }
-      }
+      "title": "Payouts", "subtitle": "Manage your payout methods and requests", "backToWallet": "Back to wallet", "requestPayout": "Request Payout",
+      "methods": { "title": "Payout Methods", "add": "Add Method", "default": "Default", "isDefault": "Default", "setDefault": "Set as default", "setAsDefault": "Updated", "delete": "Delete", "confirmDelete": "Are you sure you want to delete this method?", "deleted": "Deleted", "empty": { "title": "No payout methods yet", "description": "Add a payout method to withdraw your earnings (InstaPay, Bank Transfer, Vodafone Cash)." }, "form": { "title": "Add Payout Method", "description": "Choose the type and fill in the details", "type": "Type", "types": { "instapay": "InstaPay", "bank_transfer": "Bank Transfer", "vodafone_cash": "Vodafone Cash", "paypal": "PayPal", "paymob": "Paymob" }, "label": "Method name", "labelPlaceholder": "e.g., Personal Account", "bankName": "Bank name", "bankNamePlaceholder": "e.g., NBE", "identifiers": { "instapay": "InstaPay handle", "instapayPlaceholder": "username@instapay", "bank_transfer": "Account number / IBAN", "bank_transferPlaceholder": "EG380019000500000000263180002", "vodafone_cash": "Wallet number", "vodafone_cashPlaceholder": "01xxxxxxxxx", "paypal": "PayPal email", "paypalPlaceholder": "you@example.com", "paymob": "Paymob number", "paymobPlaceholder": "01xxxxxxxxx" }, "fillRequired": "Please fill in all fields", "failed": "Failed to add", "success": "Payout method added", "cancel": "Cancel", "submit": "Add" } },
+      "request": { "title": "Request Payout", "description": "Request a transfer from your balance", "amountLabel": "Amount", "availableBalance": "Available balance", "method": "Payout method", "default": "Default", "amount": "Amount", "fee": "Fee", "netAmount": "Net amount", "processingNote": "Your request will be reviewed by our team within 1-3 business days.", "cancel": "Cancel", "submit": "Submit Request", "invalidAmount": "Invalid amount", "minAmount": "Minimum withdrawal is 100", "insufficientBalance": "Insufficient balance", "selectMethod": "Select a payout method", "success": "Payout request submitted", "errors": { "invalid_amount": "Invalid amount", "min_amount": "Minimum 100", "insufficient_balance": "Insufficient balance", "wallet_not_found": "Wallet not found", "method_not_found": "Payout method not found", "not_authenticated": "Please sign in" } },
+      "history": { "title": "Payout History", "subtitle": "{count} requests", "searchPlaceholder": "Search by reference or method...", "empty": "No payout requests yet", "noResults": "No results", "confirmCancel": "Are you sure you want to cancel this request?", "cancelled": "Request cancelled", "status": { "pending": "Under review", "approved": "Approved", "processing": "Processing", "completed": "Completed", "rejected": "Rejected", "cancelled": "Cancelled", "failed": "Failed" } }
     },
+    "apiKeys": { "title": "API Keys", "subtitle": "Connect your external apps via API", "listTitle": "Active Keys", "listSubtitle": "Everything you need for integration", "create": "New Key", "empty": "No keys yet", "revoked": "Revoked", "revoke": "Revoke", "deleted": "Deleted", "copied": "Copied", "createdAt": "Created", "lastUsed": "Last used", "nameRequired": "Name is required", "confirmDelete": "Delete this key permanently?", "confirmRevoke": "Revoke this key?", "createTitle": "Create API Key", "createDescription": "Give the key a name you'll remember", "name": "Name", "namePlaceholder": "e.g., Mobile App", "cancel": "Cancel", "submit": "Create", "successTitle": "Key created!", "successDescription": "Copy this key and store it somewhere safe.", "saveWarning": "You'll see this key only once — save it now", "done": "Done" },
+    "webhooks": { "title": "Webhooks", "subtitle": "Receive instant event notifications", "listTitle": "Active Webhooks", "listSubtitle": "Subscribe to events you care about", "create": "New Webhook", "empty": "No webhooks yet", "active": "Active", "inactive": "Inactive", "failures": "Failed", "events": "events", "enabled": "Enabled", "disabled": "Disabled", "deleted": "Deleted", "copied": "Copied", "confirmDelete": "Delete this webhook permanently?", "createTitle": "New Webhook", "createDescription": "Receive platform events in your app", "name": "Name", "namePlaceholder": "e.g., Mobile App", "url": "URL", "httpsNote": "Must start with https://", "eventsLabel": "Events", "fillRequired": "Please fill in all fields", "cancel": "Cancel", "submit": "Create", "successTitle": "Webhook created!", "successDescription": "Copy this secret and use it for verification.", "saveSecretWarning": "This secret will show only once — save it now", "done": "Done", "errors": { "missing_fields": "Please fill in all fields", "https_required": "Must start with https://", "select_events": "Select at least one event" } },
+    "integrations": { "title": "Integrations", "subtitle": "Connect your accounts on external platforms", "connected": "Connected", "connect": "Connect", "disconnect": "Disconnect", "confirmDisconnect": "Disconnect this account?", "oauthComingSoon": "Coming soon", "oauthComingSoonDescription": "Connecting {provider} will be available soon", "disconnectComingSoon": "Coming soon", "categories": { "social": "Social Media", "payment": "Payments", "ads": "Ads", "other": "Other" } },
     "profile": { "title": "Profile", "subtitle": "Manage your personal information", "joinedOn": "Joined" },
     "settings": {
       "title": "Settings", "subtitle": "Manage your account and workspace",
       "tabs": { "profile": "Profile", "workspace": "Workspace", "organization": "Organization", "members": "Members" },
-      "profile": {
-        "title": "Profile", "description": "Update your personal information",
-        "firstName": "First name", "lastName": "Last name",
-        "phone": "Phone", "jobTitle": "Job title", "jobTitlePlaceholder": "e.g., Marketing Manager",
-        "bio": "Bio", "bioPlaceholder": "Write a short bio...",
-        "country": "Country", "countryPlaceholder": "Egypt",
-        "city": "City", "cityPlaceholder": "Cairo",
-        "timezone": "Timezone", "language": "Preferred language",
-        "submit": "Save changes", "success": "Changes saved successfully"
-      },
-      "workspace": {
-        "title": "Workspace", "description": "Your current workspace details",
-        "name": "Workspace name", "slug": "Slug", "slugNote": "Cannot be changed",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Brief workspace description...",
-        "submit": "Save changes", "success": "Changes saved successfully",
-        "readOnly": "You don't have permission — must be owner or admin"
-      },
-      "organization": {
-        "title": "Organization", "description": "Your business organization details",
-        "name": "Organization name", "website": "Website",
-        "descriptionLabel": "Description", "descriptionPlaceholder": "Organization description...",
-        "submit": "Save changes", "success": "Changes saved successfully"
-      },
-      "members": {
-        "title": "Team members", "subtitle": "{count} members in this workspace", "you": "You",
-        "roles": { "owner": "Owner", "admin": "Admin", "member": "Member", "client": "Client", "viewer": "Viewer" },
-        "invite": {
-          "trigger": "Invite member", "title": "Invite new member", "description": "Invite a new member to this workspace",
-          "email": "Email", "role": "Role",
-          "submit": "Create invitation", "cancel": "Cancel",
-          "successTitle": "Invitation ready!", "successDescription": "Copy this link and send it to the member to join.",
-          "linkNote": "Link valid for 7 days", "done": "Done",
-          "errors": { "not_authenticated": "You need to sign in", "no_workspace": "No workspace", "not_allowed": "You don't have permission", "invalid_email": "Invalid email", "already_member": "This member already exists" }
-        },
-        "pending": { "title": "Pending invitations", "expiresIn": "{days} days left", "cancel": "Cancel invitation", "confirmCancel": "Are you sure you want to cancel this invitation?" }
-      },
-      "dangerZone": {
-        "title": "Danger Zone", "description": "Final actions that cannot be undone",
-        "export": { "title": "Export your data", "description": "Download a full copy of your data (GDPR)", "button": "Export JSON" },
-        "delete": {
-          "title": "Delete account", "description": "Permanently delete all your data — no going back",
-          "button": "Delete account",
-          "confirmTitle": "Are you sure you want to delete your account?",
-          "confirmDescription": "All your data will be permanently deleted. This action cannot be undone.",
-          "typeToConfirm": "Type DELETE to confirm",
-          "cancel": "Cancel", "confirmButton": "Delete permanently"
-        }
-      }
+      "profile": { "title": "Profile", "description": "Update your personal information", "firstName": "First name", "lastName": "Last name", "phone": "Phone", "jobTitle": "Job title", "jobTitlePlaceholder": "e.g., Marketing Manager", "bio": "Bio", "bioPlaceholder": "Write a short bio...", "country": "Country", "countryPlaceholder": "Egypt", "city": "City", "cityPlaceholder": "Cairo", "timezone": "Timezone", "language": "Preferred language", "submit": "Save changes", "success": "Changes saved successfully" },
+      "workspace": { "title": "Workspace", "description": "Your current workspace details", "name": "Workspace name", "slug": "Slug", "slugNote": "Cannot be changed", "descriptionLabel": "Description", "descriptionPlaceholder": "Brief workspace description...", "submit": "Save changes", "success": "Changes saved successfully", "readOnly": "You don't have permission — must be owner or admin" },
+      "organization": { "title": "Organization", "description": "Your business organization details", "name": "Organization name", "website": "Website", "descriptionLabel": "Description", "descriptionPlaceholder": "Organization description...", "submit": "Save changes", "success": "Changes saved successfully" },
+      "members": { "title": "Team members", "subtitle": "{count} members in this workspace", "you": "You", "roles": { "owner": "Owner", "admin": "Admin", "member": "Member", "client": "Client", "viewer": "Viewer" }, "invite": { "trigger": "Invite member", "title": "Invite new member", "description": "Invite a new member to this workspace", "email": "Email", "role": "Role", "submit": "Create invitation", "cancel": "Cancel", "successTitle": "Invitation ready!", "successDescription": "Copy this link and send it to the member to join.", "linkNote": "Link valid for 7 days", "done": "Done", "errors": { "not_authenticated": "You need to sign in", "no_workspace": "No workspace", "not_allowed": "You don't have permission", "invalid_email": "Invalid email", "already_member": "This member already exists" } }, "pending": { "title": "Pending invitations", "expiresIn": "{days} days left", "cancel": "Cancel invitation", "confirmCancel": "Are you sure you want to cancel this invitation?" } },
+      "dangerZone": { "title": "Danger Zone", "description": "Final actions that cannot be undone", "export": { "title": "Export your data", "description": "Download a full copy of your data (GDPR)", "button": "Export JSON" }, "delete": { "title": "Delete account", "description": "Permanently delete all your data — no going back", "button": "Delete account", "confirmTitle": "Are you sure you want to delete your account?", "confirmDescription": "All your data will be permanently deleted. This action cannot be undone.", "typeToConfirm": "Type DELETE to confirm", "cancel": "Cancel", "confirmButton": "Delete permanently" } }
     },
-    "invite": {
-      "invalidTitle": "Invitation not found", "invalidDescription": "This link is invalid or has expired.",
-      "expiredTitle": "Invitation expired", "expiredDescription": "This link has expired. Ask the admin to send a new invitation.",
-      "alreadyAcceptedTitle": "Invitation used", "alreadyAcceptedDescription": "You are already a member of this workspace.",
-      "goToDashboard": "Go to dashboard", "backHome": "Back to home",
-      "invitedTitle": "You're invited!", "invitedDescription": "You've been invited to join {workspace} as {role}.",
-      "invitationEmail": "Invited email", "createAccount": "Create account", "signIn": "Sign in",
-      "note": "You must use the same invited email", "accepting": "Accepting invitation...",
-      "acceptErrorTitle": "Failed to accept invitation",
-      "errors": { "not_authenticated": "You need to sign in", "invalid_or_expired": "Invitation is invalid or expired" }
-    },
-    "portal": {
-      "portal": "Client Portal", "welcome": "Welcome",
-      "subtitle": "This is your client portal — view your projects and content awaiting approval",
-      "noWorkspace": "You're not a member of any workspace yet. When you receive an invitation, you'll see your content here.",
-      "logout": "Sign out", "pendingApproval": "Awaiting approval",
-      "approve": "Approve", "requestChanges": "Request changes",
-      "addNote": "Notes (optional)", "notePlaceholder": "Write your notes here...",
-      "viewAll": "View all", "allClear": "All clear! Nothing awaiting your approval.",
-      "backToApprovals": "Back to approvals",
-      "approvalsCount": "{count} items awaiting your approval",
-      "projectsCount": "{count} projects", "noProjects": "No projects yet",
-      "stats": { "pending": "Awaiting approval", "approved": "Approved", "projects": "Projects" },
-      "sections": { "pendingApprovals": "Awaiting your approval", "myProjects": "My projects" }
-    },
-    "commandPalette": {
-      "placeholder": "Search or run a command...", "empty": "No results found", "openHint": "Open command palette",
-      "sections": { "navigation": "Navigation", "actions": "Quick actions", "preferences": "Preferences" },
-      "actions": { "newClient": "Add new client", "newProject": "Create new project", "newTask": "Add new task", "newContent": "Create new content", "toggleTheme": "Toggle theme (Dark/Light)" }
-    }
+    "invite": { "invalidTitle": "Invitation not found", "invalidDescription": "This link is invalid or has expired.", "expiredTitle": "Invitation expired", "expiredDescription": "This link has expired. Ask the admin to send a new invitation.", "alreadyAcceptedTitle": "Invitation used", "alreadyAcceptedDescription": "You are already a member of this workspace.", "goToDashboard": "Go to dashboard", "backHome": "Back to home", "invitedTitle": "You're invited!", "invitedDescription": "You've been invited to join {workspace} as {role}.", "invitationEmail": "Invited email", "createAccount": "Create account", "signIn": "Sign in", "note": "You must use the same invited email", "accepting": "Accepting invitation...", "acceptErrorTitle": "Failed to accept invitation", "errors": { "not_authenticated": "You need to sign in", "invalid_or_expired": "Invitation is invalid or expired" } },
+    "portal": { "portal": "Client Portal", "welcome": "Welcome", "subtitle": "This is your client portal — view your projects and content awaiting approval", "noWorkspace": "You're not a member of any workspace yet. When you receive an invitation, you'll see your content here.", "logout": "Sign out", "pendingApproval": "Awaiting approval", "approve": "Approve", "requestChanges": "Request changes", "addNote": "Notes (optional)", "notePlaceholder": "Write your notes here...", "viewAll": "View all", "allClear": "All clear! Nothing awaiting your approval.", "backToApprovals": "Back to approvals", "approvalsCount": "{count} items awaiting your approval", "projectsCount": "{count} projects", "noProjects": "No projects yet", "stats": { "pending": "Awaiting approval", "approved": "Approved", "projects": "Projects" }, "sections": { "pendingApprovals": "Awaiting your approval", "myProjects": "My projects" } },
+    "commandPalette": { "placeholder": "Search or run a command...", "empty": "No results found", "openHint": "Open command palette", "sections": { "navigation": "Navigation", "actions": "Quick actions", "preferences": "Preferences" }, "actions": { "newClient": "Add new client", "newProject": "Create new project", "newTask": "Add new task", "newContent": "Create new content", "toggleTheme": "Toggle theme (Dark/Light)" } }
   },
   "admin": {
-    "nav": { "overview": "Admin Dashboard", "users": "Users", "workspaces": "Workspaces", "payouts": "Payouts", "audit": "Audit Log", "settings": "Settings" },
-    "overview": {
-      "title": "Admin Dashboard", "subtitle": "Full platform overview",
-      "kpis": { "users": "Total users", "organizations": "Organizations", "workspaces": "Workspaces", "audit_logs": "Audit logs", "critical": "Critical actions" },
-      "recentActivity": "Recent activity", "noActivity": "No activity yet"
-    },
-    "payouts": {
-      "title": "Payout Requests", "subtitle": "Manage withdrawal requests from users",
-      "searchPlaceholder": "Search by reference, user, method...",
-      "noResults": "No results", "count": "{count} requests",
-      "approve": "Approve", "complete": "Complete", "reject": "Reject",
-      "confirmApprove": "Approve this payout request?",
-      "approved": "Approved", "completed": "Completed", "rejected": "Rejected",
-      "externalTxPrompt": "Enter external transaction ID (optional):",
-      "rejectReasonPrompt": "Enter rejection reason:",
-      "filters": { "all": "All", "pending": "Pending", "processing": "Processing", "completed": "Completed", "rejected": "Rejected" },
-      "status": { "pending": "Pending", "approved": "Approved", "processing": "Processing", "completed": "Completed", "rejected": "Rejected", "cancelled": "Cancelled", "failed": "Failed" },
-      "cols": { "reference": "Reference", "user": "User", "method": "Method", "amount": "Amount", "status": "Status", "actions": "Actions" }
-    },
-    "audit": {
-      "title": "Audit Log", "subtitle": "Every sensitive action on the platform",
-      "searchPlaceholder": "Search by action, user, entity...",
-      "noResults": "No results", "count": "{count} entries",
-      "filters": { "all": "All" },
-      "severities": { "info": "Info", "warning": "Warning", "critical": "Critical" },
-      "cols": { "severity": "Severity", "action": "Action", "entity": "Entity", "actor": "Actor", "time": "Time" }
-    },
-    "users": {
-      "title": "User Management", "subtitle": "All platform users",
-      "searchPlaceholder": "Search by name or email...",
-      "confirmSuspend": "Are you sure you want to suspend this account?",
-      "suspend": "Suspend", "restore": "Restore",
-      "cols": { "name": "Name", "email": "Email", "type": "Type", "status": "Status", "actions": "Actions" },
-      "status": { "active": "Active", "suspended": "Suspended" }
-    }
+    "nav": { "overview": "Admin Dashboard", "analytics": "Analytics", "users": "Users", "workspaces": "Workspaces", "payouts": "Payouts", "audit": "Audit Log", "settings": "Settings" },
+    "overview": { "title": "Admin Dashboard", "subtitle": "Full platform overview", "kpis": { "users": "Total users", "organizations": "Organizations", "workspaces": "Workspaces", "audit_logs": "Audit logs", "critical": "Critical actions" }, "recentActivity": "Recent activity", "noActivity": "No activity yet" },
+    "payouts": { "title": "Payout Requests", "subtitle": "Manage withdrawal requests from users", "searchPlaceholder": "Search by reference, user, method...", "noResults": "No results", "count": "{count} requests", "approve": "Approve", "complete": "Complete", "reject": "Reject", "confirmApprove": "Approve this payout request?", "approved": "Approved", "completed": "Completed", "rejected": "Rejected", "externalTxPrompt": "Enter external transaction ID (optional):", "rejectReasonPrompt": "Enter rejection reason:", "filters": { "all": "All", "pending": "Pending", "processing": "Processing", "completed": "Completed", "rejected": "Rejected" }, "status": { "pending": "Pending", "approved": "Approved", "processing": "Processing", "completed": "Completed", "rejected": "Rejected", "cancelled": "Cancelled", "failed": "Failed" }, "cols": { "reference": "Reference", "user": "User", "method": "Method", "amount": "Amount", "status": "Status", "actions": "Actions" } },
+    "audit": { "title": "Audit Log", "subtitle": "Every sensitive action on the platform", "searchPlaceholder": "Search by action, user, entity...", "noResults": "No results", "count": "{count} entries", "filters": { "all": "All" }, "severities": { "info": "Info", "warning": "Warning", "critical": "Critical" }, "cols": { "severity": "Severity", "action": "Action", "entity": "Entity", "actor": "Actor", "time": "Time" } },
+    "users": { "title": "User Management", "subtitle": "All platform users", "searchPlaceholder": "Search by name or email...", "confirmSuspend": "Are you sure you want to suspend this account?", "suspend": "Suspend", "restore": "Restore", "cols": { "name": "Name", "email": "Email", "type": "Type", "status": "Status", "actions": "Actions" }, "status": { "active": "Active", "suspended": "Suspended" } },
+    "settings": { "title": "Platform Settings", "subtitle": "Full platform control", "flags": { "title": "Feature Flags", "subtitle": "Enable or disable features without code", "enabled": "Enabled", "disabled": "Disabled" }, "platform": { "title": "General Settings", "subtitle": "Platform core information", "saved": "Saved" } }
   },
   "marketplace": {
-    "page": {
-      "badge": "Marketplace — The Arab Marketing Market",
-      "title": "Find the right", "titleHighlight": "service for your project",
-      "subtitle": "Browse hundreds of services from professional agencies and freelancers in marketing, design, and content.",
-      "stats": { "services": "Services", "featured": "Featured", "categories": "Categories" }
-    },
-    "grid": {
-      "searchPlaceholder": "Search for a service, category...",
-      "allCategories": "All categories", "filters": "Filters",
-      "resultsCount": "{count} services",
-      "noResults": "No results match your search", "clearFilters": "Clear filters",
-      "featured": "Featured", "from": "From",
-      "sorts": { "newest": "Newest", "popular": "Most viewed", "priceLow": "Lowest price", "priceHigh": "Highest price", "rating": "Top rated" }
-    },
-    "details": {
-      "back": "Back to marketplace", "featured": "Featured",
-      "deliveryIn": "Delivery in {days} days", "views": "{count} views",
-      "aboutService": "About the service", "packages": "Packages", "popular": "Most popular",
-      "deliveryDays": "Delivery: {days} days", "revisions": "{count} revisions",
-      "provider": "Service provider", "contactProvider": "Contact provider",
-      "startingFrom": "Starting from", "orderNow": "Order now", "sendMessage": "Send message",
-      "trust1": { "title": "Secure payment", "description": "Your money is protected by Escrow" },
-      "trust2": { "title": "Quality guarantee", "description": "Full refund if you're not satisfied" }
-    },
-    "order": {
-      "title": "Order service", "description": "Enter your project details",
-      "selectPackage": "Select package", "delivery": "Delivery", "days": "days",
-      "revisions": "Revisions", "total": "Total",
-      "projectTitle": "Project title", "projectTitlePlaceholder": "e.g., Brand identity design for a restaurant",
-      "projectDetails": "Project details", "projectDetailsPlaceholder": "Describe your requirements in detail...",
-      "comingSoonNote": "Coming soon: direct Escrow and online payment integration.",
-      "fillRequired": "Please fill in the title and details",
-      "cancel": "Cancel", "submit": "Confirm order",
-      "success": "Order submitted", "successDescription": "We'll get in touch with you soon"
-    }
+    "page": { "badge": "Marketplace — The Arab Marketing Market", "title": "Find the right", "titleHighlight": "service for your project", "subtitle": "Browse hundreds of services from professional agencies and freelancers in marketing, design, and content.", "stats": { "services": "Services", "featured": "Featured", "categories": "Categories" } },
+    "grid": { "searchPlaceholder": "Search for a service, category...", "allCategories": "All categories", "filters": "Filters", "resultsCount": "{count} services", "noResults": "No results match your search", "clearFilters": "Clear filters", "featured": "Featured", "from": "From", "sorts": { "newest": "Newest", "popular": "Most viewed", "priceLow": "Lowest price", "priceHigh": "Highest price", "rating": "Top rated" } },
+    "details": { "back": "Back to marketplace", "featured": "Featured", "deliveryIn": "Delivery in {days} days", "views": "{count} views", "aboutService": "About the service", "packages": "Packages", "popular": "Most popular", "deliveryDays": "Delivery: {days} days", "revisions": "{count} revisions", "provider": "Service provider", "contactProvider": "Contact provider", "startingFrom": "Starting from", "orderNow": "Order now", "sendMessage": "Send message", "trust1": { "title": "Secure payment", "description": "Your money is protected by Escrow" }, "trust2": { "title": "Quality guarantee", "description": "Full refund if you're not satisfied" } },
+    "order": { "title": "Order service", "description": "Enter your project details", "selectPackage": "Select package", "delivery": "Delivery", "days": "days", "revisions": "Revisions", "total": "Total", "projectTitle": "Project title", "projectTitlePlaceholder": "e.g., Brand identity design for a restaurant", "projectDetails": "Project details", "projectDetailsPlaceholder": "Describe your requirements in detail...", "comingSoonNote": "Coming soon: direct Escrow and online payment integration.", "fillRequired": "Please fill in the title and details", "cancel": "Cancel", "submit": "Confirm order", "success": "Order submitted", "successDescription": "We'll get in touch with you soon" }
   },
   "files": {
     "upload": { "title": "Drag & drop files here", "subtitle": "Or click to select • Max {max}", "uploading": "Uploading...", "tooLarge": "{name} is larger than the limit ({max})" },
@@ -744,5 +423,16 @@
     "description": "An unexpected error occurred. Try again.",
     "retry": "Try again",
     "home": "Home"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "home": "Home",
+    "browseMarketplace": "Browse Marketplace",
+    "helpText": "Need help?",
+    "contact": "Contact us"
   }
 }

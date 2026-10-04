@@ -226,10 +226,7 @@
     "subtitle": "دي لوحة التحكم",
     "placeholder": "المحتوى الكامل جاي قريبًا",
     "liveSynced": "متزامن",
-    "stats": {
-      "clients": "العملاء", "activeProjects": "مشاريع نشطة", "totalProjects": "{count} إجمالي",
-      "content": "المحتوى", "team": "أعضاء الفريق", "engagement": "التفاعل", "comingSoon": "قريبًا"
-    },
+    "stats": { "clients": "العملاء", "activeProjects": "مشاريع نشطة", "totalProjects": "{count} إجمالي", "content": "المحتوى", "team": "أعضاء الفريق", "engagement": "التفاعل", "comingSoon": "قريبًا" },
     "sections": {
       "recent": "النشاط الأخير", "recentClients": "أحدث العملاء", "recentProjects": "أحدث المشاريع",
       "recentEmpty": "مفيش نشاط لسه — ابدأ بإضافة عميل أو مشروع",
@@ -237,22 +234,19 @@
       "viewAll": "عرض الكل", "noClients": "مفيش عملاء لسه", "noProjects": "مفيش مشاريع لسه",
       "addFirst": "أضف أول عميل ←", "addFirstProject": "أنشئ أول مشروع ←"
     },
-    "noWorkspace": {
-      "title": "لسه محتاج تنشئ مساحة عمل",
-      "description": "خلينا نجهّز مساحة العمل بتاعتك في خطوة سريعة.",
-      "cta": "ابدأ الإعداد"
-    },
-    "bulk": {
-      "select": "تحديد", "exit": "خروج من التحديد", "selectAll": "تحديد الكل",
-      "clearAll": "مسح الكل", "delete": "حذف المحدد", "confirmDelete": "متأكد إنك عايز تحذف {count} عنصر؟"
-    },
+    "noWorkspace": { "title": "لسه محتاج تنشئ مساحة عمل", "description": "خلينا نجهّز مساحة العمل بتاعتك في خطوة سريعة.", "cta": "ابدأ الإعداد" },
+    "bulk": { "select": "تحديد", "exit": "خروج من التحديد", "selectAll": "تحديد الكل", "clearAll": "مسح الكل", "delete": "حذف المحدد", "confirmDelete": "متأكد إنك عايز تحذف {count} عنصر؟" },
     "nav": {
-      "overview": "نظرة عامة", "clients": "العملاء", "projects": "المشاريع", "tasks": "المهام",
-      "content": "المحتوى", "marketplace": "خدماتي", "proposals": "العروض", "contracts": "العقود",
-      "disputes": "النزاعات", "messages": "الرسائل", "notifications": "الإشعارات",
-      "analytics": "التحليلات", "wallet": "المحفظة", "profile": "الملف الشخصي",
+      "overview": "نظرة عامة", "ai": "AI", "clients": "العملاء", "projects": "المشاريع",
+      "tasks": "المهام", "content": "المحتوى", "social": "السوشيال", "marketplace": "خدماتي",
+      "proposals": "العروض", "contracts": "العقود", "messages": "الرسائل",
+      "disputes": "النزاعات", "notifications": "الإشعارات", "analytics": "التحليلات",
+      "wallet": "المحفظة", "apiKeys": "API", "webhooks": "Webhooks",
+      "integrations": "Integrations", "profile": "الملف الشخصي",
       "settings": "الإعدادات", "logout": "تسجيل الخروج", "openMenu": "افتح القائمة"
     },
+    "upcomingPosts": { "title": "المنشورات القادمة", "empty": "مفيش منشورات مجدولة", "viewAll": "عرض الكل", "goToScheduled": "اذهب للمنشورات المجدولة", "today": "اليوم", "soon": "قريبًا" },
+    "ai": { "title": "المساعد الذكي", "subtitle": "اسأل عن المحتوى، الإعلانات، أو الاستراتيجية", "newConversation": "محادثة جديدة", "history": "السجل", "noHistory": "مفيش محادثات سابقة", "welcome": "أهلاً! أنا مساعدك الذكي", "welcomeDescription": "اسألني أي حاجة عن التسويق، وهساعدك تكتب محتوى، تخطط حملات، أو تطوّر استراتيجيتك.", "startConversation": "ابدأ المحادثة", "typeMessage": "اكتب سؤالك...", "confirmDelete": "متأكد إنك عايز تحذف المحادثة دي؟", "modes": { "general": "عام", "content": "محتوى", "ads": "إعلانات", "strategy": "استراتيجية" } },
     "clients": {
       "title": "العملاء", "subtitle": "عندك {count} عميل في مساحة العمل دي",
       "searchPlaceholder": "ابحث بالاسم، الإيميل، الشركة...", "resultsCount": "{count} نتيجة",
@@ -262,28 +256,9 @@
       "emptyDescription": "ابدأ بإضافة أول عميل عشان تدير مشاريعه ومحتواه من مكان واحد.",
       "filters": { "all": "الكل" },
       "statuses": { "active": "نشط", "lead": "محتمل", "archived": "مؤرشف" },
-      "form": {
-        "trigger": "إضافة عميل", "title": "عميل جديد", "description": "أضف بيانات العميل الجديد — تقدر تعدلها بعدين",
-        "name": "اسم العميل", "namePlaceholder": "مثال: أحمد محمد",
-        "email": "البريد الإلكتروني", "emailPlaceholder": "client@example.com",
-        "phone": "رقم الهاتف", "phonePlaceholder": "+20 100 000 0000",
-        "company": "اسم الشركة", "companyPlaceholder": "مثال: شركة النور",
-        "industry": "المجال", "industryPlaceholder": "مثال: تجارة إلكترونية",
-        "website": "الموقع الإلكتروني", "websitePlaceholder": "https://example.com",
-        "status": "الحالة", "statusActive": "نشط", "statusLead": "محتمل",
-        "notes": "ملاحظات", "notesPlaceholder": "أي تفاصيل إضافية...",
-        "cancel": "إلغاء", "submit": "إضافة العميل",
-        "success": "تم بنجاح", "successDescription": "تم إضافة العميل",
-        "errors": { "generic": "حصل خطأ، حاول تاني" }
-      }
+      "form": { "trigger": "إضافة عميل", "title": "عميل جديد", "description": "أضف بيانات العميل الجديد — تقدر تعدلها بعدين", "name": "اسم العميل", "namePlaceholder": "مثال: أحمد محمد", "email": "البريد الإلكتروني", "emailPlaceholder": "client@example.com", "phone": "رقم الهاتف", "phonePlaceholder": "+20 100 000 0000", "company": "اسم الشركة", "companyPlaceholder": "مثال: شركة النور", "industry": "المجال", "industryPlaceholder": "مثال: تجارة إلكترونية", "website": "الموقع الإلكتروني", "websitePlaceholder": "https://example.com", "status": "الحالة", "statusActive": "نشط", "statusLead": "محتمل", "notes": "ملاحظات", "notesPlaceholder": "أي تفاصيل إضافية...", "cancel": "إلغاء", "submit": "إضافة العميل", "success": "تم بنجاح", "successDescription": "تم إضافة العميل", "errors": { "generic": "حصل خطأ، حاول تاني" } }
     },
-    "clientDetails": {
-      "back": "رجوع للعملاء", "email": "البريد الإلكتروني", "phone": "رقم الهاتف",
-      "company": "الشركة", "website": "الموقع الإلكتروني", "notes": "ملاحظات",
-      "comingSoon": "تفاصيل المشاريع والمحتوى جاية قريبًا",
-      "stats": { "projects": "المشاريع", "content": "المحتوى" },
-      "statuses": { "active": "نشط", "lead": "محتمل", "archived": "مؤرشف" }
-    },
+    "clientDetails": { "back": "رجوع للعملاء", "email": "البريد الإلكتروني", "phone": "رقم الهاتف", "company": "الشركة", "website": "الموقع الإلكتروني", "notes": "ملاحظات", "comingSoon": "تفاصيل المشاريع والمحتوى جاية قريبًا", "stats": { "projects": "المشاريع", "content": "المحتوى" }, "statuses": { "active": "نشط", "lead": "محتمل", "archived": "مؤرشف" } },
     "projects": {
       "title": "المشاريع", "subtitle": "عندك {count} مشروع",
       "searchPlaceholder": "ابحث بالاسم، الوصف، العميل...", "resultsCount": "{count} نتيجة",
@@ -293,26 +268,9 @@
       "filters": { "all": "الكل" },
       "statuses": { "draft": "مسودة", "active": "نشط", "on_hold": "معلّق", "completed": "مكتمل", "cancelled": "ملغي" },
       "priorities": { "low": "منخفضة", "medium": "متوسطة", "high": "عالية", "urgent": "عاجلة" },
-      "form": {
-        "trigger": "مشروع جديد", "title": "إنشاء مشروع", "description": "املأ بيانات المشروع — تقدر تعدلها بعدين",
-        "name": "اسم المشروع", "namePlaceholder": "مثال: حملة رمضان 2026",
-        "client": "العميل", "noClient": "بدون عميل",
-        "status": "الحالة", "priority": "الأولوية",
-        "startDate": "تاريخ البداية", "endDate": "تاريخ النهاية",
-        "budget": "الميزانية", "currency": "العملة",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المشروع...",
-        "cancel": "إلغاء", "submit": "إنشاء المشروع",
-        "success": "تم بنجاح", "successDescription": "تم إنشاء المشروع",
-        "errors": { "generic": "حصل خطأ، حاول تاني" }
-      }
+      "form": { "trigger": "مشروع جديد", "title": "إنشاء مشروع", "description": "املأ بيانات المشروع — تقدر تعدلها بعدين", "name": "اسم المشروع", "namePlaceholder": "مثال: حملة رمضان 2026", "client": "العميل", "noClient": "بدون عميل", "status": "الحالة", "priority": "الأولوية", "startDate": "تاريخ البداية", "endDate": "تاريخ النهاية", "budget": "الميزانية", "currency": "العملة", "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المشروع...", "cancel": "إلغاء", "submit": "إنشاء المشروع", "success": "تم بنجاح", "successDescription": "تم إنشاء المشروع", "errors": { "generic": "حصل خطأ، حاول تاني" } }
     },
-    "projectDetails": {
-      "back": "رجوع للمشاريع", "client": "العميل", "budget": "الميزانية",
-      "startDate": "تاريخ البداية", "endDate": "تاريخ النهاية", "tasks": "المهام",
-      "noTasks": "مفيش مهام لسه — ابدأ بإضافة مهمة",
-      "comingSoon": "المهام والملفات جاية قريبًا",
-      "statuses": { "draft": "مسودة", "active": "نشط", "on_hold": "معلّق", "completed": "مكتمل", "cancelled": "ملغي" }
-    },
+    "projectDetails": { "back": "رجوع للمشاريع", "client": "العميل", "budget": "الميزانية", "startDate": "تاريخ البداية", "endDate": "تاريخ النهاية", "tasks": "المهام", "noTasks": "مفيش مهام لسه — ابدأ بإضافة مهمة", "comingSoon": "المهام والملفات جاية قريبًا", "statuses": { "draft": "مسودة", "active": "نشط", "on_hold": "معلّق", "completed": "مكتمل", "cancelled": "ملغي" } },
     "tasks": {
       "title": "المهام", "subtitle": "عندك {count} مهمة",
       "searchPlaceholder": "ابحث بالمهمة، المشروع، العميل...", "resultsCount": "{count} نتيجة",
@@ -324,17 +282,7 @@
       "bulk": { "select": "تحديد", "exit": "خروج", "selectAll": "تحديد الكل", "clearAll": "مسح" },
       "statuses": { "todo": "قائمة الانتظار", "in_progress": "جاري التنفيذ", "review": "مراجعة", "completed": "مكتملة", "cancelled": "ملغاة" },
       "priorities": { "low": "منخفضة", "medium": "متوسطة", "high": "عالية", "urgent": "عاجلة" },
-      "form": {
-        "trigger": "مهمة جديدة", "title": "إنشاء مهمة", "description": "أضف تفاصيل المهمة",
-        "titleLabel": "عنوان المهمة", "titlePlaceholder": "مثال: تصميم بانر حملة رمضان",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المهمة...",
-        "project": "المشروع", "noProject": "بدون مشروع",
-        "client": "العميل", "noClient": "بدون عميل",
-        "status": "الحالة", "priority": "الأولوية", "dueDate": "تاريخ التسليم",
-        "cancel": "إلغاء", "submit": "إنشاء المهمة",
-        "success": "تم بنجاح", "successDescription": "تم إضافة المهمة",
-        "errors": { "generic": "حصل خطأ، حاول تاني" }
-      },
+      "form": { "trigger": "مهمة جديدة", "title": "إنشاء مهمة", "description": "أضف تفاصيل المهمة", "titleLabel": "عنوان المهمة", "titlePlaceholder": "مثال: تصميم بانر حملة رمضان", "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المهمة...", "project": "المشروع", "noProject": "بدون مشروع", "client": "العميل", "noClient": "بدون عميل", "status": "الحالة", "priority": "الأولوية", "dueDate": "تاريخ التسليم", "cancel": "إلغاء", "submit": "إنشاء المهمة", "success": "تم بنجاح", "successDescription": "تم إضافة المهمة", "errors": { "generic": "حصل خطأ، حاول تاني" } },
       "actions": { "start": "ابدأ التنفيذ", "sendToReview": "إرسال للمراجعة", "complete": "إكمال", "reopen": "إعادة الفتح", "delete": "حذف", "confirmDelete": "متأكد إنك عايز تحذف المهمة دي؟" },
       "details": { "back": "رجوع للمهام", "project": "المشروع", "client": "العميل", "assignedTo": "المسؤول", "dueDate": "تاريخ التسليم" },
       "comments": { "title": "التعليقات", "empty": "مفيش تعليقات لسه — ابدأ المحادثة", "placeholder": "اكتب تعليق...", "submit": "إضافة" }
@@ -345,172 +293,70 @@
       "searchPlaceholder": "ابحث بالمحتوى، العميل، المشروع...", "resultsCount": "{count} نتيجة",
       "noResults": "مفيش نتائج مطابقة للبحث", "clearFilters": "مسح الفلاتر",
       "viewGrid": "شبكة", "viewKanban": "كانبان", "kanbanEmpty": "مفيش محتوى",
-      "emptyTitle": "مفيش محتوى لسه",
-      "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
+      "emptyTitle": "مفيش محتوى لسه", "emptyDescription": "ابدأ بإنشاء أول قطعة محتوى، وأرسلها للمراجعة والموافقة.",
       "filters": { "all": "الكل" },
       "types": { "post": "منشور", "story": "ستوري", "reel": "ريل", "video": "فيديو", "image": "صورة", "article": "مقال", "carousel": "كاروسيل" },
       "platforms": { "instagram": "Instagram", "facebook": "Facebook", "tiktok": "TikTok", "x": "X", "linkedin": "LinkedIn", "youtube": "YouTube" },
       "statuses": { "draft": "مسودة", "internal_review": "مراجعة داخلية", "client_review": "مراجعة العميل", "approved": "معتمد", "rejected": "مرفوض", "scheduled": "مجدول", "published": "منشور", "archived": "مؤرشف" },
       "priorities": { "low": "منخفضة", "medium": "متوسطة", "high": "عالية", "urgent": "عاجلة" },
-      "calendar": {
-        "title": "روزنامة المحتوى", "subtitle": "عرض شهري لكل المحتوى المجدول",
-        "today": "اليوم", "prev": "الشهر السابق", "next": "الشهر التالي", "more": "أكثر",
-        "monthSummary": "{count} قطعة محتوى مجدولة في الشهر",
-        "statuses": { "draft": "مسودة", "internal_review": "مراجعة داخلية", "client_review": "مراجعة العميل", "approved": "معتمد", "scheduled": "مجدول" }
-      },
-      "form": {
-        "trigger": "محتوى جديد", "title": "إنشاء محتوى", "description": "أضف بيانات المحتوى الجديد",
-        "titleLabel": "العنوان", "titlePlaceholder": "مثال: منشور إطلاق المنتج",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المحتوى أو الكابشن...",
-        "client": "العميل", "noClient": "بدون عميل",
-        "project": "المشروع", "noProject": "بدون مشروع",
-        "type": "نوع المحتوى", "platform": "المنصة", "noPlatform": "بدون منصة",
-        "priority": "الأولوية", "scheduledAt": "موعد النشر (اختياري)",
-        "cancel": "إلغاء", "submit": "إنشاء المحتوى",
-        "success": "تم بنجاح", "successDescription": "تم إنشاء المحتوى",
-        "errors": { "generic": "حصل خطأ، حاول تاني" }
-      },
+      "calendar": { "title": "روزنامة المحتوى", "subtitle": "عرض شهري لكل المحتوى المجدول", "today": "اليوم", "prev": "الشهر السابق", "next": "الشهر التالي", "more": "أكثر", "monthSummary": "{count} قطعة محتوى مجدولة في الشهر", "statuses": { "draft": "مسودة", "internal_review": "مراجعة داخلية", "client_review": "مراجعة العميل", "approved": "معتمد", "scheduled": "مجدول" } },
+      "schedule": { "trigger": "جدولة النشر", "title": "جدولة نشر المحتوى", "description": "اختر الحساب والوقت للنشر", "account": "الحساب", "caption": "الكابشن", "captionPlaceholder": "اكتب كابشن للمنشور...", "scheduledFor": "موعد النشر", "timeNote": "لازم يكون الوقت في المستقبل", "cancel": "إلغاء", "submit": "جدولة", "selectAccount": "اختر الحساب", "selectTime": "اختر الموعد", "success": "تم الجدولة بنجاح", "successDescription": "المنشور هيتنشر في الموعد المحدد", "noAccounts": { "title": "لسه مفيش حسابات مرتبطة", "description": "اربط حساب سوشيال الأول عشان تقدر تجدول المنشورات.", "cta": "اذهب لربط حساب" }, "errors": { "invalid_date": "الموعد غير صحيح", "date_in_past": "لازم تختار موعد في المستقبل", "account_not_found_or_disconnected": "الحساب مش موجود أو غير متصل", "content_not_found": "المحتوى غير موجود", "workspace_mismatch": "المحتوى والحساب من مساحات عمل مختلفة", "not_a_member": "لازم تكون عضو في مساحة العمل" } },
+      "form": { "trigger": "محتوى جديد", "title": "إنشاء محتوى", "description": "أضف بيانات المحتوى الجديد", "titleLabel": "العنوان", "titlePlaceholder": "مثال: منشور إطلاق المنتج", "descriptionLabel": "الوصف", "descriptionPlaceholder": "تفاصيل المحتوى أو الكابشن...", "client": "العميل", "noClient": "بدون عميل", "project": "المشروع", "noProject": "بدون مشروع", "type": "نوع المحتوى", "platform": "المنصة", "noPlatform": "بدون منصة", "priority": "الأولوية", "scheduledAt": "موعد النشر (اختياري)", "cancel": "إلغاء", "submit": "إنشاء المحتوى", "success": "تم بنجاح", "successDescription": "تم إنشاء المحتوى", "errors": { "generic": "حصل خطأ، حاول تاني" } },
       "actions": { "sendToReview": "إرسال للمراجعة", "sendToClient": "إرسال للعميل", "approve": "موافقة", "reject": "رفض", "publish": "نشر", "backToDraft": "إرجاع كمسودة", "delete": "حذف", "confirmDelete": "متأكد إنك عايز تحذف المحتوى ده؟" },
-      "details": { "back": "رجوع للمحتوى", "client": "العميل", "project": "المشروع", "scheduledAt": "موعد النشر", "comingSoon": "التعليقات والنسخ والملفات جاية قريبًا" }
+      "details": { "back": "رجوع للمحتوى", "client": "العميل", "project": "المشروع", "scheduledAt": "موعد النشر", "comingSoon": "التعليقات والنسخ والملفات جاية قريبًا", "scheduledPosts": "المنشورات المجدولة", "viewPost": "عرض المنشور" }
+    },
+    "social": {
+      "title": "حسابات السوشيال", "subtitle": "اربط حساباتك لنشر المحتوى تلقائيًا",
+      "scheduledPosts": "المنشورات المجدولة", "connectAccount": "ربط حساب جديد",
+      "reconnect": "إعادة الربط", "disconnect": "فصل", "disconnected": "تم الفصل", "deleted": "تم الحذف", "view": "عرض",
+      "confirmDisconnect": "متأكد إنك عايز تفصل الحساب ده؟", "confirmDelete": "حذف الحساب نهائيًا؟", "reconnectComingSoon": "قريبًا",
+      "status": { "connected": "متصل", "expired": "منتهي", "error": "خطأ", "disconnected": "مفصول" },
+      "empty": { "title": "لسه مفيش حسابات", "description": "اربط حسابك الأول على Instagram، Facebook، TikTok، أو أي منصة تانية عشان تنشر المحتوى تلقائيًا." },
+      "connect": { "title": "ربط حساب جديد", "description": "اختر المنصة وادخل اسم الحساب", "platform": "المنصة", "accountName": "اسم الحساب", "accountNamePlaceholder": "مثال: متجر النور", "oauthNote": "قريبًا: سيتم توجيهك لصفحة تسجيل الدخول الرسمية للمنصة.", "fillRequired": "من فضلك اختر المنصة واكتب اسم الحساب", "success": "تم الربط", "successDescription": "تم ربط {platform} بنجاح", "cancel": "إلغاء", "submit": "ربط" },
+      "scheduled": { "title": "المنشورات المجدولة", "subtitle": "تابع وأدر كل المنشورات المجدولة والمنشورة", "backToAccounts": "رجوع للحسابات", "processNow": "معالجة الآن ({count})", "searchPlaceholder": "ابحث بالعنوان، الحساب...", "scheduledFor": "مجدول", "publishedAt": "نُشر", "retry": "إعادة محاولة", "cancel": "إلغاء", "view": "عرض", "cancelled": "تم الإلغاء", "retried": "تم إعادة الجدولة", "queueProcessed": "تمت معالجة {count} منشور", "confirmCancel": "إلغاء المنشور ده؟", "filters": { "all": "الكل", "pending": "قيد الانتظار", "published": "منشور", "failed": "فشل" }, "stats": { "pending": "قيد الانتظار", "published": "منشور", "failed": "فشل", "accounts": "حسابات مرتبطة" }, "status": { "pending": "قيد الانتظار", "processing": "جاري النشر", "published": "منشور", "failed": "فشل", "cancelled": "ملغي", "retry": "إعادة محاولة" }, "empty": { "title": "مفيش منشورات مجدولة", "description": "جدول منشور من صفحة المحتوى، وهيظهر هنا تلقائيًا." } }
     },
     "marketplace": {
-      "title": "خدماتي في السوق", "subtitle": "أدر إعلاناتك وخدماتك",
-      "myListings": "إعلاناتي", "newListing": "خدمة جديدة",
-      "statusUpdated": "تم تحديث الحالة", "deleted": "تم الحذف",
-      "confirmDelete": "متأكد إنك عايز تحذف الخدمة دي؟",
+      "title": "خدماتي في السوق", "subtitle": "أدر إعلاناتك وخدماتك", "myListings": "إعلاناتي", "newListing": "خدمة جديدة",
+      "statusUpdated": "تم تحديث الحالة", "deleted": "تم الحذف", "confirmDelete": "متأكد إنك عايز تحذف الخدمة دي؟",
       "stats": { "total": "إجمالي الخدمات", "views": "إجمالي المشاهدات", "orders": "إجمالي الطلبات", "avgRating": "متوسط التقييم" },
       "empty": { "title": "لسه معندكش خدمات", "description": "أضف خدمتك الأولى في السوق وابدأ تستقبل طلبات من العملاء.", "cta": "أضف خدمتك الأولى" },
       "status": { "draft": "مسودة", "published": "منشورة", "paused": "متوقفة", "archived": "مؤرشفة" },
       "actions": { "view": "عرض في السوق", "pause": "إيقاف", "publish": "نشر", "delete": "حذف" },
-      "form": {
-        "title": "إضافة خدمة جديدة", "description": "املأ تفاصيل خدمتك",
-        "category": "التصنيف", "categoryPlaceholder": "اختر تصنيف",
-        "listingTitle": "عنوان الخدمة", "listingTitlePlaceholder": "مثال: تصميم هوية بصرية كاملة",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "اشرح خدمتك بالتفصيل...",
-        "basePrice": "السعر الأساسي", "currency": "العملة",
-        "deliveryDays": "أيام التسليم", "revisions": "عدد المراجعات",
-        "fillRequired": "من فضلك املأ كل الحقول المطلوبة",
-        "invalidPrice": "السعر لازم يكون أكبر من صفر",
-        "failed": "فشل الإضافة", "success": "تم النشر",
-        "successDescription": "خدمتك ظهرت في السوق",
-        "cancel": "إلغاء", "submit": "نشر الخدمة"
-      }
+      "form": { "title": "إضافة خدمة جديدة", "description": "املأ تفاصيل خدمتك", "category": "التصنيف", "categoryPlaceholder": "اختر تصنيف", "listingTitle": "عنوان الخدمة", "listingTitlePlaceholder": "مثال: تصميم هوية بصرية كاملة", "descriptionLabel": "الوصف", "descriptionPlaceholder": "اشرح خدمتك بالتفصيل...", "basePrice": "السعر الأساسي", "currency": "العملة", "deliveryDays": "أيام التسليم", "revisions": "عدد المراجعات", "fillRequired": "من فضلك املأ كل الحقول المطلوبة", "invalidPrice": "السعر لازم يكون أكبر من صفر", "failed": "فشل الإضافة", "success": "تم النشر", "successDescription": "خدمتك ظهرت في السوق", "cancel": "إلغاء", "submit": "نشر الخدمة" }
     },
     "proposals": {
-      "title": "العروض",
-      "subtitle": "كل العروض اللي بعتّها أو استقبلتها",
-      "searchPlaceholder": "ابحث بالعنوان أو المرجع...",
-      "noResults": "مفيش نتائج",
-      "amount": "المبلغ",
-      "days": "يوم",
-      "fromProvider": "من مقدم الخدمة",
-      "fromClient": "من العميل",
-      "accept": "قبول",
-      "reject": "رفض",
-      "confirmAccept": "بعد القبول هيتعمل عقد تلقائيًا. متأكد؟",
-      "rejectReasonPrompt": "سبب الرفض (اختياري):",
-      "accepted": "تم القبول — العقد اتعمل",
-      "rejected": "تم الرفض",
-      "waitingClient": "بانتظار رد العميل",
+      "title": "العروض", "subtitle": "كل العروض اللي بعتّها أو استقبلتها", "searchPlaceholder": "ابحث بالعنوان أو المرجع...", "noResults": "مفيش نتائج",
+      "amount": "المبلغ", "days": "يوم", "fromProvider": "من مقدم الخدمة", "fromClient": "من العميل",
+      "accept": "قبول", "reject": "رفض", "confirmAccept": "بعد القبول هيتعمل عقد تلقائيًا. متأكد؟", "rejectReasonPrompt": "سبب الرفض (اختياري):",
+      "accepted": "تم القبول — العقد اتعمل", "rejected": "تم الرفض", "waitingClient": "بانتظار رد العميل",
       "filters": { "all": "الكل", "pending": "قيد الانتظار", "accepted": "مقبول", "rejected": "مرفوض" },
       "status": { "pending": "قيد الانتظار", "accepted": "مقبول", "rejected": "مرفوض", "withdrawn": "مسحوب", "expired": "منتهي" },
       "empty": { "title": "مفيش عروض لسه", "description": "لما تبعت عرض أو تستقبل عرض، هيظهر هنا." }
     },
     "contracts": {
-      "title": "العقود",
-      "subtitle": "كل العقود النشطة والمنتهية",
-      "searchPlaceholder": "ابحث بعنوان العقد أو المرجع...",
-      "noResults": "مفيش نتائج",
-      "provider": "مقدم الخدمة",
-      "client": "العميل",
-      "totalAmount": "الإجمالي",
-      "milestones": "{completed} من {total} مرحلة",
+      "title": "العقود", "subtitle": "كل العقود النشطة والمنتهية", "searchPlaceholder": "ابحث بعنوان العقد أو المرجع...", "noResults": "مفيش نتائج",
+      "provider": "مقدم الخدمة", "client": "العميل", "totalAmount": "الإجمالي", "milestones": "{completed} من {total} مرحلة",
       "filters": { "all": "الكل", "active": "نشط", "completed": "مكتمل", "cancelled": "ملغي", "disputed": "متنازع عليه" },
       "status": { "draft": "مسودة", "active": "نشط", "completed": "مكتمل", "cancelled": "ملغي", "disputed": "متنازع عليه" },
       "empty": { "title": "مفيش عقود لسه", "description": "لما تقبل عرض، هيتم إنشاء عقد تلقائيًا وهتلاقيه هنا." }
     },
     "contractDetails": {
-      "back": "رجوع للعقود",
-      "total": "إجمالي العقد",
-      "yourEarnings": "أرباحك",
-      "endDate": "تاريخ الانتهاء",
-      "milestonesLabel": "المراحل",
-      "client": "العميل",
-      "provider": "مقدم الخدمة",
+      "back": "رجوع للعقود", "total": "إجمالي العقد", "yourEarnings": "أرباحك", "endDate": "تاريخ الانتهاء", "milestonesLabel": "المراحل", "client": "العميل", "provider": "مقدم الخدمة",
       "status": { "draft": "مسودة", "active": "نشط", "completed": "مكتمل", "cancelled": "ملغي", "disputed": "متنازع عليه" },
-      "milestones": {
-        "title": "المراحل",
-        "empty": "مفيش مراحل محددة",
-        "amount": "المبلغ",
-        "dueDate": "تاريخ التسليم",
-        "submit": "إرسال للمراجعة",
-        "approve": "اعتماد",
-        "submitted": "تم الإرسال للمراجعة",
-        "approved": "تم الاعتماد",
-        "confirmApprove": "بعد الاعتماد هيتم تحرير المبلغ. متأكد؟"
-      }
+      "milestones": { "title": "المراحل", "empty": "مفيش مراحل محددة", "amount": "المبلغ", "dueDate": "تاريخ التسليم", "submit": "إرسال للمراجعة", "approve": "اعتماد", "submitted": "تم الإرسال للمراجعة", "approved": "تم الاعتماد", "confirmApprove": "بعد الاعتماد هيتم تحرير المبلغ. متأكد؟" }
     },
-    "messages": {
-      "title": "الرسائل",
-      "subtitle": "تواصل مع فريقك وعملائك",
-      "conversations": "المحادثات",
-      "selectConversation": "اختر محادثة",
-      "noMessages": "مفيش رسائل لسه",
-      "typeMessage": "اكتب رسالة...",
-      "unknownUser": "مستخدم",
-      "empty": {
-        "title": "مفيش محادثات لسه",
-        "description": "المحادثات هتظهر هنا لما تبدأ محادثة مع حد."
-      }
-    },
+    "messages": { "title": "الرسائل", "subtitle": "تواصل مع فريقك وعملائك", "conversations": "المحادثات", "selectConversation": "اختر محادثة", "noMessages": "مفيش رسائل لسه", "typeMessage": "اكتب رسالة...", "unknownUser": "مستخدم", "empty": { "title": "مفيش محادثات لسه", "description": "المحادثات هتظهر هنا لما تبدأ محادثة مع حد." } },
     "disputes": {
-      "title": "النزاعات",
-      "subtitle": "إدارة النزاعات على العقود",
-      "searchPlaceholder": "ابحث بالسبب أو المرجع...",
-      "noResults": "مفيش نتائج",
-      "youOpened": "أنت فتحت النزاع",
-      "againstYou": "نزاع ضدك",
-      "disputedAmount": "المبلغ المتنازع عليه",
-      "filters": {
-        "all": "الكل",
-        "open": "مفتوح",
-        "under_review": "قيد المراجعة",
-        "resolved": "محلول"
-      },
-      "status": {
-        "open": "مفتوح",
-        "under_review": "قيد المراجعة",
-        "waiting_evidence": "بانتظار مستندات",
-        "resolved": "محلول",
-        "closed": "مغلق"
-      },
-      "empty": {
-        "title": "مفيش نزاعات",
-        "description": "كل حاجة تمام! مفيش نزاعات على العقود."
-      }
+      "title": "النزاعات", "subtitle": "إدارة النزاعات على العقود", "searchPlaceholder": "ابحث بالسبب أو المرجع...", "noResults": "مفيش نتائج",
+      "youOpened": "أنت فتحت النزاع", "againstYou": "نزاع ضدك", "disputedAmount": "المبلغ المتنازع عليه",
+      "filters": { "all": "الكل", "open": "مفتوح", "under_review": "قيد المراجعة", "resolved": "محلول" },
+      "status": { "open": "مفتوح", "under_review": "قيد المراجعة", "waiting_evidence": "بانتظار مستندات", "resolved": "محلول", "closed": "مغلق" },
+      "empty": { "title": "مفيش نزاعات", "description": "كل حاجة تمام! مفيش نزاعات على العقود." }
     },
-    "disputeDetails": {
-      "back": "رجوع للنزاعات",
-      "openedBy": "فتح بواسطة",
-      "against": "ضد",
-      "disputedAmount": "المبلغ",
-      "chat": {
-        "title": "المراسلات",
-        "empty": "مفيش مراسلات لسه",
-        "placeholder": "اكتب رسالة...",
-        "closed": "النزاع ده مغلق",
-        "unknownUser": "مستخدم"
-      }
-    },
-    "notifications": {
-      "title": "الإشعارات", "subtitle": "{count} إشعار", "empty": "مفيش إشعارات لسه",
-      "markAllRead": "تعليم الكل كمقروء", "unread": "{count} غير مقروء",
-      "viewAll": "عرض كل الإشعارات",
-      "filters": { "all": "الكل", "unread": "غير مقروء", "read": "مقروء" }
-    },
+    "disputeDetails": { "back": "رجوع للنزاعات", "openedBy": "فتح بواسطة", "against": "ضد", "disputedAmount": "المبلغ", "chat": { "title": "المراسلات", "empty": "مفيش مراسلات لسه", "placeholder": "اكتب رسالة...", "closed": "النزاع ده مغلق", "unknownUser": "مستخدم" } },
+    "notifications": { "title": "الإشعارات", "subtitle": "{count} إشعار", "empty": "مفيش إشعارات لسه", "markAllRead": "تعليم الكل كمقروء", "unread": "{count} غير مقروء", "viewAll": "عرض كل الإشعارات", "filters": { "all": "الكل", "unread": "غير مقروء", "read": "مقروء" } },
     "analytics": {
-      "title": "التحليلات", "subtitle": "نظرة شاملة على أداء مساحة العمل",
-      "exportCsv": "تصدير CSV", "exported": "تم التصدير بنجاح", "exportError": "فشل التصدير",
+      "title": "التحليلات", "subtitle": "نظرة شاملة على أداء مساحة العمل", "exportCsv": "تصدير CSV", "exported": "تم التصدير بنجاح", "exportError": "فشل التصدير",
       "kpis": { "clients": "إجمالي العملاء", "projects": "إجمالي المشاريع", "content": "إجمالي المحتوى", "tasks": "إجمالي المهام", "pending": "{count} مهمة معلقة", "allDone": "كل المهام مكتملة" },
       "sections": { "contentBreakdown": "توزيع المحتوى", "contentCenter": "قطعة", "projectsByStatus": "المشاريع حسب الحالة", "tasksByPriority": "المهام حسب الأولوية", "recentActivity": "آخر الأنشطة", "empty": "مفيش بيانات لسه" },
       "contentStatuses": { "draft": "مسودة", "internal_review": "مراجعة داخلية", "client_review": "مراجعة العميل", "approved": "معتمد", "rejected": "مرفوض", "scheduled": "مجدول", "published": "منشور", "archived": "مؤرشف" },
@@ -528,223 +374,45 @@
       "transactions": { "title": "الحركات", "subtitle": "{count} حركة", "searchPlaceholder": "ابحث بنوع الحركة...", "empty": "مفيش حركات لسه", "noResults": "مفيش نتائج" },
       "transactionTypes": { "deposit": "إيداع", "withdrawal": "سحب", "escrow_hold": "حجز ضمان", "escrow_release": "تحرير ضمان", "refund": "استرداد", "commission": "عمولة", "fee": "رسوم", "transfer_in": "تحويل داخل", "transfer_out": "تحويل خارج", "ad_spend": "إنفاق إعلاني", "ad_rebate": "استرداد إعلاني", "adjustment": "تعديل" },
       "transactionStatus": { "pending": "قيد الانتظار", "completed": "مكتملة", "failed": "فاشلة", "cancelled": "ملغاة" },
-      "deposit": {
-        "title": "إيداع في المحفظة", "description": "أضف رصيد لمحفظتك",
-        "amountLabel": "المبلغ", "defaultDescription": "إيداع يدوي",
-        "note": "في المرحلة الجاية هنربط بوابات الدفع الفعلية (Paymob / Stripe).",
-        "cancel": "إلغاء", "submit": "إيداع",
-        "invalidAmount": "المبلغ مش صحيح", "success": "تم إيداع {amount}",
-        "errors": { "invalid_amount": "المبلغ غير صحيح", "wallet_not_found": "المحفظة مش موجودة", "wallet_not_active": "المحفظة مش نشطة", "not_authenticated": "لازم تسجّل دخول", "amount_too_large": "المبلغ كبير جدًا" }
-      },
-      "withdraw": {
-        "title": "طلب سحب", "description": "اطلب تحويل من رصيدك",
-        "amountLabel": "المبلغ", "availableBalance": "الرصيد المتاح",
-        "comingSoonNote": "قريبًا: هنربط طرق السحب (InstaPay، فودافون كاش، تحويل بنكي).",
-        "cancel": "إلغاء", "submit": "طلب السحب",
-        "invalidAmount": "المبلغ مش صحيح", "insufficientBalance": "الرصيد غير كافي",
-        "success": "تم تسجيل طلب السحب",
-        "errors": { "invalid_amount": "المبلغ غير صحيح", "insufficient_balance": "الرصيد غير كافي", "wallet_not_found": "المحفظة مش موجودة", "not_authenticated": "لازم تسجّل دخول" }
-      }
+      "deposit": { "title": "إيداع في المحفظة", "description": "أضف رصيد لمحفظتك", "amountLabel": "المبلغ", "defaultDescription": "إيداع يدوي", "note": "في المرحلة الجاية هنربط بوابات الدفع الفعلية (Paymob / Stripe).", "cancel": "إلغاء", "submit": "إيداع", "invalidAmount": "المبلغ مش صحيح", "success": "تم إيداع {amount}", "errors": { "invalid_amount": "المبلغ غير صحيح", "wallet_not_found": "المحفظة مش موجودة", "wallet_not_active": "المحفظة مش نشطة", "not_authenticated": "لازم تسجّل دخول", "amount_too_large": "المبلغ كبير جدًا" } },
+      "withdraw": { "title": "طلب سحب", "description": "اطلب تحويل من رصيدك", "amountLabel": "المبلغ", "availableBalance": "الرصيد المتاح", "comingSoonNote": "قريبًا: هنربط طرق السحب (InstaPay، فودافون كاش، تحويل بنكي).", "cancel": "إلغاء", "submit": "طلب السحب", "invalidAmount": "المبلغ مش صحيح", "insufficientBalance": "الرصيد غير كافي", "success": "تم تسجيل طلب السحب", "errors": { "invalid_amount": "المبلغ غير صحيح", "insufficient_balance": "الرصيد غير كافي", "wallet_not_found": "المحفظة مش موجودة", "not_authenticated": "لازم تسجّل دخول" } }
     },
     "payouts": {
-      "title": "السحوبات", "subtitle": "أدر طرق السحب وطلباتك",
-      "backToWallet": "رجوع للمحفظة", "requestPayout": "طلب سحب",
-      "methods": {
-        "title": "طرق السحب", "add": "إضافة طريقة",
-        "default": "افتراضي", "isDefault": "افتراضي",
-        "setDefault": "اجعله افتراضي", "setAsDefault": "تم التحديث",
-        "delete": "حذف", "confirmDelete": "متأكد إنك عايز تحذف الطريقة دي؟", "deleted": "تم الحذف",
-        "empty": { "title": "لسه مفيش طرق سحب", "description": "أضف طريقة سحب عشان تقدر تسحب أرباحك (InstaPay، تحويل بنكي، فودافون كاش)." },
-        "form": {
-          "title": "إضافة طريقة سحب", "description": "اختر النوع واملأ البيانات",
-          "type": "النوع",
-          "types": { "instapay": "InstaPay", "bank_transfer": "تحويل بنكي", "vodafone_cash": "فودافون كاش", "paypal": "PayPal", "paymob": "Paymob" },
-          "label": "اسم الطريقة", "labelPlaceholder": "مثال: حسابي الشخصي",
-          "bankName": "اسم البنك", "bankNamePlaceholder": "مثال: البنك الأهلي",
-          "identifiers": { "instapay": "عنوان InstaPay", "instapayPlaceholder": "username@instapay", "bank_transfer": "رقم الحساب / IBAN", "bank_transferPlaceholder": "EG380019000500000000263180002", "vodafone_cash": "رقم المحفظة", "vodafone_cashPlaceholder": "01xxxxxxxxx", "paypal": "إيميل PayPal", "paypalPlaceholder": "you@example.com", "paymob": "رقم Paymob", "paymobPlaceholder": "01xxxxxxxxx" },
-          "fillRequired": "من فضلك املأ كل الحقول",
-          "failed": "فشل الإضافة", "success": "تم إضافة طريقة السحب",
-          "cancel": "إلغاء", "submit": "إضافة"
-        }
-      },
-      "request": {
-        "title": "طلب سحب", "description": "اطلب تحويل من رصيدك",
-        "amountLabel": "المبلغ", "availableBalance": "الرصيد المتاح",
-        "method": "طريقة السحب", "default": "افتراضي",
-        "amount": "المبلغ", "fee": "الرسوم", "netAmount": "الصافي",
-        "processingNote": "الطلب هيتراجع من فريقنا خلال 1-3 أيام عمل.",
-        "cancel": "إلغاء", "submit": "إرسال الطلب",
-        "invalidAmount": "المبلغ مش صحيح", "minAmount": "الحد الأدنى للسحب 100",
-        "insufficientBalance": "الرصيد غير كافي", "selectMethod": "اختر طريقة السحب",
-        "success": "تم إرسال طلب السحب",
-        "errors": { "invalid_amount": "المبلغ غير صحيح", "min_amount": "الحد الأدنى 100", "insufficient_balance": "الرصيد غير كافي", "wallet_not_found": "المحفظة مش موجودة", "method_not_found": "طريقة السحب مش موجودة", "not_authenticated": "لازم تسجّل دخول" }
-      },
-      "history": {
-        "title": "سجل السحوبات", "subtitle": "{count} طلب",
-        "searchPlaceholder": "ابحث بالمرجع أو الطريقة...",
-        "empty": "مفيش طلبات سحب لسه", "noResults": "مفيش نتائج",
-        "confirmCancel": "متأكد إنك عايز تلغي الطلب ده؟",
-        "cancelled": "تم إلغاء الطلب",
-        "status": { "pending": "قيد المراجعة", "approved": "معتمد", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض", "cancelled": "ملغي", "failed": "فشل" }
-      }
+      "title": "السحوبات", "subtitle": "أدر طرق السحب وطلباتك", "backToWallet": "رجوع للمحفظة", "requestPayout": "طلب سحب",
+      "methods": { "title": "طرق السحب", "add": "إضافة طريقة", "default": "افتراضي", "isDefault": "افتراضي", "setDefault": "اجعله افتراضي", "setAsDefault": "تم التحديث", "delete": "حذف", "confirmDelete": "متأكد إنك عايز تحذف الطريقة دي؟", "deleted": "تم الحذف", "empty": { "title": "لسه مفيش طرق سحب", "description": "أضف طريقة سحب عشان تقدر تسحب أرباحك (InstaPay، تحويل بنكي، فودافون كاش)." }, "form": { "title": "إضافة طريقة سحب", "description": "اختر النوع واملأ البيانات", "type": "النوع", "types": { "instapay": "InstaPay", "bank_transfer": "تحويل بنكي", "vodafone_cash": "فودافون كاش", "paypal": "PayPal", "paymob": "Paymob" }, "label": "اسم الطريقة", "labelPlaceholder": "مثال: حسابي الشخصي", "bankName": "اسم البنك", "bankNamePlaceholder": "مثال: البنك الأهلي", "identifiers": { "instapay": "عنوان InstaPay", "instapayPlaceholder": "username@instapay", "bank_transfer": "رقم الحساب / IBAN", "bank_transferPlaceholder": "EG380019000500000000263180002", "vodafone_cash": "رقم المحفظة", "vodafone_cashPlaceholder": "01xxxxxxxxx", "paypal": "إيميل PayPal", "paypalPlaceholder": "you@example.com", "paymob": "رقم Paymob", "paymobPlaceholder": "01xxxxxxxxx" }, "fillRequired": "من فضلك املأ كل الحقول", "failed": "فشل الإضافة", "success": "تم إضافة طريقة السحب", "cancel": "إلغاء", "submit": "إضافة" } },
+      "request": { "title": "طلب سحب", "description": "اطلب تحويل من رصيدك", "amountLabel": "المبلغ", "availableBalance": "الرصيد المتاح", "method": "طريقة السحب", "default": "افتراضي", "amount": "المبلغ", "fee": "الرسوم", "netAmount": "الصافي", "processingNote": "الطلب هيتراجع من فريقنا خلال 1-3 أيام عمل.", "cancel": "إلغاء", "submit": "إرسال الطلب", "invalidAmount": "المبلغ مش صحيح", "minAmount": "الحد الأدنى للسحب 100", "insufficientBalance": "الرصيد غير كافي", "selectMethod": "اختر طريقة السحب", "success": "تم إرسال طلب السحب", "errors": { "invalid_amount": "المبلغ غير صحيح", "min_amount": "الحد الأدنى 100", "insufficient_balance": "الرصيد غير كافي", "wallet_not_found": "المحفظة مش موجودة", "method_not_found": "طريقة السحب مش موجودة", "not_authenticated": "لازم تسجّل دخول" } },
+      "history": { "title": "سجل السحوبات", "subtitle": "{count} طلب", "searchPlaceholder": "ابحث بالمرجع أو الطريقة...", "empty": "مفيش طلبات سحب لسه", "noResults": "مفيش نتائج", "confirmCancel": "متأكد إنك عايز تلغي الطلب ده؟", "cancelled": "تم إلغاء الطلب", "status": { "pending": "قيد المراجعة", "approved": "معتمد", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض", "cancelled": "ملغي", "failed": "فشل" } }
     },
+    "apiKeys": { "title": "مفاتيح API", "subtitle": "اربط تطبيقاتك الخارجية بالـ API", "listTitle": "المفاتيح النشطة", "listSubtitle": "كل ما تحتاجه للتكامل", "create": "مفتاح جديد", "empty": "مفيش مفاتيح لسه", "revoked": "ملغي", "revoke": "إلغاء", "deleted": "تم الحذف", "copied": "تم النسخ", "createdAt": "أُنشئ", "lastUsed": "آخر استخدام", "nameRequired": "الاسم مطلوب", "confirmDelete": "حذف المفتاح نهائيًا؟", "confirmRevoke": "إلغاء المفتاح؟", "createTitle": "إنشاء مفتاح API", "createDescription": "ادّي المفتاح اسم يساعدك تتذكره", "name": "الاسم", "namePlaceholder": "مثال: تطبيق الموبايل", "cancel": "إلغاء", "submit": "إنشاء", "successTitle": "تم إنشاء المفتاح!", "successDescription": "انسخ المفتاح ده واحفظه في مكان آمن.", "saveWarning": "هتشوف المفتاح ده مرة واحدة بس — احفظه الآن", "done": "تمام" },
+    "webhooks": { "title": "Webhooks", "subtitle": "استقبل إشعارات فورية بالأحداث", "listTitle": "Webhooks النشطة", "listSubtitle": "اشترك في الأحداث اللي تهمك", "create": "Webhook جديد", "empty": "مفيش webhooks لسه", "active": "نشط", "inactive": "متوقف", "failures": "فشل", "events": "أحداث", "enabled": "تم التفعيل", "disabled": "تم الإيقاف", "deleted": "تم الحذف", "copied": "تم النسخ", "confirmDelete": "حذف الـ webhook نهائيًا؟", "createTitle": "Webhook جديد", "createDescription": "استقبل أحداث المنصة في تطبيقك", "name": "الاسم", "namePlaceholder": "مثال: تطبيق الموبايل", "url": "الـ URL", "httpsNote": "لازم يبدأ بـ https://", "eventsLabel": "الأحداث", "fillRequired": "من فضلك املأ كل الحقول", "cancel": "إلغاء", "submit": "إنشاء", "successTitle": "تم إنشاء الـ webhook!", "successDescription": "انسخ الـ Secret ده واستخدمه للتحقق.", "saveSecretWarning": "الـ Secret ده هيظهر مرة واحدة بس — احفظه الآن", "done": "تمام", "errors": { "missing_fields": "من فضلك املأ كل الحقول", "https_required": "لازم يبدأ بـ https://", "select_events": "اختر حدث واحد على الأقل" } },
+    "integrations": { "title": "الربط مع المنصات", "subtitle": "اربط حساباتك على المنصات الخارجية", "connected": "متصل", "connect": "ربط", "disconnect": "فصل", "confirmDisconnect": "فصل الحساب؟", "oauthComingSoon": "قريبًا", "oauthComingSoonDescription": "هيتم تفعيل ربط {provider} قريبًا", "disconnectComingSoon": "قريبًا", "categories": { "social": "سوشيال ميديا", "payment": "مدفوعات", "ads": "إعلانات", "other": "أخرى" } },
     "profile": { "title": "الملف الشخصي", "subtitle": "أدر بياناتك الشخصية", "joinedOn": "عضو من" },
     "settings": {
       "title": "الإعدادات", "subtitle": "أدر حسابك ومساحة العمل",
       "tabs": { "profile": "الملف الشخصي", "workspace": "مساحة العمل", "organization": "المؤسسة", "members": "الأعضاء" },
-      "profile": {
-        "title": "الملف الشخصي", "description": "حدّث بياناتك الشخصية",
-        "firstName": "الاسم الأول", "lastName": "اسم العائلة",
-        "phone": "رقم الهاتف", "jobTitle": "المسمى الوظيفي", "jobTitlePlaceholder": "مثال: مدير تسويق",
-        "bio": "نبذة عنك", "bioPlaceholder": "اكتب نبذة قصيرة...",
-        "country": "الدولة", "countryPlaceholder": "مصر",
-        "city": "المدينة", "cityPlaceholder": "القاهرة",
-        "timezone": "المنطقة الزمنية", "language": "اللغة المفضلة",
-        "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح"
-      },
-      "workspace": {
-        "title": "مساحة العمل", "description": "بيانات مساحة العمل الحالية",
-        "name": "اسم مساحة العمل", "slug": "المعرّف (Slug)", "slugNote": "لا يمكن تعديله",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "وصف مختصر لمساحة العمل...",
-        "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح",
-        "readOnly": "مش عندك صلاحية التعديل — لازم تكون owner أو admin"
-      },
-      "organization": {
-        "title": "المؤسسة", "description": "بيانات المؤسسة التجارية",
-        "name": "اسم المؤسسة", "website": "الموقع الإلكتروني",
-        "descriptionLabel": "الوصف", "descriptionPlaceholder": "وصف المؤسسة...",
-        "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح"
-      },
-      "members": {
-        "title": "أعضاء الفريق", "subtitle": "{count} عضو في مساحة العمل", "you": "أنت",
-        "roles": { "owner": "مالك", "admin": "أدمن", "member": "عضو", "client": "عميل", "viewer": "مشاهد" },
-        "invite": {
-          "trigger": "دعوة عضو", "title": "دعوة عضو جديد", "description": "ادعُ عضو جديد لمساحة العمل دي",
-          "email": "البريد الإلكتروني", "role": "الدور",
-          "submit": "إنشاء الدعوة", "cancel": "إلغاء",
-          "successTitle": "الدعوة جاهزة!", "successDescription": "انسخ الرابط ده وابعته للعضو عشان ينضم.",
-          "linkNote": "الرابط صالح لمدة 7 أيام", "done": "تمام",
-          "errors": { "not_authenticated": "لازم تسجّل دخول", "no_workspace": "مفيش مساحة عمل", "not_allowed": "مش عندك صلاحية", "invalid_email": "الإيميل مش صحيح", "already_member": "العضو ده موجود بالفعل" }
-        },
-        "pending": { "title": "دعوات معلقة", "expiresIn": "باقي {days} يوم", "cancel": "إلغاء الدعوة", "confirmCancel": "متأكد إنك عايز تلغي الدعوة دي؟" }
-      },
-      "dangerZone": {
-        "title": "منطقة الخطر", "description": "إجراءات نهائية ما ينفعش ترجع بعدها",
-        "export": { "title": "تصدير بياناتك", "description": "حمّل نسخة كاملة من بياناتك (GDPR)", "button": "تصدير JSON" },
-        "delete": {
-          "title": "حذف الحساب", "description": "حذف نهائي لكل بياناتك — مفيش رجوع",
-          "button": "حذف الحساب",
-          "confirmTitle": "متأكد إنك عايز تحذف الحساب؟",
-          "confirmDescription": "كل بياناتك هتتحذف نهائيًا. ده الإجراء مفيش رجوع فيه.",
-          "typeToConfirm": "اكتب DELETE للتأكيد",
-          "cancel": "إلغاء", "confirmButton": "حذف نهائي"
-        }
-      }
+      "profile": { "title": "الملف الشخصي", "description": "حدّث بياناتك الشخصية", "firstName": "الاسم الأول", "lastName": "اسم العائلة", "phone": "رقم الهاتف", "jobTitle": "المسمى الوظيفي", "jobTitlePlaceholder": "مثال: مدير تسويق", "bio": "نبذة عنك", "bioPlaceholder": "اكتب نبذة قصيرة...", "country": "الدولة", "countryPlaceholder": "مصر", "city": "المدينة", "cityPlaceholder": "القاهرة", "timezone": "المنطقة الزمنية", "language": "اللغة المفضلة", "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح" },
+      "workspace": { "title": "مساحة العمل", "description": "بيانات مساحة العمل الحالية", "name": "اسم مساحة العمل", "slug": "المعرّف (Slug)", "slugNote": "لا يمكن تعديله", "descriptionLabel": "الوصف", "descriptionPlaceholder": "وصف مختصر لمساحة العمل...", "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح", "readOnly": "مش عندك صلاحية التعديل — لازم تكون owner أو admin" },
+      "organization": { "title": "المؤسسة", "description": "بيانات المؤسسة التجارية", "name": "اسم المؤسسة", "website": "الموقع الإلكتروني", "descriptionLabel": "الوصف", "descriptionPlaceholder": "وصف المؤسسة...", "submit": "حفظ التعديلات", "success": "تم حفظ التعديلات بنجاح" },
+      "members": { "title": "أعضاء الفريق", "subtitle": "{count} عضو في مساحة العمل", "you": "أنت", "roles": { "owner": "مالك", "admin": "أدمن", "member": "عضو", "client": "عميل", "viewer": "مشاهد" }, "invite": { "trigger": "دعوة عضو", "title": "دعوة عضو جديد", "description": "ادعُ عضو جديد لمساحة العمل دي", "email": "البريد الإلكتروني", "role": "الدور", "submit": "إنشاء الدعوة", "cancel": "إلغاء", "successTitle": "الدعوة جاهزة!", "successDescription": "انسخ الرابط ده وابعته للعضو عشان ينضم.", "linkNote": "الرابط صالح لمدة 7 أيام", "done": "تمام", "errors": { "not_authenticated": "لازم تسجّل دخول", "no_workspace": "مفيش مساحة عمل", "not_allowed": "مش عندك صلاحية", "invalid_email": "الإيميل مش صحيح", "already_member": "العضو ده موجود بالفعل" } }, "pending": { "title": "دعوات معلقة", "expiresIn": "باقي {days} يوم", "cancel": "إلغاء الدعوة", "confirmCancel": "متأكد إنك عايز تلغي الدعوة دي؟" } },
+      "dangerZone": { "title": "منطقة الخطر", "description": "إجراءات نهائية ما ينفعش ترجع بعدها", "export": { "title": "تصدير بياناتك", "description": "حمّل نسخة كاملة من بياناتك (GDPR)", "button": "تصدير JSON" }, "delete": { "title": "حذف الحساب", "description": "حذف نهائي لكل بياناتك — مفيش رجوع", "button": "حذف الحساب", "confirmTitle": "متأكد إنك عايز تحذف الحساب؟", "confirmDescription": "كل بياناتك هتتحذف نهائيًا. ده الإجراء مفيش رجوع فيه.", "typeToConfirm": "اكتب DELETE للتأكيد", "cancel": "إلغاء", "confirmButton": "حذف نهائي" } }
     },
-    "invite": {
-      "invalidTitle": "الدعوة مش موجودة", "invalidDescription": "الرابط ده مش صحيح أو انتهت صلاحيته.",
-      "expiredTitle": "الدعوة انتهت", "expiredDescription": "الرابط ده انتهت صلاحيته. اطلب من الأدمن يبعتلك دعوة جديدة.",
-      "alreadyAcceptedTitle": "الدعوة مستخدمة", "alreadyAcceptedDescription": "انت بالفعل عضو في مساحة العمل دي.",
-      "goToDashboard": "ادخل لوحة التحكم", "backHome": "العودة للرئيسية",
-      "invitedTitle": "أنت مدعو!", "invitedDescription": "تمت دعوتك للانضمام إلى {workspace} بدور {role}.",
-      "invitationEmail": "الإيميل المدعو", "createAccount": "إنشاء حساب", "signIn": "تسجيل الدخول",
-      "note": "لازم تستخدم نفس الإيميل المدعو", "accepting": "جاري قبول الدعوة...",
-      "acceptErrorTitle": "فشل قبول الدعوة",
-      "errors": { "not_authenticated": "لازم تسجّل دخول", "invalid_or_expired": "الدعوة مش صحيحة أو انتهت" }
-    },
-    "portal": {
-      "portal": "بوابة العميل", "welcome": "مرحبًا",
-      "subtitle": "دي بوابة العميل — تشوف فيها مشاريعك والمحتوى المطلوب موافقتك",
-      "noWorkspace": "لسه مش عضو في أي مساحة عمل. لما توصلك دعوة، هتقدر تشوف محتواك هنا.",
-      "logout": "تسجيل الخروج", "pendingApproval": "بانتظار موافقتك",
-      "approve": "موافقة", "requestChanges": "طلب تعديلات",
-      "addNote": "ملاحظات (اختياري)", "notePlaceholder": "اكتب ملاحظاتك هنا...",
-      "viewAll": "عرض الكل", "allClear": "كل حاجة تحت السيطرة! مفيش محتوى بانتظار موافقتك.",
-      "backToApprovals": "رجوع للموافقات",
-      "approvalsCount": "{count} عنصر بانتظار موافقتك",
-      "projectsCount": "{count} مشروع", "noProjects": "مفيش مشاريع لسه",
-      "stats": { "pending": "بانتظار موافقتك", "approved": "معتمد", "projects": "المشاريع" },
-      "sections": { "pendingApprovals": "بانتظار موافقتك", "myProjects": "مشاريعي" }
-    },
-    "commandPalette": {
-      "placeholder": "ابحث أو نفّذ أمر...", "empty": "مفيش نتائج", "openHint": "افتح الأوامر السريعة",
-      "sections": { "navigation": "الانتقال", "actions": "إجراءات سريعة", "preferences": "التفضيلات" },
-      "actions": { "newClient": "إضافة عميل جديد", "newProject": "إنشاء مشروع جديد", "newTask": "إضافة مهمة جديدة", "newContent": "إنشاء محتوى جديد", "toggleTheme": "تبديل الوضع (Dark/Light)" }
-    }
+    "invite": { "invalidTitle": "الدعوة مش موجودة", "invalidDescription": "الرابط ده مش صحيح أو انتهت صلاحيته.", "expiredTitle": "الدعوة انتهت", "expiredDescription": "الرابط ده انتهت صلاحيته. اطلب من الأدمن يبعتلك دعوة جديدة.", "alreadyAcceptedTitle": "الدعوة مستخدمة", "alreadyAcceptedDescription": "انت بالفعل عضو في مساحة العمل دي.", "goToDashboard": "ادخل لوحة التحكم", "backHome": "العودة للرئيسية", "invitedTitle": "أنت مدعو!", "invitedDescription": "تمت دعوتك للانضمام إلى {workspace} بدور {role}.", "invitationEmail": "الإيميل المدعو", "createAccount": "إنشاء حساب", "signIn": "تسجيل الدخول", "note": "لازم تستخدم نفس الإيميل المدعو", "accepting": "جاري قبول الدعوة...", "acceptErrorTitle": "فشل قبول الدعوة", "errors": { "not_authenticated": "لازم تسجّل دخول", "invalid_or_expired": "الدعوة مش صحيحة أو انتهت" } },
+    "portal": { "portal": "بوابة العميل", "welcome": "مرحبًا", "subtitle": "دي بوابة العميل — تشوف فيها مشاريعك والمحتوى المطلوب موافقتك", "noWorkspace": "لسه مش عضو في أي مساحة عمل. لما توصلك دعوة، هتقدر تشوف محتواك هنا.", "logout": "تسجيل الخروج", "pendingApproval": "بانتظار موافقتك", "approve": "موافقة", "requestChanges": "طلب تعديلات", "addNote": "ملاحظات (اختياري)", "notePlaceholder": "اكتب ملاحظاتك هنا...", "viewAll": "عرض الكل", "allClear": "كل حاجة تحت السيطرة! مفيش محتوى بانتظار موافقتك.", "backToApprovals": "رجوع للموافقات", "approvalsCount": "{count} عنصر بانتظار موافقتك", "projectsCount": "{count} مشروع", "noProjects": "مفيش مشاريع لسه", "stats": { "pending": "بانتظار موافقتك", "approved": "معتمد", "projects": "المشاريع" }, "sections": { "pendingApprovals": "بانتظار موافقتك", "myProjects": "مشاريعي" } },
+    "commandPalette": { "placeholder": "ابحث أو نفّذ أمر...", "empty": "مفيش نتائج", "openHint": "افتح الأوامر السريعة", "sections": { "navigation": "الانتقال", "actions": "إجراءات سريعة", "preferences": "التفضيلات" }, "actions": { "newClient": "إضافة عميل جديد", "newProject": "إنشاء مشروع جديد", "newTask": "إضافة مهمة جديدة", "newContent": "إنشاء محتوى جديد", "toggleTheme": "تبديل الوضع (Dark/Light)" } }
   },
   "admin": {
-    "nav": { "overview": "لوحة الأدمن", "users": "المستخدمين", "workspaces": "مساحات العمل", "payouts": "السحوبات", "audit": "سجل العمليات", "settings": "الإعدادات" },
-    "overview": {
-      "title": "لوحة الأدمن", "subtitle": "نظرة شاملة على المنصة",
-      "kpis": { "users": "إجمالي المستخدمين", "organizations": "المؤسسات", "workspaces": "مساحات العمل", "audit_logs": "سجلات العمليات", "critical": "عمليات حرجة" },
-      "recentActivity": "آخر العمليات", "noActivity": "مفيش عمليات لسه"
-    },
-    "payouts": {
-      "title": "طلبات السحب", "subtitle": "أدر طلبات السحب من المستخدمين",
-      "searchPlaceholder": "ابحث بالمرجع، المستخدم، الطريقة...",
-      "noResults": "مفيش نتائج", "count": "{count} طلب",
-      "approve": "موافقة", "complete": "إكمال", "reject": "رفض",
-      "confirmApprove": "موافقة على طلب السحب ده؟",
-      "approved": "تم الاعتماد", "completed": "تم الإكمال", "rejected": "تم الرفض",
-      "externalTxPrompt": "أدخل رقم المعاملة الخارجية (اختياري):",
-      "rejectReasonPrompt": "أدخل سبب الرفض:",
-      "filters": { "all": "الكل", "pending": "قيد الانتظار", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض" },
-      "status": { "pending": "قيد المراجعة", "approved": "معتمد", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض", "cancelled": "ملغي", "failed": "فشل" },
-      "cols": { "reference": "المرجع", "user": "المستخدم", "method": "الطريقة", "amount": "المبلغ", "status": "الحالة", "actions": "إجراءات" }
-    },
-    "audit": {
-      "title": "سجل العمليات", "subtitle": "كل عملية حساسة في المنصة",
-      "searchPlaceholder": "ابحث بالإجراء، المستخدم، الكيان...",
-      "noResults": "مفيش نتائج", "count": "{count} عملية",
-      "filters": { "all": "الكل" },
-      "severities": { "info": "معلومة", "warning": "تحذير", "critical": "حرج" },
-      "cols": { "severity": "الأهمية", "action": "الإجراء", "entity": "الكيان", "actor": "المستخدم", "time": "الوقت" }
-    },
-    "users": {
-      "title": "إدارة المستخدمين", "subtitle": "كل مستخدمي المنصة",
-      "searchPlaceholder": "ابحث بالاسم أو الإيميل...",
-      "confirmSuspend": "متأكد إنك عايز تعلّق الحساب ده؟",
-      "suspend": "تعليق", "restore": "استرجاع",
-      "cols": { "name": "الاسم", "email": "الإيميل", "type": "النوع", "status": "الحالة", "actions": "إجراءات" },
-      "status": { "active": "نشط", "suspended": "معلّق" }
-    }
+    "nav": { "overview": "لوحة الأدمن", "analytics": "التحليلات", "users": "المستخدمين", "workspaces": "مساحات العمل", "payouts": "السحوبات", "audit": "سجل العمليات", "settings": "الإعدادات" },
+    "overview": { "title": "لوحة الأدمن", "subtitle": "نظرة شاملة على المنصة", "kpis": { "users": "إجمالي المستخدمين", "organizations": "المؤسسات", "workspaces": "مساحات العمل", "audit_logs": "سجلات العمليات", "critical": "عمليات حرجة" }, "recentActivity": "آخر العمليات", "noActivity": "مفيش عمليات لسه" },
+    "payouts": { "title": "طلبات السحب", "subtitle": "أدر طلبات السحب من المستخدمين", "searchPlaceholder": "ابحث بالمرجع، المستخدم، الطريقة...", "noResults": "مفيش نتائج", "count": "{count} طلب", "approve": "موافقة", "complete": "إكمال", "reject": "رفض", "confirmApprove": "موافقة على طلب السحب ده؟", "approved": "تم الاعتماد", "completed": "تم الإكمال", "rejected": "تم الرفض", "externalTxPrompt": "أدخل رقم المعاملة الخارجية (اختياري):", "rejectReasonPrompt": "أدخل سبب الرفض:", "filters": { "all": "الكل", "pending": "قيد الانتظار", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض" }, "status": { "pending": "قيد المراجعة", "approved": "معتمد", "processing": "قيد المعالجة", "completed": "مكتمل", "rejected": "مرفوض", "cancelled": "ملغي", "failed": "فشل" }, "cols": { "reference": "المرجع", "user": "المستخدم", "method": "الطريقة", "amount": "المبلغ", "status": "الحالة", "actions": "إجراءات" } },
+    "audit": { "title": "سجل العمليات", "subtitle": "كل عملية حساسة في المنصة", "searchPlaceholder": "ابحث بالإجراء، المستخدم، الكيان...", "noResults": "مفيش نتائج", "count": "{count} عملية", "filters": { "all": "الكل" }, "severities": { "info": "معلومة", "warning": "تحذير", "critical": "حرج" }, "cols": { "severity": "الأهمية", "action": "الإجراء", "entity": "الكيان", "actor": "المستخدم", "time": "الوقت" } },
+    "users": { "title": "إدارة المستخدمين", "subtitle": "كل مستخدمي المنصة", "searchPlaceholder": "ابحث بالاسم أو الإيميل...", "confirmSuspend": "متأكد إنك عايز تعلّق الحساب ده؟", "suspend": "تعليق", "restore": "استرجاع", "cols": { "name": "الاسم", "email": "الإيميل", "type": "النوع", "status": "الحالة", "actions": "إجراءات" }, "status": { "active": "نشط", "suspended": "معلّق" } },
+    "settings": { "title": "إعدادات المنصة", "subtitle": "تحكم كامل في المنصة", "flags": { "title": "المميزات (Feature Flags)", "subtitle": "شغّل أو أوقف مميزات بدون كود", "enabled": "تم التفعيل", "disabled": "تم الإيقاف" }, "platform": { "title": "الإعدادات العامة", "subtitle": "البيانات الأساسية للمنصة", "saved": "تم الحفظ" } }
   },
   "marketplace": {
-    "page": {
-      "badge": "Marketplace — سوق التسويق العربي",
-      "title": "لاقي الخدمة", "titleHighlight": "المناسبة لمشروعك",
-      "subtitle": "تصفح مئات الخدمات من وكالات ومستقلين محترفين في التسويق، التصميم، والمحتوى.",
-      "stats": { "services": "خدمة", "featured": "مميزة", "categories": "تصنيف" }
-    },
-    "grid": {
-      "searchPlaceholder": "ابحث عن خدمة، تصنيف...",
-      "allCategories": "كل التصنيفات", "filters": "الفلاتر",
-      "resultsCount": "{count} خدمة",
-      "noResults": "مفيش نتائج مطابقة للبحث", "clearFilters": "مسح الفلاتر",
-      "featured": "مميزة", "from": "من",
-      "sorts": { "newest": "الأحدث", "popular": "الأكثر مشاهدة", "priceLow": "الأرخص", "priceHigh": "الأغلى", "rating": "الأعلى تقييمًا" }
-    },
-    "details": {
-      "back": "رجوع للسوق", "featured": "مميزة",
-      "deliveryIn": "التسليم في {days} أيام", "views": "{count} مشاهدة",
-      "aboutService": "عن الخدمة", "packages": "الباقات", "popular": "الأكثر شعبية",
-      "deliveryDays": "التسليم: {days} أيام", "revisions": "{count} مراجعة",
-      "provider": "مقدم الخدمة", "contactProvider": "تواصل مع مقدم الخدمة",
-      "startingFrom": "يبدأ من", "orderNow": "اطلب الخدمة الآن", "sendMessage": "إرسال رسالة",
-      "trust1": { "title": "دفع آمن", "description": "أموالك محمية بنظام Escrow" },
-      "trust2": { "title": "ضمان الجودة", "description": "استرداد كامل لو مش راضي" }
-    },
-    "order": {
-      "title": "طلب الخدمة", "description": "أدخل تفاصيل مشروعك",
-      "selectPackage": "اختر الباقة", "delivery": "التسليم", "days": "يوم",
-      "revisions": "المراجعات", "total": "الإجمالي",
-      "projectTitle": "عنوان المشروع", "projectTitlePlaceholder": "مثال: تصميم هوية بصرية لمطعم",
-      "projectDetails": "تفاصيل المشروع", "projectDetailsPlaceholder": "اشرح متطلباتك بالتفصيل...",
-      "comingSoonNote": "قريبًا: ربط مباشر مع Escrow والدفع الإلكتروني.",
-      "fillRequired": "من فضلك املأ العنوان والتفاصيل",
-      "cancel": "إلغاء", "submit": "تأكيد الطلب",
-      "success": "تم إرسال الطلب", "successDescription": "هنتواصل معاك قريبًا"
-    }
+    "page": { "badge": "Marketplace — سوق التسويق العربي", "title": "لاقي الخدمة", "titleHighlight": "المناسبة لمشروعك", "subtitle": "تصفح مئات الخدمات من وكالات ومستقلين محترفين في التسويق، التصميم، والمحتوى.", "stats": { "services": "خدمة", "featured": "مميزة", "categories": "تصنيف" } },
+    "grid": { "searchPlaceholder": "ابحث عن خدمة، تصنيف...", "allCategories": "كل التصنيفات", "filters": "الفلاتر", "resultsCount": "{count} خدمة", "noResults": "مفيش نتائج مطابقة للبحث", "clearFilters": "مسح الفلاتر", "featured": "مميزة", "from": "من", "sorts": { "newest": "الأحدث", "popular": "الأكثر مشاهدة", "priceLow": "الأرخص", "priceHigh": "الأغلى", "rating": "الأعلى تقييمًا" } },
+    "details": { "back": "رجوع للسوق", "featured": "مميزة", "deliveryIn": "التسليم في {days} أيام", "views": "{count} مشاهدة", "aboutService": "عن الخدمة", "packages": "الباقات", "popular": "الأكثر شعبية", "deliveryDays": "التسليم: {days} أيام", "revisions": "{count} مراجعة", "provider": "مقدم الخدمة", "contactProvider": "تواصل مع مقدم الخدمة", "startingFrom": "يبدأ من", "orderNow": "اطلب الخدمة الآن", "sendMessage": "إرسال رسالة", "trust1": { "title": "دفع آمن", "description": "أموالك محمية بنظام Escrow" }, "trust2": { "title": "ضمان الجودة", "description": "استرداد كامل لو مش راضي" } },
+    "order": { "title": "طلب الخدمة", "description": "أدخل تفاصيل مشروعك", "selectPackage": "اختر الباقة", "delivery": "التسليم", "days": "يوم", "revisions": "المراجعات", "total": "الإجمالي", "projectTitle": "عنوان المشروع", "projectTitlePlaceholder": "مثال: تصميم هوية بصرية لمطعم", "projectDetails": "تفاصيل المشروع", "projectDetailsPlaceholder": "اشرح متطلباتك بالتفصيل...", "comingSoonNote": "قريبًا: ربط مباشر مع Escrow والدفع الإلكتروني.", "fillRequired": "من فضلك املأ العنوان والتفاصيل", "cancel": "إلغاء", "submit": "تأكيد الطلب", "success": "تم إرسال الطلب", "successDescription": "هنتواصل معاك قريبًا" }
   },
   "files": {
     "upload": { "title": "اسحب وأفلت الملفات هنا", "subtitle": "أو اضغط للاختيار • الحد الأقصى {max}", "uploading": "جاري الرفع...", "tooLarge": "الملف {name} أكبر من الحد ({max})" },
@@ -756,5 +424,16 @@
     "description": "حصل خطأ غير متوقع. جرّب تاني.",
     "retry": "حاول تاني",
     "home": "الصفحة الرئيسية"
+  },
+  "a11y": {
+    "skipToContent": "انتقل للمحتوى الرئيسي"
+  },
+  "notFound": {
+    "title": "الصفحة مش موجودة",
+    "description": "الصفحة اللي بتدور عليها مش موجودة أو اتنقلت لمكان تاني.",
+    "home": "الرئيسية",
+    "browseMarketplace": "تصفح السوق",
+    "helpText": "محتاج مساعدة؟",
+    "contact": "كلمنا"
   }
 }

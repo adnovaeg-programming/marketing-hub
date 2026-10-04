@@ -33,7 +33,7 @@ export default function LocaleError({
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
           <button
             onClick={reset}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-xl hover:shadow-primary/40"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-xl"
           >
             <RotateCcw className="size-4" />
             حاول تاني
@@ -43,7 +43,7 @@ export default function LocaleError({
             className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition hover:bg-muted/50"
           >
             <Home className="size-4" />
-            الصفحة الرئيسية
+            الرئيسية
           </a>
         </div>
       </div>

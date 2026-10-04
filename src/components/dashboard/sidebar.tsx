@@ -12,6 +12,7 @@ import {
   Bell,
   Menu,
   Sparkles,
+  Sparkles as SparklesIcon,
   LogOut,
   UserCircle,
   ShieldAlert,
@@ -20,6 +21,10 @@ import {
   FileSignature,
   MessageSquare,
   AlertTriangle,
+  Key,
+  Webhook,
+  Puzzle,
+  Share2,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -38,18 +43,23 @@ import { signOutAction } from "@/app/[locale]/login/actions";
 
 const NAV_ITEMS = [
   { href: "/dashboard", icon: LayoutDashboard, key: "overview" },
+  { href: "/dashboard/ai", icon: SparklesIcon, key: "ai" },
   { href: "/dashboard/clients", icon: Users, key: "clients" },
   { href: "/dashboard/projects", icon: FolderKanban, key: "projects" },
   { href: "/dashboard/tasks", icon: CheckSquare, key: "tasks" },
   { href: "/dashboard/content", icon: FileText, key: "content" },
+  { href: "/dashboard/social", icon: Share2, key: "social" },
   { href: "/dashboard/marketplace", icon: Briefcase, key: "marketplace" },
   { href: "/dashboard/marketplace/proposals", icon: FileText, key: "proposals" },
   { href: "/dashboard/contracts", icon: FileSignature, key: "contracts" },
-  { href: "/dashboard/disputes", icon: AlertTriangle, key: "disputes" },
   { href: "/dashboard/messages", icon: MessageSquare, key: "messages" },
+  { href: "/dashboard/disputes", icon: AlertTriangle, key: "disputes" },
   { href: "/dashboard/notifications", icon: Bell, key: "notifications" },
   { href: "/dashboard/analytics", icon: BarChart3, key: "analytics" },
   { href: "/dashboard/wallet", icon: WalletIcon, key: "wallet" },
+  { href: "/dashboard/settings/api-keys", icon: Key, key: "apiKeys" },
+  { href: "/dashboard/settings/webhooks", icon: Webhook, key: "webhooks" },
+  { href: "/dashboard/settings/integrations", icon: Puzzle, key: "integrations" },
   { href: "/dashboard/profile", icon: UserCircle, key: "profile" },
   { href: "/dashboard/settings", icon: Settings, key: "settings" },
 ] as const;

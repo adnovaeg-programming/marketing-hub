@@ -1,0 +1,28 @@
+{
+  "name": "Marketing Hub — منصة موحدة لإدارة التسويق",
+  "short_name": "Marketing Hub",
+  "description": "منصة مركزية لإدارة التسويق، المحتوى، الفريق، والعملاء.",
+  "start_url": "/ar",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0724",
+  "theme_color": "#7c3aed",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["business", "productivity", "marketing"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

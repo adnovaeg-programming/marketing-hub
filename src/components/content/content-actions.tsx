@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { Loader2, Check, X, Send, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
+import { useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import {
   deleteContentAction,
@@ -28,21 +30,45 @@ export function ContentActions({
   currentStatus: string;
 }) {
   const t = useTranslations("dashboard.content.actions");
+  const router = useRouter();
   const [pending, setPending] = useState<string | null>(null);
 
   const handleUpdate = async (next: Status) => {
     setPending(next);
-    await updateContentStatusAction(contentId, next);
+    const result = await updateContentStatusAction(contentId, next);
     setPending(null);
+
+    if (!result.success) {
+      toast.error("فشل تحديث الحالة");
+      return;
+    }
+    router.refresh();
   };
 
   const handleDelete = async () => {
     if (!confirm(t("confirmDelete"))) return;
+
     setPending("delete");
-    await deleteContentAction(contentId);
+    const result = await deleteContentAction(contentId);
+
+    if (!result.success) {
+      toast.error("فشل الحذف");
+      setPending(null);
+      return;
+    }
+
+    toast.success("تم حذف المحتوى");
+
+    // ✅ نرجع لصفحة قائمة المحتوى
+    window.location.href = "/ar/dashboard/content";
   };
 
-  const buttons: { key: Status; label: string; icon: typeof Check; variant: "default" | "outline" | "destructive" }[] = [];
+  const buttons: {
+    key: Status;
+    label: string;
+    icon: typeof Check;
+    variant: "default" | "outline" | "destructive";
+  }[] = [];
 
   if (currentStatus === "draft") {
     buttons.push({
